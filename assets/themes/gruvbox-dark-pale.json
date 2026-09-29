@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "gruvbox-dark-pale",
+  "palette": {
+    "base00": "#262626",
+    "base01": "#3a3a3a",
+    "base02": "#4e4e4e",
+    "base03": "#8a8a8a",
+    "base04": "#949494",
+    "base05": "#dab997",
+    "base06": "#d5c4a1",
+    "base07": "#ebdbb2",
+    "base08": "#d75f5f",
+    "base09": "#ff8700",
+    "base0A": "#ffaf00",
+    "base0B": "#afaf00",
+    "base0C": "#85ad85",
+    "base0D": "#83adad",
+    "base0E": "#d485ad",
+    "base0F": "#d65d0e",
+    "selectedBg": "#4e4e4e",
+    "scrollbarTrack": "#3a3a3a",
+    "scrollbarThumb": "#8a8a8a",
+    "searchMatchBg": "#4e4e4e",
+    "userMsgBg": "#3a3a3a",
+    "customMsgBg": "#3a3a3a",
+    "toolPendingBg": "#3a3a3a",
+    "toolSuccessBg": "#3a3a3a",
+    "toolErrorBg": "#3a3a3a",
+    "infoBg": "#3a3a3a"
+  },
+  "interface": {
+    "text": "$base05",
+    "accent": "$base0E",
+    "correct": "$base0B",
+    "error": "$base08",
+    "muted": "$base04",
+    "pending": "$base03",
+    "selection_background": "$selectedBg"
+  },
+  "syntax": {
+    "default": "$base05",
+    "comment": "$base03",
+    "keyword": "$base0E",
+    "function": "$base0D",
+    "variable": "$base05",
+    "string": "$base0B",
+    "number": "$base09",
+    "type": "$base0A",
+    "operator": "$base0C",
+    "punctuation": "$base04"
+  }
+}

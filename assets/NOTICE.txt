@@ -1,0 +1,85 @@
+CHIVAVA BUNDLED CONTENT
+
+Prose excerpts are from public-domain books/translations in the USA.
+Authors, works, edition URLs, and identified translators are in corpus.json.
+Check copyright law in your country, especially for Hemingway (1926).
+Typography, ligatures, and whitespace are normalized for typing practice.
+Historical wording and viewpoints belong to their authors.
+
+Code excerpts in code.json are from:
+Django (BSD-3-Clause), Requests (Apache-2.0), VS Code (MIT),
+TypeScript (Apache-2.0), Tokio (MIT), ripgrep (MIT),
+Go standard library (BSD-3-Clause), Kubernetes (Apache-2.0),
+Godot demos (MIT), and Pixelorama (MIT).
+Comments and Python docstrings are removed from modified excerpts;
+modifications are identified in code.json.
+Pinned revisions, source ranges, and hashes are in code-provenance.json.
+Upstream licenses, notices, and source-file copyright headers are retained
+in licenses/code-projects.txt and printed by chivava licenses.
+
+THEMES
+
+Bundled themes are adapted from pi-yappi-themes,
+commit b257e959ed2b2dab8c536aa1a8f19c0cbb90bd47.
+The MIT license and upstream palette credits are retained in
+licenses/pi-yappi-themes.txt and licenses/pi-yappi-themes-notice.md.
+The custom theme example uses the Nord palette from that collection.
+
+SYNTAX HIGHLIGHTING
+
+Tree-sitter runtime, highlighter, and language bindings:
+https://github.com/tree-sitter/tree-sitter (MIT; licenses/tree-sitter.txt)
+Rust: https://github.com/tree-sitter/tree-sitter-rust
+(MIT; licenses/tree-sitter-rust.txt)
+Python: https://github.com/tree-sitter/tree-sitter-python
+(MIT; licenses/tree-sitter-python.txt)
+JavaScript: https://github.com/tree-sitter/tree-sitter-javascript
+(MIT; licenses/tree-sitter-javascript.txt)
+TypeScript: https://github.com/tree-sitter/tree-sitter-typescript
+(MIT; licenses/tree-sitter-typescript.txt)
+Go: https://github.com/tree-sitter/tree-sitter-go
+(MIT; licenses/tree-sitter-go.txt)
+GDScript: https://github.com/PrestonKnopp/tree-sitter-gdscript
+(MIT; licenses/tree-sitter-gdscript.txt)
+
+Additional highlighting dependencies, using their MIT license option:
+regex, regex-automata, regex-syntax (licenses/regex-mit.txt),
+aho-corasick (licenses/aho-corasick-mit.txt),
+streaming-iterator (licenses/streaming-iterator-mit.txt),
+thiserror and thiserror-impl (licenses/thiserror-mit.txt).
+
+KEYSTROKE AUDIO
+
+"Single clicks Keyboard Sound" by StrikeWhistler (Freesound, sound 580786).
+Source: https://freesound.org/people/StrikeWhistler/sounds/580786/
+Audio: https://cdn.freesound.org/previews/580/580786_8883972-hq.mp3
+License: CC0 1.0 Universal
+https://creativecommons.org/publicdomain/zero/1.0/
+Full legal text: licenses/cc0.txt.
+The WAV clips are trimmed, normalized, and faded excerpts of this recording.
+Preparation details, source regions, and hashes are in sounds/provenance.json.
+No endorsement by the original creator is implied.
+
+Audio playback: Rodio (MIT option; licenses/rodio-mit.txt),
+CPAL and Hound (Apache-2.0; licenses/apache-2.0.txt).
+https://github.com/RustAudio/rodio
+https://github.com/RustAudio/cpal
+https://github.com/ruuda/hound
+
+CHARTS
+
+Rasterization: tiny-skia and tiny-skia-path (BSD-3-Clause),
+https://github.com/linebender/tiny-skia, with arrayref (BSD-2-Clause),
+arrayvec and bytemuck (MIT options), and strict-num (MIT).
+Their legal texts are in licenses/<package>-<version>.txt.
+
+Chart text uses the unmodified JetBrains Mono Regular font version 2.304:
+https://github.com/JetBrains/JetBrainsMono,
+commit cd5227bd1f61dff3bbd6c814ceaf7ffd95e947d9, fonts/ttf/JetBrainsMono-Regular.ttf.
+SHA-256: a0bf60ef0f83c5ed4d7a75d45838548b1f6873372dfac88f71804491898d138f.
+The SIL Open Font License and copyright are in licenses/jetbrains-mono-ofl.txt.
+Font rasterization: fontdue and ttf-parser (MIT options), core_maths and libm
+(MIT, with upstream notices), in licenses/<package>-<version>.txt.
+
+Chivava's source code is MIT-licensed. Bundled third-party material retains
+its respective licenses and public-domain dedications.

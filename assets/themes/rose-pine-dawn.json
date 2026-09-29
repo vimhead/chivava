@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "rose-pine-dawn",
+  "palette": {
+    "panel": "#fffaf3",
+    "element": "#f2e9e1",
+    "text": "#575279",
+    "muted": "#9893a5",
+    "accent": "#907aa9",
+    "border": "#dfdad9",
+    "borderAccent": "#56949f",
+    "success": "#56949f",
+    "error": "#b4637a",
+    "warning": "#ea9d34",
+    "purple": "#907aa9",
+    "heading": "#d7827e",
+    "link": "#56949f",
+    "code": "#ea9d34",
+    "bullet": "#d7827e",
+    "keyword": "#286983",
+    "function": "#d7827e",
+    "variable": "#575279",
+    "string": "#ea9d34",
+    "number": "#b4637a",
+    "type": "#56949f",
+    "operator": "#797593",
+    "punctuation": "#575279",
+    "successBg": "#e0ebe8",
+    "errorBg": "#f0dce0"
+  },
+  "interface": {
+    "text": "$text",
+    "accent": "$accent",
+    "correct": "$success",
+    "error": "$error",
+    "muted": "$muted",
+    "pending": "$muted",
+    "selection_background": "$element"
+  },
+  "syntax": {
+    "default": "$text",
+    "comment": "$muted",
+    "keyword": "$keyword",
+    "function": "$function",
+    "variable": "$variable",
+    "string": "$string",
+    "number": "$number",
+    "type": "$type",
+    "operator": "$operator",
+    "punctuation": "$punctuation"
+  }
+}

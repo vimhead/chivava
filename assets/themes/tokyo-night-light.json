@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "name": "tokyo-night-light",
+  "palette": {
+    "cyan": "#0979a5",
+    "blue": "#2459cc",
+    "green": "#1c784d",
+    "red": "#c11f3d",
+    "yellow": "#885e16",
+    "magenta": "#6636ba",
+    "orange": "#b3500f",
+    "teal": "#11746a",
+    "text": "#24283b",
+    "white": "#24283b",
+    "gray": "#565f89",
+    "dimGray": "#697096",
+    "darkGray": "#b9bdd3",
+    "purpleMuted": "#b4aed6",
+    "bgDark": "#e1e2e7",
+    "bgDarker": "#eceef4",
+    "bgHighlight": "#d8dae6",
+    "userMsgBg": "#e9eaf3",
+    "toolPendingBg": "#e2e5ee",
+    "toolSuccessBg": "#e2eee8",
+    "toolErrorBg": "#eee2e4",
+    "customMsgBg": "#e7e2ee"
+  },
+  "interface": {
+    "text": "$text",
+    "accent": "$magenta",
+    "correct": "$green",
+    "error": "$red",
+    "muted": "$gray",
+    "pending": "$dimGray",
+    "selection_background": "$bgHighlight"
+  },
+  "syntax": {
+    "default": "$text",
+    "comment": "#7c84a6",
+    "keyword": "#6636ba",
+    "function": "#2459cc",
+    "variable": "#24283b",
+    "string": "#1c784d",
+    "number": "#b3500f",
+    "type": "#0979a5",
+    "operator": "#0979a5",
+    "punctuation": "#0979a5"
+  }
+}

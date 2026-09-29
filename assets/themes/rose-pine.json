@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "rose-pine",
+  "palette": {
+    "panel": "#1f1d2e",
+    "element": "#26233a",
+    "text": "#e0def4",
+    "muted": "#6e6a86",
+    "accent": "#c4a7e7",
+    "border": "#403d52",
+    "borderAccent": "#9ccfd8",
+    "success": "#9ccfd8",
+    "error": "#eb6f92",
+    "warning": "#f6c177",
+    "purple": "#c4a7e7",
+    "heading": "#ebbcba",
+    "link": "#9ccfd8",
+    "code": "#f6c177",
+    "bullet": "#ebbcba",
+    "keyword": "#31748f",
+    "function": "#ebbcba",
+    "variable": "#e0def4",
+    "string": "#f6c177",
+    "number": "#eb6f92",
+    "type": "#9ccfd8",
+    "operator": "#908caa",
+    "punctuation": "#e0def4",
+    "successBg": "#1e2a2e",
+    "errorBg": "#2e1e28"
+  },
+  "interface": {
+    "text": "$text",
+    "accent": "$accent",
+    "correct": "$success",
+    "error": "$error",
+    "muted": "$muted",
+    "pending": "$muted",
+    "selection_background": "$element"
+  },
+  "syntax": {
+    "default": "$text",
+    "comment": "$muted",
+    "keyword": "$keyword",
+    "function": "$function",
+    "variable": "$variable",
+    "string": "$string",
+    "number": "$number",
+    "type": "$type",
+    "operator": "$operator",
+    "punctuation": "$punctuation"
+  }
+}

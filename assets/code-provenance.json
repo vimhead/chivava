@@ -1,0 +1,2280 @@
+{
+  "version": 2,
+  "extraction": "Complete functions/methods (including decorators and attributes) or complete small scripts. CRLF normalized to LF and final line breaks omitted before recording original_excerpt_sha256. Comments and Python docstrings removed using syntax-node byte ranges in removed_spans, relative to the original normalized excerpt. Comment/docstring-only lines removed; trailing spaces on affected lines and outer blank lines trimmed. Inline removals leave a space only when needed to keep adjacent tokens separated. All remaining code and string literals retained. Source URLs and line ranges refer to the original excerpt; excerpt_sha256 hashes the cleaned typing text.",
+  "projects": [
+    {
+      "id": "django",
+      "name": "Django",
+      "language": "Python",
+      "repository": "django/django",
+      "reference": "5.2.6",
+      "revision": "75c4403f07b8ad25893f7832dbe8fc6814b53b2d",
+      "license": "BSD-3-Clause",
+      "author": "Django Software Foundation and individual contributors",
+      "license_files": [
+        "LICENSE",
+        "LICENSE.python"
+      ],
+      "samples": [
+        {
+          "title": "Django: text.py / slugify",
+          "path": "django/utils/text.py",
+          "symbol": "slugify",
+          "syntax_node_kind": "function_definition",
+          "start_line": 452,
+          "end_line": 470,
+          "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/text.py#L452-L470",
+          "source_sha256": "b5894a19094ce4a3b2044aac5b785ef72786081a0348f3d4fb690966608d11be",
+          "excerpt_sha256": "ce7c2d819d5726631c1c0989b6cc947ff70b761e82741e66155cf7b82ecf1cc0",
+          "scored_characters": 333,
+          "original_excerpt_sha256": "767f4d72781e38880a9e2b1578045ce04b58cae43c264319cd93d50fd28eb5b9",
+          "removed_spans": [
+            {
+              "end_byte": 347,
+              "kind": "docstring",
+              "start_byte": 61
+            }
+          ]
+        },
+        {
+          "title": "Django: html.py / json_script",
+          "path": "django/utils/html.py",
+          "symbol": "json_script",
+          "syntax_node_kind": "function_definition",
+          "start_line": 94,
+          "end_line": 111,
+          "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/html.py#L94-L111",
+          "source_sha256": "28c0474e3e28d3fa7c416b3fac49a6b751ce9e001f0547dcebafda8c0fad4704",
+          "excerpt_sha256": "12f6c77ff97899683e029a9de923c0c09910a29e41c7a201e416ef502d731727",
+          "scored_characters": 461,
+          "original_excerpt_sha256": "1b43db7b43f6e82c90f678511dc718e7fb54a56a92258e61605cdbac0f9d98e1",
+          "removed_spans": [
+            {
+              "end_byte": 266,
+              "kind": "docstring",
+              "start_byte": 59
+            }
+          ]
+        },
+        {
+          "title": "Django: http.py / parse_header_parameters",
+          "path": "django/utils/http.py",
+          "symbol": "parse_header_parameters",
+          "syntax_node_kind": "function_definition",
+          "start_line": 330,
+          "end_line": 357,
+          "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/http.py#L330-L357",
+          "source_sha256": "c65c40a7810412de00c5cdad59a55db4d79d36c65a061068cd6aa709d12b917c",
+          "excerpt_sha256": "ffac06aa0a26f9be910e876bafeab9698fff985735ff30a9a714341d3b13d9dc",
+          "scored_characters": 577,
+          "original_excerpt_sha256": "fa51433fbdc4f77bf7a0f57c7f0e652b2df68f3f9af78a7f5c214eb80f8f1af6",
+          "removed_spans": [
+            {
+              "end_byte": 150,
+              "kind": "docstring",
+              "start_byte": 39
+            },
+            {
+              "end_byte": 497,
+              "kind": "comment",
+              "start_byte": 425
+            },
+            {
+              "end_byte": 561,
+              "kind": "comment",
+              "start_byte": 514
+            }
+          ]
+        },
+        {
+          "title": "Django: dateparse.py / parse_duration",
+          "path": "django/utils/dateparse.py",
+          "symbol": "parse_duration",
+          "syntax_node_kind": "function_definition",
+          "start_line": 132,
+          "end_line": 154,
+          "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/dateparse.py#L132-L154",
+          "source_sha256": "a164d66c96b1e0d3f5b98eed0863d2827c809281b19d77f5b27121fa47c29224",
+          "excerpt_sha256": "b2014b6062e54de4a17af10cf1e7e19eaf40d8c2784cbcc6758559bee7e9d80b",
+          "scored_characters": 532,
+          "original_excerpt_sha256": "4ec54286f49e01cc05796c4f6328b47a987e3f11b3d61d69635ef54aca6e5ed1",
+          "removed_spans": [
+            {
+              "end_byte": 259,
+              "kind": "docstring",
+              "start_byte": 31
+            }
+          ]
+        },
+        {
+          "title": "Django: duration.py / duration_string",
+          "path": "django/utils/duration.py",
+          "symbol": "duration_string",
+          "syntax_node_kind": "function_definition",
+          "start_line": 18,
+          "end_line": 28,
+          "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/duration.py#L18-L28",
+          "source_sha256": "1cae44dfa17518674f7210aa1ec9a5a1886b1d7fc1cb2213bce1f2bb1b449521",
+          "excerpt_sha256": "f8d99281b81dd1072c41c3b2ca846356173081d50f0e1047f90546bc74034f65",
+          "scored_characters": 295,
+          "original_excerpt_sha256": "0151d51dea7f958914abc9f83e97df71cd4a5d73af49080cded6bcc4c9bbd7b2",
+          "removed_spans": [
+            {
+              "end_byte": 97,
+              "kind": "docstring",
+              "start_byte": 35
+            }
+          ]
+        },
+        {
+          "title": "Django: crypto.py / salted_hmac",
+          "path": "django/utils/crypto.py",
+          "symbol": "salted_hmac",
+          "syntax_node_kind": "function_definition",
+          "start_line": 19,
+          "end_line": 45,
+          "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/crypto.py#L19-L45",
+          "source_sha256": "f752840c230a021de428033152fd9e41028c123f8481b316444da5563980ce06",
+          "excerpt_sha256": "3275c3c4eed8a360f1628d830dcbd252682c15e58103a8c290c29e950c53088a",
+          "scored_characters": 454,
+          "original_excerpt_sha256": "51af2df0bdba42d5c0ceb29093d1184e2e8edfc4481b704fd3f96a7591277c4a",
+          "removed_spans": [
+            {
+              "end_byte": 376,
+              "kind": "docstring",
+              "start_byte": 72
+            },
+            {
+              "end_byte": 801,
+              "kind": "comment",
+              "start_byte": 728
+            },
+            {
+              "end_byte": 879,
+              "kind": "comment",
+              "start_byte": 806
+            },
+            {
+              "end_byte": 1002,
+              "kind": "comment",
+              "start_byte": 929
+            },
+            {
+              "end_byte": 1082,
+              "kind": "comment",
+              "start_byte": 1007
+            },
+            {
+              "end_byte": 1161,
+              "kind": "comment",
+              "start_byte": 1087
+            },
+            {
+              "end_byte": 1220,
+              "kind": "comment",
+              "start_byte": 1166
+            }
+          ]
+        },
+        {
+          "title": "Django: encoding.py / force_str",
+          "path": "django/utils/encoding.py",
+          "symbol": "force_str",
+          "syntax_node_kind": "function_definition",
+          "start_line": 53,
+          "end_line": 72,
+          "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/encoding.py#L53-L72",
+          "source_sha256": "0cb8dc023bc1c6bcf926be5df13d979c451c72c7915474d35ce9becdff85543e",
+          "excerpt_sha256": "675780123b3bb5a8078aab8a1b217f5e59003f93f714831d4c21623dded0885a",
+          "scored_characters": 328,
+          "original_excerpt_sha256": "474637a38c67b9df49802dec51be7a62ae2c3fe0a4147314b17e74cf860c5621",
+          "removed_spans": [
+            {
+              "end_byte": 282,
+              "kind": "docstring",
+              "start_byte": 77
+            },
+            {
+              "end_byte": 342,
+              "kind": "comment",
+              "start_byte": 287
+            }
+          ]
+        },
+        {
+          "title": "Django: module_loading.py / import_string",
+          "path": "django/utils/module_loading.py",
+          "symbol": "import_string",
+          "syntax_node_kind": "function_definition",
+          "start_line": 19,
+          "end_line": 35,
+          "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/module_loading.py#L19-L35",
+          "source_sha256": "f9aeea39be6ba69f8bc3fe75bf220f49d6fb478d01d7a12bd597350bf6ba89b6",
+          "excerpt_sha256": "11a55f037e66796d55510cc924c27019875dcd9f44a876afa581c1c0f0e54d93",
+          "scored_characters": 387,
+          "original_excerpt_sha256": "e6e1c6688f77bd0dbd328ebca715d0156f2e111a6e28b4c3f7c4d3c17d726203",
+          "removed_spans": [
+            {
+              "end_byte": 195,
+              "kind": "docstring",
+              "start_byte": 36
+            }
+          ]
+        },
+        {
+          "title": "Django: functional.py / keep_lazy",
+          "path": "django/utils/functional.py",
+          "symbol": "keep_lazy",
+          "syntax_node_kind": "function_definition",
+          "start_line": 211,
+          "end_line": 235,
+          "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/functional.py#L211-L235",
+          "source_sha256": "5111599284cd2663a59bf6b2f7cef6fbf944815d5ec2e9d94bd18a489460f9ef",
+          "excerpt_sha256": "e4afffb7bfdbb24f05ae519d43ce41bc8dd24638a25817ab59726c85fcffebe8",
+          "scored_characters": 411,
+          "original_excerpt_sha256": "7f356ba67329ece73daa370fdbc95c32d1eb8956890a9f56735a465448d70f10",
+          "removed_spans": [
+            {
+              "end_byte": 291,
+              "kind": "docstring",
+              "start_byte": 35
+            }
+          ]
+        },
+        {
+          "title": "Django: timezone.py / localtime",
+          "path": "django/utils/timezone.py",
+          "symbol": "localtime",
+          "syntax_node_kind": "function_definition",
+          "start_line": 167,
+          "end_line": 184,
+          "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/timezone.py#L167-L184",
+          "source_sha256": "5a0e1e22110702c38c10a9737d24bf6983dffa1ef40d8a8eaa79910c6d536db1",
+          "excerpt_sha256": "effa7ee66b3b6daa2fa9055690d36994f52580eddd3821ab76399693ad4363c6",
+          "scored_characters": 252,
+          "original_excerpt_sha256": "2c537713cd79446a40ac8362e91ba9cb7e9bc30cf9553b1fb5bc754cb3f3dd18",
+          "removed_spans": [
+            {
+              "end_byte": 295,
+              "kind": "docstring",
+              "start_byte": 46
+            },
+            {
+              "end_byte": 466,
+              "kind": "comment",
+              "start_byte": 411
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "requests",
+      "name": "Requests",
+      "language": "Python",
+      "repository": "psf/requests",
+      "reference": "v2.32.5",
+      "revision": "b25c87d7cb8d6a18a37fa12442b5f883f9e41741",
+      "license": "Apache-2.0",
+      "author": "Kenneth Reitz and Requests contributors",
+      "license_files": [
+        "LICENSE",
+        "NOTICE"
+      ],
+      "samples": [
+        {
+          "title": "Requests: structures.py / __eq__",
+          "path": "src/requests/structures.py",
+          "symbol": "__eq__",
+          "syntax_node_kind": "function_definition",
+          "start_line": 67,
+          "end_line": 73,
+          "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/structures.py#L67-L73",
+          "source_sha256": "f886e6855cf4e92fb968f499b94b6167afba0fd5ce8d1b935c739a6d8d38d573",
+          "excerpt_sha256": "883bb7820334c376d0d55a47c8ce42c5297cf2619551369dcaf99b9607c2d8f6",
+          "scored_characters": 179,
+          "original_excerpt_sha256": "26554879fe9e1978e7c026769812978243ec165c88cd98c4bacb72d60020e44c",
+          "removed_spans": [
+            {
+              "end_byte": 194,
+              "kind": "comment",
+              "start_byte": 171
+            }
+          ]
+        },
+        {
+          "title": "Requests: utils.py / parse_header_links",
+          "path": "src/requests/utils.py",
+          "symbol": "parse_header_links",
+          "syntax_node_kind": "function_definition",
+          "start_line": 904,
+          "end_line": 938,
+          "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/utils.py#L904-L938",
+          "source_sha256": "5aa53ceab677c2f842fad42359c8ed1ff1c4299c1607789609957a496e4311d4",
+          "excerpt_sha256": "8a18d33bb6c400424fe552aa0fd049a7be36c4f888df7591d2ba37f126b2b704",
+          "scored_characters": 469,
+          "original_excerpt_sha256": "7c930c25c156b41420e06138d84ddbf20595b2876e9bbfa0c7c9b4c5777ba9e1",
+          "removed_spans": [
+            {
+              "end_byte": 229,
+              "kind": "docstring",
+              "start_byte": 35
+            }
+          ]
+        },
+        {
+          "title": "Requests: cookies.py / cookiejar_from_dict",
+          "path": "src/requests/cookies.py",
+          "symbol": "cookiejar_from_dict",
+          "syntax_node_kind": "function_definition",
+          "start_line": 521,
+          "end_line": 539,
+          "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/cookies.py#L521-L539",
+          "source_sha256": "6cd8be8aa123e0d3d9d34fa86feac7bf392f39bccdde5129830de0ea9692dd7c",
+          "excerpt_sha256": "d160d47b39dbab926d4199d75911ecea204e42f02a932ded73d4bd93484c5fd8",
+          "scored_characters": 357,
+          "original_excerpt_sha256": "c1ac0f2ccb3812f1c55e22500c9a3e37fd6e6bf1482bbc1aeac3997f2316ead9",
+          "removed_spans": [
+            {
+              "end_byte": 403,
+              "kind": "docstring",
+              "start_byte": 74
+            }
+          ]
+        },
+        {
+          "title": "Requests: auth.py / __call__",
+          "path": "src/requests/auth.py",
+          "symbol": "__call__",
+          "syntax_node_kind": "function_definition",
+          "start_line": 285,
+          "end_line": 303,
+          "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/auth.py#L285-L303",
+          "source_sha256": "905ef9b6a9cb72d67d31ffe19bd4d9223e1c4169cde6ec51cfca16b31e70991d",
+          "excerpt_sha256": "121ec3a1afb101af0e10a674f4d87c9bdba450cdd8944feda2b3fc4bd09fd99b",
+          "scored_characters": 395,
+          "original_excerpt_sha256": "b1b5aeb573ce17d2ff67f4ecff1204812ec2a970ae603c64047f63583ae0690e",
+          "removed_spans": [
+            {
+              "end_byte": 75,
+              "kind": "comment",
+              "start_byte": 35
+            },
+            {
+              "end_byte": 161,
+              "kind": "comment",
+              "start_byte": 121
+            },
+            {
+              "end_byte": 454,
+              "kind": "comment",
+              "start_byte": 394
+            },
+            {
+              "end_byte": 525,
+              "kind": "comment",
+              "start_byte": 467
+            },
+            {
+              "end_byte": 594,
+              "kind": "comment",
+              "start_byte": 538
+            },
+            {
+              "end_byte": 614,
+              "kind": "comment",
+              "start_byte": 607
+            }
+          ]
+        },
+        {
+          "title": "Requests: sessions.py / rebuild_auth",
+          "path": "src/requests/sessions.py",
+          "symbol": "rebuild_auth",
+          "syntax_node_kind": "function_definition",
+          "start_line": 282,
+          "end_line": 300,
+          "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/sessions.py#L282-L300",
+          "source_sha256": "0a5d5da449ce7f0af3ccf6e4bbe7a67a935e37846dff4ff9f08cb6c7e2464e6f",
+          "excerpt_sha256": "494fd02d9630ed0a59f8bddff42dc7a68c406237cb6b8cf8dc2f2195e356aeaf",
+          "scored_characters": 355,
+          "original_excerpt_sha256": "78a578ea79550d4580f2a62e1cec90c921412e7048eaf5adcc1fd7d6d6f767a7",
+          "removed_spans": [
+            {
+              "end_byte": 303,
+              "kind": "docstring",
+              "start_byte": 64
+            },
+            {
+              "end_byte": 571,
+              "kind": "comment",
+              "start_byte": 510
+            },
+            {
+              "end_byte": 609,
+              "kind": "comment",
+              "start_byte": 584
+            },
+            {
+              "end_byte": 713,
+              "kind": "comment",
+              "start_byte": 660
+            }
+          ]
+        },
+        {
+          "title": "Requests: models.py / iter_lines",
+          "path": "src/requests/models.py",
+          "symbol": "iter_lines",
+          "syntax_node_kind": "function_definition",
+          "start_line": 857,
+          "end_line": 888,
+          "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/models.py#L857-L888",
+          "source_sha256": "32365d67893bb67c3ed67cf93ca4a18e63e6ab29342fa0dc8b09c59e06ff564e",
+          "excerpt_sha256": "0d039c470b9c5ef14d0f8a38d71abcecf6ef93212fb87a6d8915efac39d93820",
+          "scored_characters": 487,
+          "original_excerpt_sha256": "133f77adf2f6cfff05c8e78208116c421666562ac919460649a3d3484b39ed8f",
+          "removed_spans": [
+            {
+              "end_byte": 365,
+              "kind": "docstring",
+              "start_byte": 114
+            }
+          ]
+        },
+        {
+          "title": "Requests: adapters.py / proxy_headers",
+          "path": "src/requests/adapters.py",
+          "symbol": "proxy_headers",
+          "syntax_node_kind": "function_definition",
+          "start_line": 569,
+          "end_line": 588,
+          "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/adapters.py#L569-L588",
+          "source_sha256": "f275f5d7781b6f5db7694b71d844e400dffa22c617f8cd9f4682c696e4c47119",
+          "excerpt_sha256": "3baf4a98dd99f2b3f7547068b19ac0f4a1af70b96293a16828c9aad05b79f722",
+          "scored_characters": 189,
+          "original_excerpt_sha256": "284456ef6ee3c7a6f115bfadba634852b8a0629f4abc1da3ee5d700f5841fb4e",
+          "removed_spans": [
+            {
+              "end_byte": 570,
+              "kind": "docstring",
+              "start_byte": 44
+            }
+          ]
+        },
+        {
+          "title": "Requests: hooks.py / dispatch_hook",
+          "path": "src/requests/hooks.py",
+          "symbol": "dispatch_hook",
+          "syntax_node_kind": "function_definition",
+          "start_line": 22,
+          "end_line": 33,
+          "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/hooks.py#L22-L33",
+          "source_sha256": "0a2bb2b221c0dfd57951f702057148c7cdc8ac3a6ec1f37d45c4d482fdbc7ed4",
+          "excerpt_sha256": "6defc7fa8d8414836337ba4a8fd85b900e44e708cb80c3512b0b7ab925cddcd7",
+          "scored_characters": 276,
+          "original_excerpt_sha256": "3eb1efb0be129e9933ce575b94a799244ac0e1e00d671fc9707653b8e618de44",
+          "removed_spans": [
+            {
+              "end_byte": 116,
+              "kind": "docstring",
+              "start_byte": 56
+            }
+          ]
+        },
+        {
+          "title": "Requests: _internal_utils.py / to_native_string",
+          "path": "src/requests/_internal_utils.py",
+          "symbol": "to_native_string",
+          "syntax_node_kind": "function_definition",
+          "start_line": 25,
+          "end_line": 35,
+          "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/_internal_utils.py#L25-L35",
+          "source_sha256": "9cc4329abe21b37d93a95a3901b0ab99c24486f3d487bc57965bb2ab0b252e24",
+          "excerpt_sha256": "1eb61ebdc49b2b5fd275ee278f7b1cecda414adad5f726b4312880fa7eb50fa5",
+          "scored_characters": 144,
+          "original_excerpt_sha256": "a73f2a4add9dc3f2a46795912455005191490804487d9f51d9b0e85dc009ee11",
+          "removed_spans": [
+            {
+              "end_byte": 261,
+              "kind": "docstring",
+              "start_byte": 52
+            }
+          ]
+        },
+        {
+          "title": "Requests: help.py / _implementation",
+          "path": "src/requests/help.py",
+          "symbol": "_implementation",
+          "syntax_node_kind": "function_definition",
+          "start_line": 34,
+          "end_line": 66,
+          "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/help.py#L34-L66",
+          "source_sha256": "80f5f977f1fb5ddf3c6830017a386a1a097d075545453b79066898bcbdcfcc84",
+          "excerpt_sha256": "795ecba4951913cb3487be626ec70f1d2c7f756305d1e010224a010a97a5c296",
+          "scored_characters": 748,
+          "original_excerpt_sha256": "f8090f7375c556fdd8db874c6ca103286fb60b1261c770cd829cb5dd83429484",
+          "removed_spans": [
+            {
+              "end_byte": 506,
+              "kind": "docstring",
+              "start_byte": 27
+            },
+            {
+              "end_byte": 1185,
+              "kind": "comment",
+              "start_byte": 1169
+            },
+            {
+              "end_byte": 1303,
+              "kind": "comment",
+              "start_byte": 1287
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vscode",
+      "name": "VS Code",
+      "language": "TypeScript",
+      "repository": "microsoft/vscode",
+      "reference": "1.104.0",
+      "revision": "f220831ea2d946c0dcb0f3eaa480eb435a2c1260",
+      "license": "MIT",
+      "author": "Microsoft Corporation and VS Code contributors",
+      "license_files": [
+        "LICENSE.txt",
+        "ThirdPartyNotices.txt"
+      ],
+      "samples": [
+        {
+          "title": "VS Code: arrays.ts / insertInto",
+          "path": "src/vs/base/common/arrays.ts",
+          "symbol": "insertInto",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 582,
+          "end_line": 595,
+          "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/arrays.ts#L582-L595",
+          "source_sha256": "1d4619d2e25de833022e75ffcb10fa738dc8debcdd4bcb8f12b67634e4613122",
+          "excerpt_sha256": "e0729452c73361083e6a91bfcac3ce41cd6bddfd755078a9c0bf62ffc7b82c6e",
+          "scored_characters": 434,
+          "original_excerpt_sha256": "54b348712da57952eb07e190bcc10f8bc10864362abdb68fa2275f92fc3847bc",
+          "removed_spans": [
+            {
+              "end_byte": 359,
+              "kind": "comment",
+              "start_byte": 262
+            }
+          ]
+        },
+        {
+          "title": "VS Code: strings.ts / replaceAsync",
+          "path": "src/vs/base/common/strings.ts",
+          "symbol": "replaceAsync",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 329,
+          "end_line": 346,
+          "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/strings.ts#L329-L346",
+          "source_sha256": "ab3936f34f71fdf39afd2822f1ae20c26cc63e1bf8eeef207054e5d60bd230e8",
+          "excerpt_sha256": "45cb47496c3001c78d3a2cfa7a8c12d17867676a67bb2dcb8c1b7cbb5319ec0c",
+          "scored_characters": 578,
+          "original_excerpt_sha256": "45cb47496c3001c78d3a2cfa7a8c12d17867676a67bb2dcb8c1b7cbb5319ec0c",
+          "removed_spans": []
+        },
+        {
+          "title": "VS Code: numbers.ts / isPointWithinTriangle",
+          "path": "src/vs/base/common/numbers.ts",
+          "symbol": "isPointWithinTriangle",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 76,
+          "end_line": 100,
+          "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/numbers.ts#L76-L100",
+          "source_sha256": "f6bd2cef05063563d8cc062f5cc9cf9f9641d1f48442671665ddf70812a88c77",
+          "excerpt_sha256": "2f9fec465ac90f08f85beee8045a2b5103a689646f05e1634cd3728d0f3daff4",
+          "scored_characters": 649,
+          "original_excerpt_sha256": "2f9fec465ac90f08f85beee8045a2b5103a689646f05e1634cd3728d0f3daff4",
+          "removed_spans": []
+        },
+        {
+          "title": "VS Code: map.ts / entries",
+          "path": "src/vs/base/common/map.ts",
+          "symbol": "entries",
+          "syntax_node_kind": "method_definition",
+          "start_line": 407,
+          "end_line": 429,
+          "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/map.ts#L407-L429",
+          "source_sha256": "debf574dcea630aa7ebe18877d4fe260e3b6360761d8d2aaa5e1275e99d19ecb",
+          "excerpt_sha256": "18df6ff5e7597ea1c0c30d5c0ef01360362613629c978b261fd282e3a6a6ed58",
+          "scored_characters": 542,
+          "original_excerpt_sha256": "18df6ff5e7597ea1c0c30d5c0ef01360362613629c978b261fd282e3a6a6ed58",
+          "removed_spans": []
+        },
+        {
+          "title": "VS Code: objects.ts / _cloneAndChange",
+          "path": "src/vs/base/common/objects.ts",
+          "symbol": "_cloneAndChange",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 49,
+          "end_line": 83,
+          "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/objects.ts#L49-L83",
+          "source_sha256": "4d3e7ed45df77097dacf729fe100564c11cf2155d00ca8f4920ed051a5eab834",
+          "excerpt_sha256": "bc6e9647b03ab0e920ed7777565a23b6d3e9ac47fc4508b8ad006171d8cc15dd",
+          "scored_characters": 651,
+          "original_excerpt_sha256": "bc6e9647b03ab0e920ed7777565a23b6d3e9ac47fc4508b8ad006171d8cc15dd",
+          "removed_spans": []
+        },
+        {
+          "title": "VS Code: date.ts / fromNowByDay",
+          "path": "src/vs/base/common/date.ts",
+          "symbol": "fromNowByDay",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 204,
+          "end_line": 223,
+          "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/date.ts#L204-L223",
+          "source_sha256": "25ae7fb14b10162076ad4513976fac4ab54b412c181a66fc0ce2ede832df2974",
+          "excerpt_sha256": "cb1078020d485ac7457ba8a23cbbde12516b8c6ff6ae1c75cbbe889b944d2106",
+          "scored_characters": 617,
+          "original_excerpt_sha256": "cb1078020d485ac7457ba8a23cbbde12516b8c6ff6ae1c75cbbe889b944d2106",
+          "removed_spans": []
+        },
+        {
+          "title": "VS Code: collections.ts / diffSets",
+          "path": "src/vs/base/common/collections.ts",
+          "symbol": "diffSets",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 49,
+          "end_line": 63,
+          "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/collections.ts#L49-L63",
+          "source_sha256": "4cf89640f5a6e9b4a54ae77aeaca438ae9cefd645064d4fc15b96a572ad0aed7",
+          "excerpt_sha256": "426ec762cfc89b0c6a22aca08cab59ea4182c0980e8bded9726b8d4003c2a483",
+          "scored_characters": 353,
+          "original_excerpt_sha256": "426ec762cfc89b0c6a22aca08cab59ea4182c0980e8bded9726b8d4003c2a483",
+          "removed_spans": []
+        },
+        {
+          "title": "VS Code: buffer.ts / concat",
+          "path": "src/vs/base/common/buffer.ts",
+          "symbol": "concat",
+          "syntax_node_kind": "method_definition",
+          "start_line": 84,
+          "end_line": 101,
+          "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/buffer.ts#L84-L101",
+          "source_sha256": "ce41008e0acdec3ff57a239a52a206c61dc51517a91efeaf6c770464178c07a0",
+          "excerpt_sha256": "46602a079e709829c5f217f3e99e056cf71235ff600d317c5519501298564ad7",
+          "scored_characters": 436,
+          "original_excerpt_sha256": "46602a079e709829c5f217f3e99e056cf71235ff600d317c5519501298564ad7",
+          "removed_spans": []
+        },
+        {
+          "title": "VS Code: iterator.ts / consume",
+          "path": "src/vs/base/common/iterator.ts",
+          "symbol": "consume",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 157,
+          "end_line": 177,
+          "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/iterator.ts#L157-L177",
+          "source_sha256": "2f12aca8b4118217e3aa1358faf6f8c458279750d8680e3ec23adcaf9d15e0b6",
+          "excerpt_sha256": "6ce0dd41d6d91f15e2d840216ad1c89abde3a9e1055ce83ea6c8f622585977b7",
+          "scored_characters": 460,
+          "original_excerpt_sha256": "6ce0dd41d6d91f15e2d840216ad1c89abde3a9e1055ce83ea6c8f622585977b7",
+          "removed_spans": []
+        },
+        {
+          "title": "VS Code: comparers.ts / comparePaths",
+          "path": "src/vs/base/common/comparers.ts",
+          "symbol": "comparePaths",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 278,
+          "end_line": 304,
+          "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/comparers.ts#L278-L304",
+          "source_sha256": "31e574fe9e164120cd23f6bcb0aeeaf1501c9565d5d0ef127795620a68bd478c",
+          "excerpt_sha256": "9ea97d1669d12245f8cf38dfdf2f76ba518f959d306609300033682ec6c77b08",
+          "scored_characters": 642,
+          "original_excerpt_sha256": "9ea97d1669d12245f8cf38dfdf2f76ba518f959d306609300033682ec6c77b08",
+          "removed_spans": []
+        }
+      ]
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "language": "TypeScript",
+      "repository": "microsoft/TypeScript",
+      "reference": "v5.9.3",
+      "revision": "c63de15a992d37f0d6cec03ac7631872838602cb",
+      "license": "Apache-2.0",
+      "author": "Microsoft Corporation and TypeScript contributors",
+      "license_files": [
+        "LICENSE.txt",
+        "ThirdPartyNoticeText.txt"
+      ],
+      "samples": [
+        {
+          "title": "TypeScript: core.ts / deduplicateRelational",
+          "path": "src/compiler/core.ts",
+          "symbol": "deduplicateRelational",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 687,
+          "end_line": 707,
+          "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/core.ts#L687-L707",
+          "source_sha256": "1512daf31972388d2c43d07b96ee202f659ba8e74e356b8f01d1f6e92192e92c",
+          "excerpt_sha256": "9340e492373d488df91fdc3b205a04b3d8bc268f30432b4bcfc6ad2703700894",
+          "scored_characters": 513,
+          "original_excerpt_sha256": "e7e44548b453394b6777e8cbdadfb1c113387d5466af060903db33aad4361f90",
+          "removed_spans": [
+            {
+              "end_byte": 203,
+              "kind": "comment",
+              "start_byte": 123
+            },
+            {
+              "end_byte": 260,
+              "kind": "comment",
+              "start_byte": 208
+            },
+            {
+              "end_byte": 702,
+              "kind": "comment",
+              "start_byte": 677
+            }
+          ]
+        },
+        {
+          "title": "TypeScript: path.ts / getAnyExtensionFromPath",
+          "path": "src/compiler/path.ts",
+          "symbol": "getAnyExtensionFromPath",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 435,
+          "end_line": 447,
+          "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/path.ts#L435-L447",
+          "source_sha256": "4b777f1a03b9f39b4864106e60a43828b5b749a5fae00f68d6faf8f02e0c91bc",
+          "excerpt_sha256": "39c0e4373ea386f976fe98add89d777d32d83b89326a0976afbd3b42d0ba18fb",
+          "scored_characters": 495,
+          "original_excerpt_sha256": "d2746cda04c79bb3e62c0f9470b4c81b3739b353d4f5c059a9acbb8a5797b32d",
+          "removed_spans": [
+            {
+              "end_byte": 204,
+              "kind": "comment",
+              "start_byte": 131
+            },
+            {
+              "end_byte": 291,
+              "kind": "comment",
+              "start_byte": 209
+            }
+          ]
+        },
+        {
+          "title": "TypeScript: scanner.ts / computeLineStarts",
+          "path": "src/compiler/scanner.ts",
+          "symbol": "computeLineStarts",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 436,
+          "end_line": 463,
+          "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/scanner.ts#L436-L463",
+          "source_sha256": "02f9e8f02e234b0e917e753a7b74f975c9b9b95f7f01ee4bc151081ed43dea49",
+          "excerpt_sha256": "ec0633c3db217ecf1ae1f5ac683670d2d7896ca9909cd3139af690d6aa77201a",
+          "scored_characters": 549,
+          "original_excerpt_sha256": "fe54f3c9de9412fef9b1da89fa889f40544296d9edb5115ae8dce4835cae0820",
+          "removed_spans": [
+            {
+              "end_byte": 436,
+              "kind": "comment",
+              "start_byte": 420
+            }
+          ]
+        },
+        {
+          "title": "TypeScript: semver.ts / parseHyphen",
+          "path": "src/compiler/semver.ts",
+          "symbol": "parseHyphen",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 312,
+          "end_line": 332,
+          "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/semver.ts#L312-L332",
+          "source_sha256": "1b5cbc707e9a7e1dd413b3dd69e2e5cb2c816a6675ce6ae6f3a3cc2d6fc0eabe",
+          "excerpt_sha256": "4c3ca2576df87539fefa92b17e82b4f205962300105f8e8815e03883253cdf0e",
+          "scored_characters": 639,
+          "original_excerpt_sha256": "4c3ca2576df87539fefa92b17e82b4f205962300105f8e8815e03883253cdf0e",
+          "removed_spans": []
+        },
+        {
+          "title": "TypeScript: debug.ts / formatEnum",
+          "path": "src/compiler/debug.ts",
+          "symbol": "formatEnum",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 389,
+          "end_line": 418,
+          "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/debug.ts#L389-L418",
+          "source_sha256": "38dfd2cdfd58fb8a03a6c815444aa8d6876c69f7e37d96702ece4e3da836bc8b",
+          "excerpt_sha256": "632a792ab120ea611667c407917095df69757c0b7fa5428d4b779bcd682b9f6e",
+          "scored_characters": 662,
+          "original_excerpt_sha256": "632a792ab120ea611667c407917095df69757c0b7fa5428d4b779bcd682b9f6e",
+          "removed_spans": []
+        },
+        {
+          "title": "TypeScript: performance.ts / measure",
+          "path": "src/compiler/performance.ts",
+          "symbol": "measure",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 97,
+          "end_line": 105,
+          "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/performance.ts#L97-L105",
+          "source_sha256": "b12e3cdedb651fe1d94fceae1bb236c2745530ba7fe0c9dc996d61ba22b6c473",
+          "excerpt_sha256": "8559dd7c6c861d05962253c6f3f3fcae54fd04319c921dd8751eb8f73622a2ec",
+          "scored_characters": 495,
+          "original_excerpt_sha256": "8559dd7c6c861d05962253c6f3f3fcae54fd04319c921dd8751eb8f73622a2ec",
+          "removed_spans": []
+        },
+        {
+          "title": "TypeScript: utilities.ts / getExpandoInitializer",
+          "path": "src/compiler/utilities.ts",
+          "symbol": "getExpandoInitializer",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 3923,
+          "end_line": 3938,
+          "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/utilities.ts#L3923-L3938",
+          "source_sha256": "6ac5fa1e9ce5083a6a7279bbcdbaa13ac7b2279e016b8b82d58410dc27af72a2",
+          "excerpt_sha256": "5652c8583b25b58845b95eed00e87a3a3aefce06dbd8d5a1331956600296ce31",
+          "scored_characters": 650,
+          "original_excerpt_sha256": "5652c8583b25b58845b95eed00e87a3a3aefce06dbd8d5a1331956600296ce31",
+          "removed_spans": []
+        },
+        {
+          "title": "TypeScript: visitorPublic.ts / visitFunctionBody",
+          "path": "src/compiler/visitorPublic.ts",
+          "symbol": "visitFunctionBody",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 522,
+          "end_line": 535,
+          "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/visitorPublic.ts#L522-L535",
+          "source_sha256": "51ed57171507f1e3cb0a268fca6eb42eaa3882ccb184b8e8cb384a08aa38045e",
+          "excerpt_sha256": "e2f44b8c39b78857824bb9a973dd1785e01527cbd13611dbaf9a5315b8bb8868",
+          "scored_characters": 655,
+          "original_excerpt_sha256": "e2f44b8c39b78857824bb9a973dd1785e01527cbd13611dbaf9a5315b8bb8868",
+          "removed_spans": []
+        },
+        {
+          "title": "TypeScript: sourcemap.ts / isRawSourceMap",
+          "path": "src/compiler/sourcemap.ts",
+          "symbol": "isRawSourceMap",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 408,
+          "end_line": 418,
+          "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/sourcemap.ts#L408-L418",
+          "source_sha256": "036ab3c39165eb06a3fb145e1467f4f0dfebdb1f76b5faccc34a79db756473e4",
+          "excerpt_sha256": "d984daa3726ffed6db3c7575c843feca4526ebb5ab3552d4215e068326fe3e4c",
+          "scored_characters": 558,
+          "original_excerpt_sha256": "d984daa3726ffed6db3c7575c843feca4526ebb5ab3552d4215e068326fe3e4c",
+          "removed_spans": []
+        },
+        {
+          "title": "TypeScript: commandLineParser.ts / matchesExcludeWorker",
+          "path": "src/compiler/commandLineParser.ts",
+          "symbol": "matchesExcludeWorker",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 4036,
+          "end_line": 4048,
+          "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/commandLineParser.ts#L4036-L4048",
+          "source_sha256": "97a4fad96c437ebaa397be4e04bc40c0173b3966a6b5637d2d8fa604dc2afb53",
+          "excerpt_sha256": "36fda4073685f93688d604a80ef02587bbaea3a6d43de9d0552e871ae1e669c9",
+          "scored_characters": 625,
+          "original_excerpt_sha256": "36fda4073685f93688d604a80ef02587bbaea3a6d43de9d0552e871ae1e669c9",
+          "removed_spans": []
+        }
+      ]
+    },
+    {
+      "id": "tokio",
+      "name": "Tokio",
+      "language": "Rust",
+      "repository": "tokio-rs/tokio",
+      "reference": "tokio-1.47.1",
+      "revision": "be8ee45b3fc2d107174e586141b1cb12c93e2ddf",
+      "license": "MIT",
+      "author": "Tokio contributors",
+      "license_files": [
+        "LICENSE",
+        "tokio/LICENSE"
+      ],
+      "samples": [
+        {
+          "title": "Tokio: copy.rs / poll_write_buf",
+          "path": "tokio/src/io/util/copy.rs",
+          "symbol": "poll_write_buf",
+          "syntax_node_kind": "function_item",
+          "start_line": 51,
+          "end_line": 73,
+          "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/io/util/copy.rs#L51-L73",
+          "source_sha256": "986c1eb9c063632c89e5cf7ad9007221a29dce24490220129579f899fa27b33a",
+          "excerpt_sha256": "58c004c537daa07f96838b6224d60feed2bc3230ea1e56d8a881137277ba8b32",
+          "scored_characters": 421,
+          "original_excerpt_sha256": "8ab8c1ef1c11fd71b778773ea13d8dcfa588ccf588d368b0cd6f331714a99637",
+          "removed_spans": [
+            {
+              "end_byte": 463,
+              "kind": "comment",
+              "start_byte": 404
+            },
+            {
+              "end_byte": 538,
+              "kind": "comment",
+              "start_byte": 480
+            }
+          ]
+        },
+        {
+          "title": "Tokio: lines.rs / poll_next_line",
+          "path": "tokio/src/io/util/lines.rs",
+          "symbol": "poll_next_line",
+          "syntax_node_kind": "function_item",
+          "start_line": 112,
+          "end_line": 134,
+          "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/io/util/lines.rs#L112-L134",
+          "source_sha256": "413af90f004dacf70ef9a7c9b722cfa856f6306631149f376fea2150c71b54a2",
+          "excerpt_sha256": "01937a26fbc5b76e1790c6c8310beb29290c54a50c1559e82249572489a1a0e6",
+          "scored_characters": 442,
+          "original_excerpt_sha256": "01937a26fbc5b76e1790c6c8310beb29290c54a50c1559e82249572489a1a0e6",
+          "removed_spans": []
+        },
+        {
+          "title": "Tokio: read_until.rs / read_until_internal",
+          "path": "tokio/src/io/util/read_until.rs",
+          "symbol": "read_until_internal",
+          "syntax_node_kind": "function_item",
+          "start_line": 47,
+          "end_line": 71,
+          "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/io/util/read_until.rs#L47-L71",
+          "source_sha256": "c255c74ca44f0b836db09f86fa7929c9e89f2f144f62a19765f989d9fdca3143",
+          "excerpt_sha256": "e9855aad864dfdfa1922b9f17c25b9e26f7a5ecb284dd8da05fa4dbd58ec96f3",
+          "scored_characters": 584,
+          "original_excerpt_sha256": "e9855aad864dfdfa1922b9f17c25b9e26f7a5ecb284dd8da05fa4dbd58ec96f3",
+          "removed_spans": []
+        },
+        {
+          "title": "Tokio: chain.rs / poll_read",
+          "path": "tokio/src/io/util/chain.rs",
+          "symbol": "poll_read",
+          "syntax_node_kind": "function_item",
+          "start_line": 87,
+          "end_line": 104,
+          "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/io/util/chain.rs#L87-L104",
+          "source_sha256": "a7c8596ded43537f1fa5fc6019a7c6cfc58d250d27f9bb4ce91493a3b7417948",
+          "excerpt_sha256": "46f158001f88f8edeb87cf8e44199ed52e52ca1c16b8b57b5f3a0ce5372b2665",
+          "scored_characters": 343,
+          "original_excerpt_sha256": "46f158001f88f8edeb87cf8e44199ed52e52ca1c16b8b57b5f3a0ce5372b2665",
+          "removed_spans": []
+        },
+        {
+          "title": "Tokio: buf_reader.rs / poll_read",
+          "path": "tokio/src/io/util/buf_reader.rs",
+          "symbol": "poll_read",
+          "syntax_node_kind": "function_item",
+          "start_line": 101,
+          "end_line": 119,
+          "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/io/util/buf_reader.rs#L101-L119",
+          "source_sha256": "a4a2bd04b325f720f9380d78a4e58644b3c1db2b56acb06de7a6867acbb96210",
+          "excerpt_sha256": "47d5b889ea00cedea96fda8449d3a63ea0cdfe9a50f3ea3ec37fe1319d9f7157",
+          "scored_characters": 465,
+          "original_excerpt_sha256": "58d50b94065589001754f1f23f38aac6f2eb9ce2f33ceafef3b5b45522532ab4",
+          "removed_spans": [
+            {
+              "end_byte": 221,
+              "kind": "comment",
+              "start_byte": 153
+            },
+            {
+              "end_byte": 294,
+              "kind": "comment",
+              "start_byte": 230
+            },
+            {
+              "end_byte": 315,
+              "kind": "comment",
+              "start_byte": 303
+            }
+          ]
+        },
+        {
+          "title": "Tokio: interval.rs / next_timeout",
+          "path": "tokio/src/time/interval.rs",
+          "symbol": "next_timeout",
+          "syntax_node_kind": "function_item",
+          "start_line": 341,
+          "end_line": 363,
+          "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/time/interval.rs#L341-L363",
+          "source_sha256": "b787e579d47cb3e1346a2e234427592b68538b5272de3b99d38211eae35798a3",
+          "excerpt_sha256": "6e5e872fca27c287bf76d69913f8f42d6539ef3e0bb03487837590f4beebc166",
+          "scored_characters": 363,
+          "original_excerpt_sha256": "4c8be735ad8e9d77de2d9da13531494ee5322360dd04eea304b18660e5cf34d0",
+          "removed_spans": [
+            {
+              "end_byte": 489,
+              "kind": "comment",
+              "start_byte": 439
+            },
+            {
+              "end_byte": 569,
+              "kind": "comment",
+              "start_byte": 518
+            },
+            {
+              "end_byte": 649,
+              "kind": "comment",
+              "start_byte": 598
+            },
+            {
+              "end_byte": 720,
+              "kind": "comment",
+              "start_byte": 678
+            },
+            {
+              "end_byte": 751,
+              "kind": "comment",
+              "start_byte": 749
+            },
+            {
+              "end_byte": 829,
+              "kind": "comment",
+              "start_byte": 780
+            },
+            {
+              "end_byte": 907,
+              "kind": "comment",
+              "start_byte": 858
+            }
+          ]
+        },
+        {
+          "title": "Tokio: instant.rs / far_future",
+          "path": "tokio/src/time/instant.rs",
+          "symbol": "far_future",
+          "syntax_node_kind": "function_item",
+          "start_line": 57,
+          "end_line": 63,
+          "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/time/instant.rs#L57-L63",
+          "source_sha256": "8324e0a2bd6a5730eb4f7c5bfb07b7d6ac3bf41b6646d4dc8b40162dc16011ac",
+          "excerpt_sha256": "189b19bba2d6b7acfcfa3201bbb0d468ad8013ec96a475873502d7ff5c54249d",
+          "scored_characters": 93,
+          "original_excerpt_sha256": "e278006d3fd3d34748cf5218f36b2959218439b62118c93e5fbfbe5a8323fd6a",
+          "removed_spans": [
+            {
+              "end_byte": 81,
+              "kind": "comment",
+              "start_byte": 52
+            },
+            {
+              "end_byte": 143,
+              "kind": "comment",
+              "start_byte": 90
+            },
+            {
+              "end_byte": 205,
+              "kind": "comment",
+              "start_byte": 152
+            },
+            {
+              "end_byte": 279,
+              "kind": "comment",
+              "start_byte": 214
+            }
+          ]
+        },
+        {
+          "title": "Tokio: oneshot.rs / is_empty",
+          "path": "tokio/src/sync/oneshot.rs",
+          "symbol": "is_empty",
+          "syntax_node_kind": "function_item",
+          "start_line": 1055,
+          "end_line": 1075,
+          "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/sync/oneshot.rs#L1055-L1075",
+          "source_sha256": "70cf87bc0df87366c404b9992dea4e7327e6527ae7682826968b4a7bebec1094",
+          "excerpt_sha256": "d2c1c0a2dc6b8224f3eadcaae138f8746b2d5dc45b83de7d0bf9cd5f9f87186b",
+          "scored_characters": 215,
+          "original_excerpt_sha256": "292644c551e48d0f0d9282042258786177bb4703507785c00c5c3ca84b03cfc1",
+          "removed_spans": [
+            {
+              "end_byte": 140,
+              "kind": "comment",
+              "start_byte": 102
+            },
+            {
+              "end_byte": 337,
+              "kind": "comment",
+              "start_byte": 279
+            },
+            {
+              "end_byte": 409,
+              "kind": "comment",
+              "start_byte": 350
+            },
+            {
+              "end_byte": 475,
+              "kind": "comment",
+              "start_byte": 422
+            },
+            {
+              "end_byte": 551,
+              "kind": "comment",
+              "start_byte": 488
+            },
+            {
+              "end_byte": 572,
+              "kind": "comment",
+              "start_byte": 564
+            },
+            {
+              "end_byte": 587,
+              "kind": "comment",
+              "start_byte": 585
+            },
+            {
+              "end_byte": 652,
+              "kind": "comment",
+              "start_byte": 600
+            },
+            {
+              "end_byte": 789,
+              "kind": "comment",
+              "start_byte": 724
+            }
+          ]
+        },
+        {
+          "title": "Tokio: broadcast.rs / new_receiver",
+          "path": "tokio/src/sync/broadcast.rs",
+          "symbol": "new_receiver",
+          "syntax_node_kind": "function_item",
+          "start_line": 924,
+          "end_line": 942,
+          "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/sync/broadcast.rs#L924-L942",
+          "source_sha256": "878c206f9bf3f7a5e366b51ca85451bf8414d173025fd15dc752307318aaf966",
+          "excerpt_sha256": "20f6fc01867f1b7e64817f06d4b817f56c8a58a88a6d6a81ec7d73c321db3684",
+          "scored_characters": 322,
+          "original_excerpt_sha256": "3cd700eba8e9fe004fc15a977d203c35711dba51475d090dbe0086f4aa0c8c27",
+          "removed_spans": [
+            {
+              "end_byte": 285,
+              "kind": "comment",
+              "start_byte": 195
+            },
+            {
+              "end_byte": 378,
+              "kind": "comment",
+              "start_byte": 294
+            },
+            {
+              "end_byte": 428,
+              "kind": "comment",
+              "start_byte": 387
+            }
+          ]
+        },
+        {
+          "title": "Tokio: error.rs / fmt",
+          "path": "tokio/src/sync/mpsc/error.rs",
+          "symbol": "fmt",
+          "syntax_node_kind": "function_item",
+          "start_line": 93,
+          "end_line": 98,
+          "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/sync/mpsc/error.rs#L93-L98",
+          "source_sha256": "c01936bd2dbf382fecfaaa5f199b386ec58968c3549bdc77290ff69dee1c8bba",
+          "excerpt_sha256": "03fc2d2501541f33f9729a359c6c5ce2296ec2e837d95b3cb9043a2d27ec28a7",
+          "scored_characters": 215,
+          "original_excerpt_sha256": "03fc2d2501541f33f9729a359c6c5ce2296ec2e837d95b3cb9043a2d27ec28a7",
+          "removed_spans": []
+        }
+      ]
+    },
+    {
+      "id": "ripgrep",
+      "name": "ripgrep",
+      "language": "Rust",
+      "repository": "BurntSushi/ripgrep",
+      "reference": "14.1.1",
+      "revision": "4649aa9700619f94cf9c66876e9549d83420e16c",
+      "license": "MIT",
+      "author": "Andrew Gallant and ripgrep contributors",
+      "license_files": [
+        "LICENSE-MIT",
+        "COPYING"
+      ],
+      "samples": [
+        {
+          "title": "ripgrep: path.rs / write",
+          "path": "crates/printer/src/path.rs",
+          "symbol": "write",
+          "syntax_node_kind": "function_item",
+          "start_line": 150,
+          "end_line": 163,
+          "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/printer/src/path.rs#L150-L163",
+          "source_sha256": "733d31ce45d34bc521d35fa63494f10b0fc73760496c5181a51a1473b672d234",
+          "excerpt_sha256": "f859688936ca373f4e00fb73105990194158c40ae6060e48e098f32492a05533",
+          "scored_characters": 470,
+          "original_excerpt_sha256": "f859688936ca373f4e00fb73105990194158c40ae6060e48e098f32492a05533",
+          "removed_spans": []
+        },
+        {
+          "title": "ripgrep: human.rs / parse_human_readable_size",
+          "path": "crates/cli/src/human.rs",
+          "symbol": "parse_human_readable_size",
+          "syntax_node_kind": "function_item",
+          "start_line": 79,
+          "end_line": 100,
+          "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/cli/src/human.rs#L79-L100",
+          "source_sha256": "b85f1391a01ccdfed20951cdf07bd641bf190256c48caccfe83f8ec14e2b1636",
+          "excerpt_sha256": "86f1ee6dcd8a649c0733a1af446db4534d0dfe8f8ea3838afc4f5f051303e60f",
+          "scored_characters": 655,
+          "original_excerpt_sha256": "86f1ee6dcd8a649c0733a1af446db4534d0dfe8f8ea3838afc4f5f051303e60f",
+          "removed_spans": []
+        },
+        {
+          "title": "ripgrep: pattern.rs / patterns_from_reader",
+          "path": "crates/cli/src/pattern.rs",
+          "symbol": "patterns_from_reader",
+          "syntax_node_kind": "function_item",
+          "start_line": 141,
+          "end_line": 158,
+          "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/cli/src/pattern.rs#L141-L158",
+          "source_sha256": "22b94d38be203aa3c252bf010cce238349f39cb5c494991ac57b52de1dab722f",
+          "excerpt_sha256": "deb6099f939e1e3cd2edbcd8cc381793f8220e17e6c9c1edab0196a3cc3f2ff8",
+          "scored_characters": 408,
+          "original_excerpt_sha256": "deb6099f939e1e3cd2edbcd8cc381793f8220e17e6c9c1edab0196a3cc3f2ff8",
+          "removed_spans": []
+        },
+        {
+          "title": "ripgrep: pathutil.rs / file_name",
+          "path": "crates/globset/src/pathutil.rs",
+          "symbol": "file_name",
+          "syntax_node_kind": "function_item",
+          "start_line": 9,
+          "end_line": 22,
+          "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/globset/src/pathutil.rs#L9-L22",
+          "source_sha256": "57f044214c87b9d645624a95158d48c6e13a099abae8775f78b590f21bd27768",
+          "excerpt_sha256": "24e37659d638034c523e5c217f32636964dcb91380d69a8ee18f2979b66fc9bb",
+          "scored_characters": 398,
+          "original_excerpt_sha256": "24e37659d638034c523e5c217f32636964dcb91380d69a8ee18f2979b66fc9bb",
+          "removed_spans": []
+        },
+        {
+          "title": "ripgrep: fnv.rs / write",
+          "path": "crates/globset/src/fnv.rs",
+          "symbol": "write",
+          "syntax_node_kind": "function_item",
+          "start_line": 24,
+          "end_line": 29,
+          "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/globset/src/fnv.rs#L24-L29",
+          "source_sha256": "bf67b20b542db2a159f91da8b980fca27d93253a8fafaee7173d6493de985bd8",
+          "excerpt_sha256": "a6422c425f638dd25ca8fe824b212250b918339ebce03008426c19c2db289ef7",
+          "scored_characters": 147,
+          "original_excerpt_sha256": "a6422c425f638dd25ca8fe824b212250b918339ebce03008426c19c2db289ef7",
+          "removed_spans": []
+        },
+        {
+          "title": "ripgrep: types.rs / add_def",
+          "path": "crates/ignore/src/types.rs",
+          "symbol": "add_def",
+          "syntax_node_kind": "function_item",
+          "start_line": 442,
+          "end_line": 479,
+          "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/ignore/src/types.rs#L442-L479",
+          "source_sha256": "298b659d48466893d754a4d4fd66ea0183569313629f52af9431d583e0cdbabc",
+          "excerpt_sha256": "9d131b3e6304944efdae0979edcdef87231652a23a0624a4562e42672630218e",
+          "scored_characters": 767,
+          "original_excerpt_sha256": "34a1ba1d4b1a4f66cfe8d1c0b6d43d6e0bf43b87f6e34036f48a442a0b1e9bb8",
+          "removed_spans": [
+            {
+              "end_byte": 877,
+              "kind": "comment",
+              "start_byte": 816
+            },
+            {
+              "end_byte": 926,
+              "kind": "comment",
+              "start_byte": 894
+            }
+          ]
+        },
+        {
+          "title": "ripgrep: stats.rs / serialize",
+          "path": "crates/printer/src/stats.rs",
+          "symbol": "serialize",
+          "syntax_node_kind": "function_item",
+          "start_line": 152,
+          "end_line": 170,
+          "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/printer/src/stats.rs#L152-L170",
+          "source_sha256": "fa7c96c4dd83892f19d9bc5d9a0e486c6d7b252f6c7f507da3cd090809bb48a1",
+          "excerpt_sha256": "1ea02d990fe69da0ac7330c665dd540b88a10618d6ba6de7d0209c6e4e6af2eb",
+          "scored_characters": 593,
+          "original_excerpt_sha256": "1ea02d990fe69da0ac7330c665dd540b88a10618d6ba6de7d0209c6e4e6af2eb",
+          "removed_spans": []
+        },
+        {
+          "title": "ripgrep: lines.rs / locate",
+          "path": "crates/searcher/src/lines.rs",
+          "symbol": "locate",
+          "syntax_node_kind": "function_item",
+          "start_line": 134,
+          "end_line": 147,
+          "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/searcher/src/lines.rs#L134-L147",
+          "source_sha256": "37ec6404ed642b0692a726e21313acadae8ca4202da859d6421d5dfd44594bc1",
+          "excerpt_sha256": "f87a79549b2aa0acb8324831868d1402029f6d1dedcb043b145537345543e43f",
+          "scored_characters": 408,
+          "original_excerpt_sha256": "f87a79549b2aa0acb8324831868d1402029f6d1dedcb043b145537345543e43f",
+          "removed_spans": []
+        },
+        {
+          "title": "ripgrep: ban.rs / check",
+          "path": "crates/regex/src/ban.rs",
+          "symbol": "check",
+          "syntax_node_kind": "function_item",
+          "start_line": 8,
+          "end_line": 53,
+          "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/regex/src/ban.rs#L8-L53",
+          "source_sha256": "9e82e6eef84871c7f9f4857e805525d3c1b506e2906d4d55933d64a78d36aa46",
+          "excerpt_sha256": "1de5b94b3186f5ac34536d0b1bee9baa509d34b37022649b07d015088466d696",
+          "scored_characters": 1165,
+          "original_excerpt_sha256": "1de5b94b3186f5ac34536d0b1bee9baa509d34b37022649b07d015088466d696",
+          "removed_spans": []
+        },
+        {
+          "title": "ripgrep: config.rs / args",
+          "path": "crates/core/flags/config.rs",
+          "symbol": "args",
+          "syntax_node_kind": "function_item",
+          "start_line": 16,
+          "end_line": 47,
+          "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/core/flags/config.rs#L16-L47",
+          "source_sha256": "02860d8a3657185182bd070a3339c1aea4046835361847179a47bc5354d09758",
+          "excerpt_sha256": "88dcb9c6752d8be40420b25e72fe91be75d0bebfe686fb7962336438bbc150af",
+          "scored_characters": 606,
+          "original_excerpt_sha256": "88dcb9c6752d8be40420b25e72fe91be75d0bebfe686fb7962336438bbc150af",
+          "removed_spans": []
+        }
+      ]
+    },
+    {
+      "id": "go",
+      "name": "Go standard library",
+      "language": "Go",
+      "repository": "golang/go",
+      "reference": "go1.25.1",
+      "revision": "56ebf80e57db9f61981fc0636fc6419dc6f68eda",
+      "license": "BSD-3-Clause",
+      "author": "The Go Authors",
+      "license_files": [
+        "LICENSE"
+      ],
+      "samples": [
+        {
+          "title": "Go standard library: strings.go / LastIndex",
+          "path": "src/strings/strings.go",
+          "symbol": "LastIndex",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 82,
+          "end_line": 116,
+          "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/strings/strings.go#L82-L116",
+          "source_sha256": "ac1d74f15027b6c703ee13fd08f10b3ad337e61a79b874d403a10f3bee5bb4fb",
+          "excerpt_sha256": "84fdff1e9e979079d083a1a30e373e8e0eed0ba918c8a4bd0b2546383939bb5e",
+          "scored_characters": 604,
+          "original_excerpt_sha256": "48820aa841ad54f5bae6ce1caee84a90bbfdf94b10348ad4d79aa39063f32a47",
+          "removed_spans": [
+            {
+              "end_byte": 309,
+              "kind": "comment",
+              "start_byte": 262
+            }
+          ]
+        },
+        {
+          "title": "Go standard library: bytes.go / Replace",
+          "path": "src/bytes/bytes.go",
+          "symbol": "Replace",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 1177,
+          "end_line": 1214,
+          "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/bytes/bytes.go#L1177-L1214",
+          "source_sha256": "3bbe3599dfc7b4f4d090cf2644f34eaaac91e9f4da8fea4b4f2b46531c0478d5",
+          "excerpt_sha256": "19117f27e06f4b18479ef1a998d84fde6fd61cdb7fcfebdb51769a0c95b1581d",
+          "scored_characters": 582,
+          "original_excerpt_sha256": "e8219a94f3a7c9bdacaac83fc7efc2c8cbca0bbd91fbbb89998a8c99bb9e5e73",
+          "removed_spans": [
+            {
+              "end_byte": 106,
+              "kind": "comment",
+              "start_byte": 72
+            },
+            {
+              "end_byte": 167,
+              "kind": "comment",
+              "start_byte": 145
+            },
+            {
+              "end_byte": 272,
+              "kind": "comment",
+              "start_byte": 240
+            },
+            {
+              "end_byte": 526,
+              "kind": "comment",
+              "start_byte": 510
+            }
+          ]
+        },
+        {
+          "title": "Go standard library: slices.go / CompactFunc",
+          "path": "src/slices/slices.go",
+          "symbol": "CompactFunc",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 394,
+          "end_line": 413,
+          "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/slices/slices.go#L394-L413",
+          "source_sha256": "7dc20d436ae48ed87246621877bf160924d800d0d91ef03fb9d5019cdc970e3f",
+          "excerpt_sha256": "d98372b12e994eb8b5f810e3a86d03329341ae08cbf09a84e7a99b2ef3408caa",
+          "scored_characters": 276,
+          "original_excerpt_sha256": "94b9197a2d0c692dcd8c900190d83ee69febca0f4d27a4e758af348c3e2186fd",
+          "removed_spans": [
+            {
+              "end_byte": 331,
+              "kind": "comment",
+              "start_byte": 286
+            }
+          ]
+        },
+        {
+          "title": "Go standard library: maps.go / EqualFunc",
+          "path": "src/maps/maps.go",
+          "symbol": "EqualFunc",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 31,
+          "end_line": 41,
+          "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/maps/maps.go#L31-L41",
+          "source_sha256": "0f69acac135baa8b644e2479e514835b4d991bcc894916c2e34b8739a171fce2",
+          "excerpt_sha256": "4deb5c94f2260059fe20677d02dab0ae38c729aef57b3737a47c59b4b8819210",
+          "scored_characters": 246,
+          "original_excerpt_sha256": "4deb5c94f2260059fe20677d02dab0ae38c729aef57b3737a47c59b4b8819210",
+          "removed_spans": []
+        },
+        {
+          "title": "Go standard library: path.go / Base",
+          "path": "src/path/path.go",
+          "symbol": "Base",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 192,
+          "end_line": 209,
+          "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/path/path.go#L192-L209",
+          "source_sha256": "0a5024c364387eeea9ab5fe0b285f0d62355e8cd181cdbddfdfa227f6916d94c",
+          "excerpt_sha256": "111eaf5c3453b8e789781ddea3d488aff25eecb113f658e9de840432aa9f9a34",
+          "scored_characters": 259,
+          "original_excerpt_sha256": "bcf159af3f3a912bdfc59ac43db4ccb3f64de36888b4faefbea28c804832df57",
+          "removed_spans": [
+            {
+              "end_byte": 92,
+              "kind": "comment",
+              "start_byte": 66
+            },
+            {
+              "end_byte": 201,
+              "kind": "comment",
+              "start_byte": 177
+            },
+            {
+              "end_byte": 321,
+              "kind": "comment",
+              "start_byte": 284
+            }
+          ]
+        },
+        {
+          "title": "Go standard library: path.go / walkDir",
+          "path": "src/path/filepath/path.go",
+          "symbol": "walkDir",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 309,
+          "end_line": 340,
+          "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/path/filepath/path.go#L309-L340",
+          "source_sha256": "4ab76f2082841d2524f2bef6bab0d2502e70814e6e557deebde04f6fee67ec19",
+          "excerpt_sha256": "03eb1b32453f9862d212c1d37ccacd24dc192aee9d7a86cf463be097ffe2eef7",
+          "scored_characters": 515,
+          "original_excerpt_sha256": "1a5dd485d0c956d8b327018ee5ae99acc4bebe2086b40527e362cccb281db9ed",
+          "removed_spans": [
+            {
+              "end_byte": 210,
+              "kind": "comment",
+              "start_byte": 176
+            },
+            {
+              "end_byte": 335,
+              "kind": "comment",
+              "start_byte": 295
+            }
+          ]
+        },
+        {
+          "title": "Go standard library: quote.go / appendQuotedWith",
+          "path": "src/strconv/quote.go",
+          "symbol": "appendQuotedWith",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 31,
+          "end_line": 56,
+          "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/strconv/quote.go#L31-L56",
+          "source_sha256": "6f85a5b0e9cc573c94d58a01fe9cd4c6ea7978a9402aa9fe39beed74f8888542",
+          "excerpt_sha256": "d5d3d154c6cefdac11147e97296510e77f363c3b203fc7ed40bc23be810bdc5a",
+          "scored_characters": 620,
+          "original_excerpt_sha256": "5267629d987ebe0f22d935acd176491606ce2db50929287d7d0bd6ac3e8f2de7",
+          "removed_spans": [
+            {
+              "end_byte": 164,
+              "kind": "comment",
+              "start_byte": 95
+            },
+            {
+              "end_byte": 212,
+              "kind": "comment",
+              "start_byte": 166
+            }
+          ]
+        },
+        {
+          "title": "Go standard library: slice.go / Slice",
+          "path": "src/sort/slice.go",
+          "symbol": "Slice",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 24,
+          "end_line": 30,
+          "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/sort/slice.go#L24-L30",
+          "source_sha256": "842b1095d5a97a239e0d88726de1e7a7bbcf5bb7417e2d6a4dd7706dd6645ae9",
+          "excerpt_sha256": "1fcd7ee71bd153b88125db2d66f5bec201d5e03fccace4df2ce45cbe498a5f72",
+          "scored_characters": 211,
+          "original_excerpt_sha256": "1fcd7ee71bd153b88125db2d66f5bec201d5e03fccace4df2ce45cbe498a5f72",
+          "removed_spans": []
+        },
+        {
+          "title": "Go standard library: hex.go / Decode",
+          "path": "src/encoding/hex/hex.go",
+          "symbol": "Decode",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 87,
+          "end_line": 113,
+          "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/encoding/hex/hex.go#L87-L113",
+          "source_sha256": "b3344957ddc5d4090972f94b552a5a7a5bdfb8174a189df033adb0ede97002ba",
+          "excerpt_sha256": "1552cd87f04fe521ca6ce40f004f9a975b7a13d30f5835e45217df070f1f78dc",
+          "scored_characters": 416,
+          "original_excerpt_sha256": "3f61faec9fcccd39af6f3e15657ee8401fc6ae96e9e46ced304a2f653cf7bf06",
+          "removed_spans": [
+            {
+              "end_byte": 388,
+              "kind": "comment",
+              "start_byte": 334
+            },
+            {
+              "end_byte": 452,
+              "kind": "comment",
+              "start_byte": 391
+            }
+          ]
+        },
+        {
+          "title": "Go standard library: url.go / validEncoded",
+          "path": "src/net/url/url.go",
+          "symbol": "validEncoded",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 738,
+          "end_line": 759,
+          "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/net/url/url.go#L738-L759",
+          "source_sha256": "0b13f404d4d28bae41a7635cd60ca9188443ff7cc76b9e6c8d38fa10f8f886b1",
+          "excerpt_sha256": "be1d0191c128caa523d5341d1b85ef98169dc6e02f199a187692449a6702510c",
+          "scored_characters": 261,
+          "original_excerpt_sha256": "5c4df270c9981f6b48107283dff0399223ed6a8afb8b17b557a5364760ad1404",
+          "removed_spans": [
+            {
+              "end_byte": 107,
+              "kind": "comment",
+              "start_byte": 83
+            },
+            {
+              "end_byte": 171,
+              "kind": "comment",
+              "start_byte": 110
+            },
+            {
+              "end_byte": 226,
+              "kind": "comment",
+              "start_byte": 174
+            },
+            {
+              "end_byte": 276,
+              "kind": "comment",
+              "start_byte": 229
+            },
+            {
+              "end_byte": 313,
+              "kind": "comment",
+              "start_byte": 279
+            },
+            {
+              "end_byte": 411,
+              "kind": "comment",
+              "start_byte": 406
+            },
+            {
+              "end_byte": 499,
+              "kind": "comment",
+              "start_byte": 432
+            },
+            {
+              "end_byte": 551,
+              "kind": "comment",
+              "start_byte": 515
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kubernetes",
+      "name": "Kubernetes",
+      "language": "Go",
+      "repository": "kubernetes/kubernetes",
+      "reference": "v1.34.1",
+      "revision": "93248f9ae092f571eb870b7664c534bfc7d00f03",
+      "license": "Apache-2.0",
+      "author": "The Kubernetes Authors",
+      "license_files": [
+        "LICENSES/LICENSE"
+      ],
+      "samples": [
+        {
+          "title": "Kubernetes: taints.go / AddOrUpdateTaint",
+          "path": "pkg/util/taints/taints.go",
+          "symbol": "AddOrUpdateTaint",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 188,
+          "end_line": 213,
+          "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/taints/taints.go#L188-L213",
+          "source_sha256": "30227a33046e0cc894c3c769fea0841475f5e6fb4f9386aaa3c5c833325eadf3",
+          "excerpt_sha256": "e130dffc7b86cfddd87cbf56b8bf45adba55aaa5bf51d819284d6f6920d5766b",
+          "scored_characters": 560,
+          "original_excerpt_sha256": "e130dffc7b86cfddd87cbf56b8bf45adba55aaa5bf51d819284d6f6920d5766b",
+          "removed_spans": []
+        },
+        {
+          "title": "Kubernetes: labels.go / AddLabelToSelector",
+          "path": "pkg/util/labels/labels.go",
+          "symbol": "AddLabelToSelector",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 109,
+          "end_line": 119,
+          "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/labels/labels.go#L109-L119",
+          "source_sha256": "ec872dbf9204f023f289251b63fee4d71a42de815fb9d1b654fad4d5671f1a44",
+          "excerpt_sha256": "0863979f04a7b3fd438447b39ca0041691407504a36483fc53bd39cea4c12395",
+          "scored_characters": 290,
+          "original_excerpt_sha256": "a07f8eeb1a8f2949d4670baa8e34dda59835935fb888f087439a0ff63020c2fd",
+          "removed_spans": [
+            {
+              "end_byte": 161,
+              "kind": "comment",
+              "start_byte": 132
+            }
+          ]
+        },
+        {
+          "title": "Kubernetes: hash.go / DeepHashObject",
+          "path": "pkg/util/hash/hash.go",
+          "symbol": "DeepHashObject",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 29,
+          "end_line": 32,
+          "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/hash/hash.go#L29-L32",
+          "source_sha256": "a7ad6bab8d019f8d4a09cbb9d8b66ab53dcfa118981f0ee73298404d1b02dc28",
+          "excerpt_sha256": "9900a1f9b0a5db0b6acbc22a1de14ebdd7cabf856730244958368ca8a1887ccd",
+          "scored_characters": 138,
+          "original_excerpt_sha256": "9900a1f9b0a5db0b6acbc22a1de14ebdd7cabf856730244958368ca8a1887ccd",
+          "removed_spans": []
+        },
+        {
+          "title": "Kubernetes: node.go / GetNodeHostIPs",
+          "path": "pkg/util/node/node.go",
+          "symbol": "GetNodeHostIPs",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 65,
+          "end_line": 97,
+          "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/node/node.go#L65-L97",
+          "source_sha256": "ac56d9d3110a6f1c991096e9199b7db9e498bfa76a146d1a42710e74a319da77",
+          "excerpt_sha256": "913859d4bbcdaeae8f1b3958ab800d62eb1d69e42c1c3817a5110d8c1385c213",
+          "scored_characters": 745,
+          "original_excerpt_sha256": "a098446c2dd315525fc0c456489bba82efb24717b6b8ca996bbd8d99b9534aa1",
+          "removed_spans": [
+            {
+              "end_byte": 124,
+              "kind": "comment",
+              "start_byte": 56
+            }
+          ]
+        },
+        {
+          "title": "Kubernetes: tolerations.go / MergeTolerations",
+          "path": "pkg/util/tolerations/tolerations.go",
+          "symbol": "MergeTolerations",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 47,
+          "end_line": 70,
+          "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/tolerations/tolerations.go#L47-L70",
+          "source_sha256": "732c8aab0131a7a39d5d1faf145174726cd418329ed82da398aca720e43d848f",
+          "excerpt_sha256": "4b9a9b1dfc44454956310f3642b5b122c3dba0055e828d55b059a0c578717094",
+          "scored_characters": 416,
+          "original_excerpt_sha256": "ced451b7b87e2b92c5dd048d3ae3b1cb1be796d91c4620e904e4004b5f69d4cd",
+          "removed_spans": [
+            {
+              "end_byte": 269,
+              "kind": "comment",
+              "start_byte": 241
+            },
+            {
+              "end_byte": 389,
+              "kind": "comment",
+              "start_byte": 339
+            },
+            {
+              "end_byte": 508,
+              "kind": "comment",
+              "start_byte": 480
+            }
+          ]
+        },
+        {
+          "title": "Kubernetes: parsers.go / ParseImageName",
+          "path": "pkg/util/parsers/parsers.go",
+          "symbol": "ParseImageName",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 31,
+          "end_line": 54,
+          "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/parsers/parsers.go#L31-L54",
+          "source_sha256": "1eaa6e9e940305b6d2a0556e5665cf69531b723be05e5892cc4c424825807409",
+          "excerpt_sha256": "4a536af00e8c70ded448a21679fe8689684eb6d824a3cfe4848bf99f91d46f06",
+          "scored_characters": 519,
+          "original_excerpt_sha256": "ddd6f046cd37a99916b6a448802c10136045ff4733492f6842da397e6f9d8964",
+          "removed_spans": [
+            {
+              "end_byte": 497,
+              "kind": "comment",
+              "start_byte": 444
+            }
+          ]
+        },
+        {
+          "title": "Kubernetes: slice.go / RemoveString",
+          "path": "pkg/util/slice/slice.go",
+          "symbol": "RemoveString",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 58,
+          "end_line": 75,
+          "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/slice/slice.go#L58-L75",
+          "source_sha256": "bfaea71cf0d66e0fd74cb1c288a4502dcff3cd6532ddcb058df94fd47d45964f",
+          "excerpt_sha256": "8bcc1dbc3b41c3c9f3075dc8a5d1025c24c112ee83dd20d42f3cb345d314fbc6",
+          "scored_characters": 321,
+          "original_excerpt_sha256": "4acbae9f6d9b7caa42b928346cb7445d667f11f89252aefacc03298456948390",
+          "removed_spans": [
+            {
+              "end_byte": 379,
+              "kind": "comment",
+              "start_byte": 309
+            },
+            {
+              "end_byte": 393,
+              "kind": "comment",
+              "start_byte": 382
+            }
+          ]
+        },
+        {
+          "title": "Kubernetes: env.go / GetEnvAsFloat64OrFallback",
+          "path": "pkg/util/env/env.go",
+          "symbol": "GetEnvAsFloat64OrFallback",
+          "syntax_node_kind": "function_declaration",
+          "start_line": 48,
+          "end_line": 57,
+          "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/env/env.go#L48-L57",
+          "source_sha256": "0f29652a2070773cd03a15be7a7b7aa974bb6a1777e1becb60ecafb94c3672da",
+          "excerpt_sha256": "16e71a400771d017fd831db96e3c9128920e9e96ca220327c6f30739d02723b6",
+          "scored_characters": 247,
+          "original_excerpt_sha256": "16e71a400771d017fd831db96e3c9128920e9e96ca220327c6f30739d02723b6",
+          "removed_spans": []
+        },
+        {
+          "title": "Kubernetes: runner.go / Start",
+          "path": "pkg/util/async/runner.go",
+          "symbol": "Start",
+          "syntax_node_kind": "method_declaration",
+          "start_line": 38,
+          "end_line": 48,
+          "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/async/runner.go#L38-L48",
+          "source_sha256": "273d702903287ce10a9bb45b3fa3287a9b02d0c3dd5729f207cbf8fa8d226891",
+          "excerpt_sha256": "be9b59f0e008dc668d14eafe52b7c67d72c9dc728a73201a518073e6ead514aa",
+          "scored_characters": 180,
+          "original_excerpt_sha256": "be9b59f0e008dc668d14eafe52b7c67d72c9dc728a73201a518073e6ead514aa",
+          "removed_spans": []
+        },
+        {
+          "title": "Kubernetes: iptables.go / checkRuleUsingCheck",
+          "path": "pkg/util/iptables/iptables.go",
+          "symbol": "checkRuleUsingCheck",
+          "syntax_node_kind": "method_declaration",
+          "start_line": 583,
+          "end_line": 602,
+          "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/iptables/iptables.go#L583-L602",
+          "source_sha256": "c911352f3d64a74fcae609aa0a2df392f4151f23c0283a00fb271ab5dc0b1085",
+          "excerpt_sha256": "b6f540a7d062710c96644d0059ec5e8df38a590949784d3ebbb642fcad8c7322",
+          "scored_characters": 528,
+          "original_excerpt_sha256": "e752dac055ee1847cf4af52eafdb9ec32c75f306c9cfa0ff8addde2d8fb4c9e4",
+          "removed_spans": [
+            {
+              "end_byte": 476,
+              "kind": "comment",
+              "start_byte": 412
+            },
+            {
+              "end_byte": 534,
+              "kind": "comment",
+              "start_byte": 479
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "godot-demos",
+      "name": "Godot demos",
+      "language": "GDScript",
+      "repository": "godotengine/godot-demo-projects",
+      "reference": "master",
+      "revision": "15d4fcd70a429dfd455d6fce9d0cd004abd07373",
+      "license": "MIT",
+      "author": "Godot Engine contributors",
+      "license_files": [
+        "LICENSE.md"
+      ],
+      "samples": [
+        {
+          "title": "Godot demos: player.gd / get_new_animation",
+          "path": "2d/platformer/player/player.gd",
+          "symbol": "get_new_animation",
+          "syntax_node_kind": "function_definition",
+          "start_line": 61,
+          "end_line": 75,
+          "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/platformer/player/player.gd#L61-L75",
+          "source_sha256": "48820dec4ffa62fc0432f891bad027b81d0e4d8f8cb5fdb50fb3ca58f95031c9",
+          "excerpt_sha256": "0e1f47529c953f47c966f48c5fbd177dcb599bbf2e785f06e7b1cd4792a285cb",
+          "scored_characters": 331,
+          "original_excerpt_sha256": "0e1f47529c953f47c966f48c5fbd177dcb599bbf2e785f06e7b1cd4792a285cb",
+          "removed_spans": []
+        },
+        {
+          "title": "Godot demos: ball.gd / complete script",
+          "path": "2d/pong/logic/ball.gd",
+          "symbol": "complete script",
+          "syntax_node_kind": "source_file",
+          "start_line": 1,
+          "end_line": 18,
+          "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/pong/logic/ball.gd#L1-L18",
+          "source_sha256": "6815f48538b422961a7547d2d3bce74ecd07dda04419cd212f110170707e387f",
+          "excerpt_sha256": "b61b16723c59f726dc618ec3709c45b47f8d821c5e6dbcb2587c58979fa71efe",
+          "scored_characters": 334,
+          "original_excerpt_sha256": "b61b16723c59f726dc618ec3709c45b47f8d821c5e6dbcb2587c58979fa71efe",
+          "removed_spans": []
+        },
+        {
+          "title": "Godot demos: main.gd / _on_MobTimer_timeout",
+          "path": "2d/dodge_the_creeps/main.gd",
+          "symbol": "_on_MobTimer_timeout",
+          "syntax_node_kind": "function_definition",
+          "start_line": 24,
+          "end_line": 47,
+          "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/dodge_the_creeps/main.gd#L24-L47",
+          "source_sha256": "0b8903eac765862e12b2a32f22d30e8edcb7a430e7a7e19787ea0ea46902bd49",
+          "excerpt_sha256": "29b3e4216d8f479e2a6b4d9acb7ddee8f16d60fd7195e460047af4d2a3d7f383",
+          "scored_characters": 458,
+          "original_excerpt_sha256": "d674fe4eea40626702c09c95f26b24b0d25d1e38de17523dff3a9687f0569703",
+          "removed_spans": [
+            {
+              "end_byte": 71,
+              "kind": "comment",
+              "start_byte": 30
+            },
+            {
+              "end_byte": 146,
+              "kind": "comment",
+              "start_byte": 109
+            },
+            {
+              "end_byte": 304,
+              "kind": "comment",
+              "start_byte": 258
+            },
+            {
+              "end_byte": 413,
+              "kind": "comment",
+              "start_byte": 351
+            },
+            {
+              "end_byte": 509,
+              "kind": "comment",
+              "start_byte": 470
+            },
+            {
+              "end_byte": 615,
+              "kind": "comment",
+              "start_byte": 581
+            },
+            {
+              "end_byte": 772,
+              "kind": "comment",
+              "start_byte": 725
+            }
+          ]
+        },
+        {
+          "title": "Godot demos: 2d/navigation/character.gd / _physics_process",
+          "path": "2d/navigation/character.gd",
+          "symbol": "_physics_process",
+          "syntax_node_kind": "function_definition",
+          "start_line": 30,
+          "end_line": 38,
+          "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/navigation/character.gd#L30-L38",
+          "source_sha256": "e8ca17e27d661301e891cbe89f17f98edb610f56395c5a84b5db4fec10a8dacb",
+          "excerpt_sha256": "1687287acff4581aba294f2a2a0f7deacca95f3ad975c52c1f1b6b8d477f763d",
+          "scored_characters": 331,
+          "original_excerpt_sha256": "1687287acff4581aba294f2a2a0f7deacca95f3ad975c52c1f1b6b8d477f763d",
+          "removed_spans": []
+        },
+        {
+          "title": "Godot demos: state_machine.gd / _enter_tree",
+          "path": "2d/finite_state_machine/state_machine/state_machine.gd",
+          "symbol": "_enter_tree",
+          "syntax_node_kind": "function_definition",
+          "start_line": 24,
+          "end_line": 37,
+          "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/finite_state_machine/state_machine/state_machine.gd#L24-L37",
+          "source_sha256": "ecbcd7968b3b2e0fbae33156d0a66b9aed5e0af711dd9fad50e2b2d771dadfb9",
+          "excerpt_sha256": "2c81e4043062235ad72f8df5ac1c636efb09cf023be6b4a3c8fe9c567e9e2b18",
+          "scored_characters": 282,
+          "original_excerpt_sha256": "91ab4b544f091c072c33415f9e9e2fbcceaf9dafb10e83f876af57cc9cffa390",
+          "removed_spans": [
+            {
+              "end_byte": 145,
+              "kind": "comment",
+              "start_byte": 83
+            },
+            {
+              "end_byte": 215,
+              "kind": "comment",
+              "start_byte": 148
+            },
+            {
+              "end_byte": 278,
+              "kind": "comment",
+              "start_byte": 218
+            }
+          ]
+        },
+        {
+          "title": "Godot demos: turn_queue.gd / set_queue",
+          "path": "2d/role_playing_game/combat/turn_queue.gd",
+          "symbol": "set_queue",
+          "syntax_node_kind": "function_definition",
+          "start_line": 38,
+          "end_line": 46,
+          "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/role_playing_game/combat/turn_queue.gd#L38-L46",
+          "source_sha256": "ec487ae58c4aa63aec9dcf587dbdd3ef06ba9535d10d0d8912da6dd4932a27de",
+          "excerpt_sha256": "f31338c80bc5f59add9e1317561414781505f3605ee19dfb6bfb30887a3ae101",
+          "scored_characters": 207,
+          "original_excerpt_sha256": "f31338c80bc5f59add9e1317561414781505f3605ee19dfb6bfb30887a3ae101",
+          "removed_spans": []
+        },
+        {
+          "title": "Godot demos: bullets.gd / _physics_process",
+          "path": "2d/bullet_shower/bullets.gd",
+          "symbol": "_physics_process",
+          "syntax_node_kind": "function_definition",
+          "start_line": 60,
+          "end_line": 71,
+          "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/bullet_shower/bullets.gd#L60-L71",
+          "source_sha256": "05548352dad87e879969a45515015834360faa3cd71ddecaada7ab12a8e73436",
+          "excerpt_sha256": "c6240a3ecee0ecec60cf2d03193681387eb4cf62865b5c9e27e570efbb84659c",
+          "scored_characters": 385,
+          "original_excerpt_sha256": "b6414829d8d8c66cffe743f97d65bf61c73d73838fed0ee33093e45dc60378de",
+          "removed_spans": [
+            {
+              "end_byte": 296,
+              "kind": "comment",
+              "start_byte": 236
+            }
+          ]
+        },
+        {
+          "title": "Godot demos: follow_camera.gd / _physics_process",
+          "path": "3d/kinematic_character/player/follow_camera.gd",
+          "symbol": "_physics_process",
+          "syntax_node_kind": "function_definition",
+          "start_line": 19,
+          "end_line": 46,
+          "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/3d/kinematic_character/player/follow_camera.gd#L19-L46",
+          "source_sha256": "4f3f018d6d792d54248a3da462b37b21a226c0d604c771535aa49eac34c6f104",
+          "excerpt_sha256": "32dd774503aaee8ceb93e4796a22df28f1859b992357f11d8f5d96d5140f2f6d",
+          "scored_characters": 668,
+          "original_excerpt_sha256": "7630fed44757e1b4b8ddb3d645eaf2df483a080c3781592359980313797b1fbb",
+          "removed_spans": [
+            {
+              "end_byte": 212,
+              "kind": "comment",
+              "start_byte": 189
+            },
+            {
+              "end_byte": 230,
+              "kind": "comment",
+              "start_byte": 215
+            },
+            {
+              "end_byte": 448,
+              "kind": "comment",
+              "start_byte": 417
+            },
+            {
+              "end_byte": 690,
+              "kind": "comment",
+              "start_byte": 663
+            }
+          ]
+        },
+        {
+          "title": "Godot demos: 3d/navigation/character.gd / _physics_process",
+          "path": "3d/navigation/character.gd",
+          "symbol": "_physics_process",
+          "syntax_node_kind": "function_definition",
+          "start_line": 16,
+          "end_line": 28,
+          "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/3d/navigation/character.gd#L16-L28",
+          "source_sha256": "aecf6d5d63a302b53cf6677807040e554e5fecde1a5a02851cb0caadf14f3495",
+          "excerpt_sha256": "dd13fdcd46216fe2af2efc23573e9a123322b5af3418da76c9149737fcb3649b",
+          "scored_characters": 373,
+          "original_excerpt_sha256": "41694bda018e2728fc632602ab8e5585f988bd8e574d4036746ce0f860caeffa",
+          "removed_spans": [
+            {
+              "end_byte": 345,
+              "kind": "comment",
+              "start_byte": 290
+            },
+            {
+              "end_byte": 414,
+              "kind": "comment",
+              "start_byte": 347
+            }
+          ]
+        },
+        {
+          "title": "Godot demos: main.gd / reset",
+          "path": "2d/tween/main.gd",
+          "symbol": "reset",
+          "syntax_node_kind": "function_definition",
+          "start_line": 143,
+          "end_line": 163,
+          "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/tween/main.gd#L143-L163",
+          "source_sha256": "18503f0180a10a96a91c78a054594c00a6533e4f301dd977845005abda8ca54b",
+          "excerpt_sha256": "7cae4301bb2588fb45f03ab21eaf7e410757e1761f37e0521dc5975698e621b3",
+          "scored_characters": 313,
+          "original_excerpt_sha256": "a50b39f55e39a68d7f85df0e76d386fdd2d435873e885759bb24d785cd0c93c7",
+          "removed_spans": [
+            {
+              "end_byte": 230,
+              "kind": "comment",
+              "start_byte": 206
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pixelorama",
+      "name": "Pixelorama",
+      "language": "GDScript",
+      "repository": "Orama-Interactive/Pixelorama",
+      "reference": "master",
+      "revision": "da7b68f97806c461abde615d1d847af91921c37b",
+      "license": "MIT",
+      "author": "Orama Interactive and contributors",
+      "license_files": [
+        "LICENSE"
+      ],
+      "samples": [
+        {
+          "title": "Pixelorama: AnimationTag.gd / serialize",
+          "path": "src/Classes/AnimationTag.gd",
+          "symbol": "serialize",
+          "syntax_node_kind": "function_definition",
+          "start_line": 57,
+          "end_line": 61,
+          "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/AnimationTag.gd#L57-L61",
+          "source_sha256": "f27594f5693dd09280bf226582b2ee6c105d4041ee897be6b99a2ba0af484ec9",
+          "excerpt_sha256": "400489e324b193b4b6c03e4676dbe22bd21fea9293647a76c9cf7b567b3a4972",
+          "scored_characters": 179,
+          "original_excerpt_sha256": "400489e324b193b4b6c03e4676dbe22bd21fea9293647a76c9cf7b567b3a4972",
+          "removed_spans": []
+        },
+        {
+          "title": "Pixelorama: Frame.gd / position_in_seconds",
+          "path": "src/Classes/Frame.gd",
+          "symbol": "position_in_seconds",
+          "syntax_node_kind": "function_definition",
+          "start_line": 24,
+          "end_line": 40,
+          "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/Frame.gd#L24-L40",
+          "source_sha256": "38f0ca0931758c1b40c8bad83194548db1c904e5a7a24041559a2705e979a935",
+          "excerpt_sha256": "e2150e888f523c49621cdd47e82395b86e7682ab10be9dc9d93d3f2bdcc3817a",
+          "scored_characters": 493,
+          "original_excerpt_sha256": "e2150e888f523c49621cdd47e82395b86e7682ab10be9dc9d93d3f2bdcc3817a",
+          "removed_spans": []
+        },
+        {
+          "title": "Pixelorama: PixelCel.gd / set_content",
+          "path": "src/Classes/Cels/PixelCel.gd",
+          "symbol": "set_content",
+          "syntax_node_kind": "function_definition",
+          "start_line": 35,
+          "end_line": 48,
+          "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/Cels/PixelCel.gd#L35-L48",
+          "source_sha256": "9a6f74aa6716b4d66a1def3cd04ef9084261eb853ccd6b864bb53f0dc6ba1e75",
+          "excerpt_sha256": "bdc16789bc78bc85dded4ff2459f30dd1203cb67d1f449178ce3c8baeb568b72",
+          "scored_characters": 505,
+          "original_excerpt_sha256": "bdc16789bc78bc85dded4ff2459f30dd1203cb67d1f449178ce3c8baeb568b72",
+          "removed_spans": []
+        },
+        {
+          "title": "Pixelorama: PixelLayer.gd / complete script",
+          "path": "src/Classes/Layers/PixelLayer.gd",
+          "symbol": "complete script",
+          "syntax_node_kind": "source_file",
+          "start_line": 1,
+          "end_line": 40,
+          "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/Layers/PixelLayer.gd#L1-L40",
+          "source_sha256": "0d9006083c64fa86566f1f22b3e329405ca12fd904fb997a1c740d13b621462d",
+          "excerpt_sha256": "1ea61e21b3a9ad634ed8d15d2e62d88fb77c9904e4c78011e59c22b40f8fc29b",
+          "scored_characters": 873,
+          "original_excerpt_sha256": "d68dcebb82c6631b94afb7ada718a7db65d3eb37c9957af31186f4a523c4f387",
+          "removed_spans": [
+            {
+              "end_byte": 87,
+              "kind": "comment",
+              "start_byte": 40
+            },
+            {
+              "end_byte": 110,
+              "kind": "comment",
+              "start_byte": 89
+            }
+          ]
+        },
+        {
+          "title": "Pixelorama: SelectionMap.gd / get_point_in_tile_mode",
+          "path": "src/Classes/SelectionMap.gd",
+          "symbol": "get_point_in_tile_mode",
+          "syntax_node_kind": "function_definition",
+          "start_line": 66,
+          "end_line": 79,
+          "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/SelectionMap.gd#L66-L79",
+          "source_sha256": "c68afb18bd6b4d71cc9687caf61bfe7e3f1138a4fde5039de5f63cb3b390b5e6",
+          "excerpt_sha256": "6ae4771b27279fda1b0e73200c03a2462f1a183b01bf06ed03e71ee38d6f454a",
+          "scored_characters": 646,
+          "original_excerpt_sha256": "6ae4771b27279fda1b0e73200c03a2462f1a183b01bf06ed03e71ee38d6f454a",
+          "removed_spans": []
+        },
+        {
+          "title": "Pixelorama: TileSetCustom.gd / deserialize",
+          "path": "src/Classes/TileSetCustom.gd",
+          "symbol": "deserialize",
+          "syntax_node_kind": "function_definition",
+          "start_line": 93,
+          "end_line": 105,
+          "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/TileSetCustom.gd#L93-L105",
+          "source_sha256": "f7e905930bc8361b2ae6b4111cbb59feb530b6d14a5c3a809bad91a16652b8af",
+          "excerpt_sha256": "f8cafc1a0bce15151e688f402e25b7894c318155bfe4ffc44552bfe5f8d71522",
+          "scored_characters": 496,
+          "original_excerpt_sha256": "c0d3981f394b71f82429e7ef93659351525cf17fdfde578c9a8cefb196875ddf",
+          "removed_spans": [
+            {
+              "end_byte": 161,
+              "kind": "comment",
+              "start_byte": 89
+            },
+            {
+              "end_byte": 273,
+              "kind": "comment",
+              "start_byte": 191
+            },
+            {
+              "end_byte": 286,
+              "kind": "comment",
+              "start_byte": 277
+            }
+          ]
+        },
+        {
+          "title": "Pixelorama: Pencil.gd / _draw_brush_image",
+          "path": "src/Tools/DesignTools/Pencil.gd",
+          "symbol": "_draw_brush_image",
+          "syntax_node_kind": "function_definition",
+          "start_line": 202,
+          "end_line": 221,
+          "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Tools/DesignTools/Pencil.gd#L202-L221",
+          "source_sha256": "5582798de040dc79cd579eda106dd5f38339415437feaab2c8bec7e404f74d9a",
+          "excerpt_sha256": "4e2f5663f70ec9328e00790ec66fdcad648287c174aa0b1767af036a7c9b470d",
+          "scored_characters": 732,
+          "original_excerpt_sha256": "4e2f5663f70ec9328e00790ec66fdcad648287c174aa0b1767af036a7c9b470d",
+          "removed_spans": []
+        },
+        {
+          "title": "Pixelorama: EllipseTool.gd / complete script",
+          "path": "src/Tools/DesignTools/EllipseTool.gd",
+          "symbol": "complete script",
+          "syntax_node_kind": "source_file",
+          "start_line": 1,
+          "end_line": 9,
+          "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Tools/DesignTools/EllipseTool.gd#L1-L9",
+          "source_sha256": "8cc32e72f39537b356fdab5b8f3185f8c4f3ee820d31231de1eb99a32641dfab",
+          "excerpt_sha256": "28517fa6ea6b04906c71601eb9067edc4e42df4b80f30fbc9ce5ab32e7d4a658",
+          "scored_characters": 337,
+          "original_excerpt_sha256": "28517fa6ea6b04906c71601eb9067edc4e42df4b80f30fbc9ce5ab32e7d4a658",
+          "removed_spans": []
+        },
+        {
+          "title": "Pixelorama: ColorPicker.gd / _input",
+          "path": "src/Tools/UtilityTools/ColorPicker.gd",
+          "symbol": "_input",
+          "syntax_node_kind": "function_definition",
+          "start_line": 15,
+          "end_line": 25,
+          "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Tools/UtilityTools/ColorPicker.gd#L15-L25",
+          "source_sha256": "d8f094092b441ff05eca56116a5d5f2da9f3de49e186b95afba6a0822f1ff2b2",
+          "excerpt_sha256": "99f5a2c583b619a4a6318eac09eb3aa5bd0b1ae382095f3f9ca4216d966afa16",
+          "scored_characters": 382,
+          "original_excerpt_sha256": "99f5a2c583b619a4a6318eac09eb3aa5bd0b1ae382095f3f9ca4216d966afa16",
+          "removed_spans": []
+        },
+        {
+          "title": "Pixelorama: ThemeUtils.gd / generate_palette",
+          "path": "src/Classes/ThemeUtils.gd",
+          "symbol": "generate_palette",
+          "syntax_node_kind": "function_definition",
+          "start_line": 337,
+          "end_line": 353,
+          "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/ThemeUtils.gd#L337-L353",
+          "source_sha256": "2206ba808fd637eb63f3d985c9eec2f1c0c07b8a420ac704f03d1a355b8a1725",
+          "excerpt_sha256": "bfcf96c386c70413d31439953569d54d3432219f2701cd5a5f4a6acaf819d745",
+          "scored_characters": 728,
+          "original_excerpt_sha256": "bfcf96c386c70413d31439953569d54d3432219f2701cd5a5f4a6acaf819d745",
+          "removed_spans": []
+        }
+      ]
+    }
+  ]
+}

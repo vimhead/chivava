@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "kanagawa-dragon",
+  "palette": {
+    "base00": "#181616",
+    "base01": "#282727",
+    "base02": "#393836",
+    "base03": "#625e5a",
+    "base04": "#737c73",
+    "base05": "#c5c9c5",
+    "base06": "#c8c093",
+    "base07": "#c5c9c5",
+    "base08": "#c4746e",
+    "base09": "#b6927b",
+    "base0A": "#c4b28a",
+    "base0B": "#8a9a7b",
+    "base0C": "#8ea4a2",
+    "base0D": "#8ba4b0",
+    "base0E": "#a292a3",
+    "base0F": "#b98d7b",
+    "selectedBg": "#393836",
+    "scrollbarTrack": "#282727",
+    "scrollbarThumb": "#625e5a",
+    "searchMatchBg": "#393836",
+    "userMsgBg": "#282727",
+    "customMsgBg": "#282727",
+    "toolPendingBg": "#282727",
+    "toolSuccessBg": "#282727",
+    "toolErrorBg": "#282727",
+    "infoBg": "#282727"
+  },
+  "interface": {
+    "text": "$base05",
+    "accent": "$base0E",
+    "correct": "$base0B",
+    "error": "$base08",
+    "muted": "$base04",
+    "pending": "$base03",
+    "selection_background": "$selectedBg"
+  },
+  "syntax": {
+    "default": "$base05",
+    "comment": "$base03",
+    "keyword": "$base0E",
+    "function": "$base0D",
+    "variable": "$base05",
+    "string": "$base0B",
+    "number": "$base09",
+    "type": "$base0A",
+    "operator": "$base0C",
+    "punctuation": "$base04"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "name": "gruvbox-dark-hard",
+  "palette": {
+    "bg": "#1d2021",
+    "fg": "#ebdbb2",
+    "gray": "#928374",
+    "darkGray": "#2c2f30",
+    "accent": "#fabd2f",
+    "accentDark": "#c88b00",
+    "accentMid": "#f2cc70",
+    "secondary": "#458588",
+    "white": "#ebdbb2",
+    "panel": "#222526",
+    "panelAlt": "#252829",
+    "panelSuccess": "#252928",
+    "panelError": "#2d2727",
+    "panelInfo": "#272a2b",
+    "success": "#8ec07c",
+    "error": "#fb4934",
+    "warning": "#fabd2f",
+    "diffAdded": "#c7d09d",
+    "diffRemoved": "#f19d7d",
+    "diffContext": "#dacba6"
+  },
+  "interface": {
+    "text": "default",
+    "accent": "$accent",
+    "correct": "$success",
+    "error": "$error",
+    "muted": "$gray",
+    "pending": "$gray",
+    "selection_background": "$panelInfo"
+  },
+  "syntax": {
+    "default": "default",
+    "comment": "$gray",
+    "keyword": "$accent",
+    "function": "$secondary",
+    "variable": "$fg",
+    "string": "$success",
+    "number": "$warning",
+    "type": "$white",
+    "operator": "$error",
+    "punctuation": "$gray"
+  }
+}

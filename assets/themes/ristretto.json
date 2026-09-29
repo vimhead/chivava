@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "ristretto",
+  "palette": {
+    "accent": "#f38d70",
+    "selection": "#5b5353",
+    "muted": "#72696a",
+    "background": "#2c2525",
+    "darkBackground": "#211c1c",
+    "darkerBackground": "#191515",
+    "lighterBackground": "#403838",
+    "foreground": "#fff1f3",
+    "darkForeground": "#72696a",
+    "lightForeground": "#c3b7b8",
+    "brightForeground": "#fff1f3",
+    "red": "#fd6883",
+    "yellow": "#f9cc6c",
+    "orange": "#f38d70",
+    "green": "#adda78",
+    "cyan": "#85dacc",
+    "blue": "#85dacc",
+    "magenta": "#a8a9eb",
+    "brown": "#5b5353",
+    "brightRed": "#fd6883",
+    "brightYellow": "#f9cc6c",
+    "brightGreen": "#adda78",
+    "brightCyan": "#85dacc",
+    "brightBlue": "#85dacc",
+    "brightMagenta": "#a8a9eb"
+  },
+  "interface": {
+    "text": "$foreground",
+    "accent": "$accent",
+    "correct": "$green",
+    "error": "$red",
+    "muted": "$darkForeground",
+    "pending": "$muted",
+    "selection_background": "$selection"
+  },
+  "syntax": {
+    "default": "$foreground",
+    "comment": "$darkForeground",
+    "keyword": "$magenta",
+    "function": "$blue",
+    "variable": "$foreground",
+    "string": "$green",
+    "number": "$orange",
+    "type": "$yellow",
+    "operator": "$cyan",
+    "punctuation": "$lightForeground"
+  }
+}

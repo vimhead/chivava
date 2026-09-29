@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "ethereal",
+  "palette": {
+    "accent": "#7d82d9",
+    "selection": "#252e56",
+    "muted": "#6d7db6",
+    "background": "#060b1e",
+    "darkBackground": "#040816",
+    "darkerBackground": "#030610",
+    "lighterBackground": "#131a3a",
+    "foreground": "#ffcead",
+    "darkForeground": "#6d7db6",
+    "lightForeground": "#c9b8a6",
+    "brightForeground": "#ffcead",
+    "red": "#ed5b5a",
+    "yellow": "#e9bb4f",
+    "orange": "#eb8b54",
+    "green": "#92a593",
+    "cyan": "#a3bfd1",
+    "blue": "#7d82d9",
+    "magenta": "#c89dc1",
+    "brown": "#75452a",
+    "brightRed": "#faaaa9",
+    "brightYellow": "#f7dc9c",
+    "brightGreen": "#c4cfc4",
+    "brightCyan": "#dfeaf0",
+    "brightBlue": "#c2c4f0",
+    "brightMagenta": "#ead7e7"
+  },
+  "interface": {
+    "text": "$foreground",
+    "accent": "$accent",
+    "correct": "$green",
+    "error": "$red",
+    "muted": "$darkForeground",
+    "pending": "$muted",
+    "selection_background": "$selection"
+  },
+  "syntax": {
+    "default": "$foreground",
+    "comment": "$darkForeground",
+    "keyword": "$magenta",
+    "function": "$blue",
+    "variable": "$foreground",
+    "string": "$green",
+    "number": "$orange",
+    "type": "$yellow",
+    "operator": "$cyan",
+    "punctuation": "$lightForeground"
+  }
+}

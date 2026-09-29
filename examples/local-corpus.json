@@ -1,0 +1,11 @@
+[
+  {
+    "text_type": "books",
+    "group": "My local book",
+    "title": "My local book",
+    "author": "Local author",
+    "source": "Personal excerpt",
+    "license": "Local use only",
+    "text": "Replace this sentence with an excerpt you are entitled to use."
+  }
+]

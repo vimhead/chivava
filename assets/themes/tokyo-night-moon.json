@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "tokyo-night-moon",
+  "palette": {
+    "base00": "#222436",
+    "base01": "#1e2030",
+    "base02": "#2d3f76",
+    "base03": "#3b4261",
+    "base04": "#636da6",
+    "base05": "#828bb8",
+    "base06": "#aeb4d1",
+    "base07": "#c8d3f5",
+    "base08": "#ff757f",
+    "base09": "#ffc777",
+    "base0A": "#ffdf77",
+    "base0B": "#c3e88d",
+    "base0C": "#86e1fc",
+    "base0D": "#82aaff",
+    "base0E": "#fca7ea",
+    "base0F": "#c53b53",
+    "selectedBg": "#2d3f76",
+    "scrollbarTrack": "#1e2030",
+    "scrollbarThumb": "#3b4261",
+    "searchMatchBg": "#2d3f76",
+    "userMsgBg": "#1e2030",
+    "customMsgBg": "#1e2030",
+    "toolPendingBg": "#1e2030",
+    "toolSuccessBg": "#1e2030",
+    "toolErrorBg": "#1e2030",
+    "infoBg": "#1e2030"
+  },
+  "interface": {
+    "text": "$base05",
+    "accent": "$base0E",
+    "correct": "$base0B",
+    "error": "$base08",
+    "muted": "$base04",
+    "pending": "$base03",
+    "selection_background": "$selectedBg"
+  },
+  "syntax": {
+    "default": "$base05",
+    "comment": "$base03",
+    "keyword": "$base0E",
+    "function": "$base0D",
+    "variable": "$base05",
+    "string": "$base0B",
+    "number": "$base09",
+    "type": "$base0A",
+    "operator": "$base0C",
+    "punctuation": "$base04"
+  }
+}

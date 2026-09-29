@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "nord",
+  "palette": {
+    "bg": "#2e3440",
+    "bgLight": "#3b4252",
+    "bgLighter": "#434c5e",
+    "fg": "#eceff4",
+    "accent": "#88c0d0",
+    "blue": "#81a1c1",
+    "green": "#a3be8c",
+    "red": "#bf616a",
+    "orange": "#d08770",
+    "yellow": "#ebcb8b",
+    "cyan": "#8fbcbb",
+    "purple": "#b48ead",
+    "gray": "#616e88",
+    "dimGray": "#4c566a"
+  },
+  "interface": {
+    "text": "default",
+    "accent": "$accent",
+    "correct": "$green",
+    "error": "$red",
+    "muted": "$gray",
+    "pending": "$dimGray",
+    "selection_background": "$bgLighter"
+  },
+  "syntax": {
+    "default": "default",
+    "comment": "#616e88",
+    "keyword": "#81a1c1",
+    "function": "#88c0d0",
+    "variable": "#eceff4",
+    "string": "#a3be8c",
+    "number": "#b48ead",
+    "type": "#8fbcbb",
+    "operator": "#81a1c1",
+    "punctuation": "#d8dee9"
+  }
+}

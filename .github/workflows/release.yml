@@ -1,0 +1,204 @@
+name: Release Tip
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-tip-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    outputs:
+      version: ${{ steps.identity.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: check
+      - name: Install Linux build and installer-test dependencies
+        run: sudo apt-get update && sudo apt-get install -y libasound2-dev pkg-config shellcheck
+      - run: cargo fmt --check
+      - run: cargo clippy --locked --all-targets -- -D warnings
+      - run: shellcheck -s sh scripts/install.sh
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.2'
+          cache: false
+      - run: go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.12
+      - run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Identify this build
+        id: identity
+        run: |
+          base_version=$(python3 -c 'import tomllib; print(tomllib.load(open("Cargo.toml", "rb"))["package"]["version"])')
+          printf 'version=%s-tip.%s.%s+%s\n' "$base_version" "$GITHUB_RUN_ID" "$GITHUB_RUN_ATTEMPT" "${GITHUB_SHA:0:12}" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: check
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+            asset: chivava-linux-x64
+          - runner: ubuntu-22.04-arm
+            target: aarch64-unknown-linux-gnu
+            asset: chivava-linux-arm64
+          - runner: macos-15-intel
+            target: x86_64-apple-darwin
+            asset: chivava-darwin-x64
+          - runner: macos-14
+            target: aarch64-apple-darwin
+            asset: chivava-darwin-arm64
+          - runner: windows-2022
+            target: x86_64-pc-windows-msvc
+            asset: chivava-windows-x64.exe
+    runs-on: ${{ matrix.runner }}
+    env:
+      CHIVAVA_BUILD_VERSION: ${{ needs.check.outputs.version }}
+      MACOSX_DEPLOYMENT_TARGET: '11.0'
+      BUILD_TARGET: ${{ matrix.target }}
+      BINARY_ASSET: ${{ matrix.asset }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}
+      - name: Install ALSA development headers
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libasound2-dev pkg-config
+      - run: cargo test --locked --target "$BUILD_TARGET"
+      - run: cargo build --locked --release --target "$BUILD_TARGET"
+      - name: Smoke-test and package native executable
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+          import shutil
+          import subprocess
+
+          asset = os.environ['BINARY_ASSET']
+          executable = 'chivava.exe' if asset.endswith('.exe') else 'chivava'
+          binary = Path('target') / os.environ['BUILD_TARGET'] / 'release' / executable
+          version = subprocess.check_output([str(binary), '--version'], text=True).strip()
+          assert version == 'chivava ' + os.environ['CHIVAVA_BUILD_VERSION'], version
+          themes = subprocess.check_output([str(binary), 'themes', 'list'], text=True)
+          assert len(themes.splitlines()) == 48
+          destination = Path('dist')
+          destination.mkdir(exist_ok=True)
+          shutil.copyfile(binary, destination / asset)
+          checksum = hashlib.sha256((destination / asset).read_bytes()).hexdigest()
+          (destination / (asset + '.sha256')).write_text(f'{checksum}  {asset}\n', encoding='ascii')
+          print(version)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.asset }}
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: [check, build]
+    if: github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_COMMIT: ${{ github.sha }}
+      RELEASE_VERSION: ${{ needs.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: chivava-*
+          path: dist
+          merge-multiple: true
+      - name: Verify all artifacts and prepare release files
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+          import shutil
+
+          directory = Path('dist')
+          assets = ['chivava-linux-x64', 'chivava-linux-arm64', 'chivava-darwin-x64',
+                    'chivava-darwin-arm64', 'chivava-windows-x64.exe']
+          for name in assets:
+              checksum = hashlib.sha256((directory / name).read_bytes()).hexdigest()
+              assert (directory / (name + '.sha256')).read_text().strip() == f'{checksum}  {name}'
+          shutil.copyfile('scripts/install.sh', directory / 'install.sh')
+          assets.append('install.sh')
+          checksums = []
+          for name in sorted(assets):
+              checksum = hashlib.sha256((directory / name).read_bytes()).hexdigest()
+              entry = f'{checksum}  {name}\n'
+              (directory / (name + '.sha256')).write_text(entry)
+              checksums.append(entry)
+          (directory / 'SHA256SUMS.txt').write_text(''.join(checksums))
+          repository = os.environ['GITHUB_REPOSITORY']
+          Path('release-notes.md').write_text(
+              f'Automated rolling prerelease `{os.environ["RELEASE_VERSION"]}` for `{os.environ["RELEASE_COMMIT"]}`.\n\n'
+              f'```sh\ncurl -fsSL https://github.com/{repository}/releases/download/tip/install.sh | '
+              f'CHIVAVA_REPOSITORY={repository} sh\n```\n\n'
+              'Installs to `~/.local/bin`; override with `CHIVAVA_INSTALL_DIR`. Re-run to update.\n\n'
+              'Linux: glibc 2.35+ and ALSA (`libasound2`). macOS: 11+. Windows x64: Git Bash or download the `.exe` directly.\n'
+              'All five native builds pass tests before publication. SHA-256 checksums accompany every executable.\n'
+          )
+          PY
+      - name: Publish current master as tip
+        run: |
+          set -euo pipefail
+          current_commit=$(git ls-remote --exit-code origin refs/heads/master | cut -f1)
+          if [ "$current_commit" != "$RELEASE_COMMIT" ]; then
+            printf 'Skipping superseded build %s; master is now %s.\n' "$RELEASE_COMMIT" "$current_commit"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git tag -fa tip -m "Chivava $RELEASE_VERSION" "$RELEASE_COMMIT"
+          git push --force origin refs/tags/tip
+          if gh release view tip >/dev/null 2>&1; then
+            gh release upload tip dist/* --clobber
+            gh release edit tip --title 'Chivava Tip' --notes-file release-notes.md --prerelease --latest=false
+          else
+            gh release create tip dist/* --verify-tag --title 'Chivava Tip' --notes-file release-notes.md --prerelease --latest=false
+          fi

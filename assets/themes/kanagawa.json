@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "kanagawa",
+  "palette": {
+    "waveBlue1": "#223249",
+    "waveBlue2": "#2D4F67",
+    "waveAqua1": "#6A9589",
+    "waveAqua2": "#7AA89F",
+    "crystalBlue": "#7E9CD8",
+    "fujiWhite": "#DCD7BA",
+    "oldWhite": "#C8C093",
+    "fujiGray": "#727169",
+    "dragonBlack": "#1F1F28",
+    "surimiOrange": "#FFA066",
+    "carpYellow": "#E6C384",
+    "autumnYellow": "#DCA561",
+    "roninYellow": "#FF9E3B",
+    "lotusPink": "#D27E99",
+    "springGreen": "#98BB6C",
+    "autumnGreen": "#76946A",
+    "winterGreen": "#2B3328",
+    "winterBlue": "#252535",
+    "winterRed": "#43242B",
+    "oniViolet": "#957FB8",
+    "springViolet": "#938AA9",
+    "autumnRed": "#C34043",
+    "sumiInk3": "#2A2A37",
+    "sumiInk4": "#363646",
+    "sumiInk5": "#54546D"
+  },
+  "interface": {
+    "text": "$fujiWhite",
+    "accent": "$surimiOrange",
+    "correct": "$springGreen",
+    "error": "$autumnRed",
+    "muted": "$fujiGray",
+    "pending": "$sumiInk5",
+    "selection_background": "$sumiInk3"
+  },
+  "syntax": {
+    "default": "$fujiWhite",
+    "comment": "$fujiGray",
+    "keyword": "$oniViolet",
+    "function": "$crystalBlue",
+    "variable": "$fujiWhite",
+    "string": "$springGreen",
+    "number": "$surimiOrange",
+    "type": "$waveAqua2",
+    "operator": "$surimiOrange",
+    "punctuation": "$fujiGray"
+  }
+}

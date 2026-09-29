@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "gruvbox-material-light-soft",
+  "palette": {
+    "base00": "#f2e5bc",
+    "base01": "#ebdbb2",
+    "base02": "#c9b99a",
+    "base03": "#a89984",
+    "base04": "#665c54",
+    "base05": "#654735",
+    "base06": "#3c3836",
+    "base07": "#282828",
+    "base08": "#c14a4a",
+    "base09": "#c35e0a",
+    "base0A": "#b47109",
+    "base0B": "#6c782e",
+    "base0C": "#4c7a5d",
+    "base0D": "#45707a",
+    "base0E": "#945e80",
+    "base0F": "#e78a4e",
+    "selectedBg": "#c9b99a",
+    "scrollbarTrack": "#ebdbb2",
+    "scrollbarThumb": "#a89984",
+    "searchMatchBg": "#c9b99a",
+    "userMsgBg": "#ebdbb2",
+    "customMsgBg": "#ebdbb2",
+    "toolPendingBg": "#ebdbb2",
+    "toolSuccessBg": "#ebdbb2",
+    "toolErrorBg": "#ebdbb2",
+    "infoBg": "#ebdbb2"
+  },
+  "interface": {
+    "text": "$base05",
+    "accent": "$base0E",
+    "correct": "$base0B",
+    "error": "$base08",
+    "muted": "$base04",
+    "pending": "$base03",
+    "selection_background": "$selectedBg"
+  },
+  "syntax": {
+    "default": "$base05",
+    "comment": "$base03",
+    "keyword": "$base0E",
+    "function": "$base0D",
+    "variable": "$base05",
+    "string": "$base0B",
+    "number": "$base09",
+    "type": "$base0A",
+    "operator": "$base0C",
+    "punctuation": "$base04"
+  }
+}

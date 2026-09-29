@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "retro-82",
+  "palette": {
+    "accent": "#faa968",
+    "selection": "#134e5a",
+    "muted": "#2a6b78",
+    "background": "#05182e",
+    "darkBackground": "#031222",
+    "darkerBackground": "#020c17",
+    "lighterBackground": "#0a2540",
+    "foreground": "#f6dcac",
+    "darkForeground": "#3f8f8a",
+    "lightForeground": "#a7c9c6",
+    "brightForeground": "#f6dcac",
+    "red": "#f85525",
+    "yellow": "#e97b3c",
+    "orange": "#faa968",
+    "green": "#028391",
+    "cyan": "#8cbfb8",
+    "blue": "#3f8f8a",
+    "magenta": "#3f8f8a",
+    "brown": "#743d1e",
+    "brightRed": "#f85525",
+    "brightYellow": "#e97b3c",
+    "brightGreen": "#028391",
+    "brightCyan": "#8cbfb8",
+    "brightBlue": "#faa968",
+    "brightMagenta": "#3f8f8a"
+  },
+  "interface": {
+    "text": "$foreground",
+    "accent": "$accent",
+    "correct": "$green",
+    "error": "$red",
+    "muted": "$darkForeground",
+    "pending": "$muted",
+    "selection_background": "$selection"
+  },
+  "syntax": {
+    "default": "$foreground",
+    "comment": "$darkForeground",
+    "keyword": "$magenta",
+    "function": "$blue",
+    "variable": "$foreground",
+    "string": "$green",
+    "number": "$orange",
+    "type": "$yellow",
+    "operator": "$cyan",
+    "punctuation": "$lightForeground"
+  }
+}

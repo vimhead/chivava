@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "name": "custom-example",
+  "palette": {
+    "foreground": "#D8DEE9",
+    "accent": "#88C0D0",
+    "green": "#A3BE8C",
+    "red": "#BF616A",
+    "muted": "#81A1C1",
+    "pending": "#616E88",
+    "selection": "#434C5E",
+    "yellow": "#EBCB8B",
+    "purple": "#B48EAD"
+  },
+  "interface": {
+    "text": "$foreground",
+    "accent": "$accent",
+    "correct": "$green",
+    "error": "$red",
+    "muted": "$muted",
+    "pending": "$pending",
+    "selection_background": "$selection"
+  },
+  "syntax": {
+    "default": "$foreground",
+    "comment": "$pending",
+    "keyword": "$purple",
+    "function": "$accent",
+    "variable": "$foreground",
+    "string": "$green",
+    "number": "$purple",
+    "type": "$yellow",
+    "operator": "$accent",
+    "punctuation": "$muted"
+  }
+}

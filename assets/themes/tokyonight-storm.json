@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "name": "tokyonight-storm",
+  "palette": {
+    "bg": "#24283b",
+    "bgDark": "#1f2335",
+    "bgPopup": "#1b1e2d",
+    "bgHighlight": "#292e42",
+    "bgCustom": "#2c324a",
+    "bgSuccess": "#164846",
+    "bgError": "#703438",
+    "blue": "#7aa2f7",
+    "cyan": "#7dcfff",
+    "teal": "#1abc9c",
+    "green": "#9ece6a",
+    "red": "#f7768e",
+    "redStrong": "#db4b4b",
+    "yellow": "#e0af68",
+    "orange": "#ff9e64",
+    "purple": "#9d7cd8",
+    "magenta": "#bb9af7",
+    "comment": "#565f89",
+    "muted": "#a9b1d6",
+    "dim": "#8a94c0",
+    "border": "#3b4261",
+    "borderAccent": "#3d59a1"
+  },
+  "interface": {
+    "text": "default",
+    "accent": "$blue",
+    "correct": "$green",
+    "error": "$red",
+    "muted": "$muted",
+    "pending": "$dim",
+    "selection_background": "$bgHighlight"
+  },
+  "syntax": {
+    "default": "default",
+    "comment": "$comment",
+    "keyword": "$magenta",
+    "function": "$blue",
+    "variable": "#c0caf5",
+    "string": "$green",
+    "number": "$orange",
+    "type": "$teal",
+    "operator": "$cyan",
+    "punctuation": "$muted"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "name": "hackerman",
+  "palette": {
+    "primary": "#50f872",
+    "secondary": "#6a6e95"
+  },
+  "interface": {
+    "text": "#ddf7ff",
+    "accent": "$primary",
+    "correct": "#4fe88f",
+    "error": "#50f872",
+    "muted": "$secondary",
+    "pending": "#6a6e95",
+    "selection_background": "#829dd4"
+  },
+  "syntax": {
+    "default": "#ddf7ff",
+    "comment": "#6a6e95",
+    "keyword": "#50f872",
+    "function": "#7cf8f7",
+    "variable": "#85ff9d",
+    "string": "#4fe88f",
+    "number": "#86a7df",
+    "type": "#829dd4",
+    "operator": "#50f872",
+    "punctuation": "#6a6e95"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "osaka-jade",
+  "palette": {
+    "accent": "#509475",
+    "selection": "#32473b",
+    "muted": "#53685b",
+    "background": "#111c18",
+    "darkBackground": "#0c1512",
+    "darkerBackground": "#090f0d",
+    "lighterBackground": "#23372b",
+    "foreground": "#c1c497",
+    "darkForeground": "#81b8a8",
+    "lightForeground": "#d6d5bc",
+    "brightForeground": "#f7e8b2",
+    "red": "#ff5345",
+    "yellow": "#459451",
+    "orange": "#a2734b",
+    "green": "#549e6a",
+    "cyan": "#2dd5b7",
+    "blue": "#509475",
+    "magenta": "#d2689c",
+    "brown": "#513925",
+    "brightRed": "#db9f9c",
+    "brightYellow": "#e5c736",
+    "brightGreen": "#63b07a",
+    "brightCyan": "#8cd3cb",
+    "brightBlue": "#acd4cf",
+    "brightMagenta": "#75bbb3"
+  },
+  "interface": {
+    "text": "$foreground",
+    "accent": "$accent",
+    "correct": "$green",
+    "error": "$red",
+    "muted": "$darkForeground",
+    "pending": "$muted",
+    "selection_background": "$selection"
+  },
+  "syntax": {
+    "default": "$foreground",
+    "comment": "$darkForeground",
+    "keyword": "$magenta",
+    "function": "$blue",
+    "variable": "$foreground",
+    "string": "$green",
+    "number": "$orange",
+    "type": "$yellow",
+    "operator": "$cyan",
+    "punctuation": "$lightForeground"
+  }
+}

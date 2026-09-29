@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "gruvbox-dark-medium",
+  "palette": {
+    "base00": "#282828",
+    "base01": "#3c3836",
+    "base02": "#504945",
+    "base03": "#665c54",
+    "base04": "#bdae93",
+    "base05": "#d5c4a1",
+    "base06": "#ebdbb2",
+    "base07": "#fbf1c7",
+    "base08": "#fb4934",
+    "base09": "#fe8019",
+    "base0A": "#fabd2f",
+    "base0B": "#b8bb26",
+    "base0C": "#8ec07c",
+    "base0D": "#83a598",
+    "base0E": "#d3869b",
+    "base0F": "#d65d0e",
+    "selectedBg": "#504945",
+    "scrollbarTrack": "#3c3836",
+    "scrollbarThumb": "#665c54",
+    "searchMatchBg": "#504945",
+    "userMsgBg": "#3c3836",
+    "customMsgBg": "#3c3836",
+    "toolPendingBg": "#3c3836",
+    "toolSuccessBg": "#3c3836",
+    "toolErrorBg": "#3c3836",
+    "infoBg": "#3c3836"
+  },
+  "interface": {
+    "text": "$base05",
+    "accent": "$base0E",
+    "correct": "$base0B",
+    "error": "$base08",
+    "muted": "$base04",
+    "pending": "$base03",
+    "selection_background": "$selectedBg"
+  },
+  "syntax": {
+    "default": "$base05",
+    "comment": "$base03",
+    "keyword": "$base0E",
+    "function": "$base0D",
+    "variable": "$base05",
+    "string": "$base0B",
+    "number": "$base09",
+    "type": "$base0A",
+    "operator": "$base0C",
+    "punctuation": "$base04"
+  }
+}

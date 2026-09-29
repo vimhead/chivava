@@ -1,0 +1,955 @@
+[
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Django: text.py / slugify",
+    "author": "Django Software Foundation and individual contributors",
+    "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/text.py#L452-L470",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "@keep_lazy_text\ndef slugify(value, allow_unicode=False):\n    value = str(value)\n    if allow_unicode:\n        value = unicodedata.normalize(\"NFKC\", value)\n    else:\n        value = (\n            unicodedata.normalize(\"NFKD\", value)\n            .encode(\"ascii\", \"ignore\")\n            .decode(\"ascii\")\n        )\n    value = re.sub(r\"[^\\w\\s-]\", \"\", value.lower())\n    return re.sub(r\"[-\\s]+\", \"-\", value).strip(\"-_\")"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Django: html.py / json_script",
+    "author": "Django Software Foundation and individual contributors",
+    "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/html.py#L94-L111",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def json_script(value, element_id=None, encoder=None):\n    from django.core.serializers.json import DjangoJSONEncoder\n\n    json_str = json.dumps(value, cls=encoder or DjangoJSONEncoder).translate(\n        _json_script_escapes\n    )\n    if element_id:\n        template = '<script id=\"{}\" type=\"application/json\">{}</script>'\n        args = (element_id, mark_safe(json_str))\n    else:\n        template = '<script type=\"application/json\">{}</script>'\n        args = (mark_safe(json_str),)\n    return format_html(template, *args)"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Django: http.py / parse_header_parameters",
+    "author": "Django Software Foundation and individual contributors",
+    "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/http.py#L330-L357",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def parse_header_parameters(line):\n    parts = _parseparam(\";\" + line)\n    key = parts.__next__().lower()\n    pdict = {}\n    for p in parts:\n        i = p.find(\"=\")\n        if i >= 0:\n            has_encoding = False\n            name = p[:i].strip().lower()\n            if name.endswith(\"*\"):\n                name = name[:-1]\n                if p.count(\"'\") == 2:\n                    has_encoding = True\n            value = p[i + 1 :].strip()\n            if len(value) >= 2 and value[0] == value[-1] == '\"':\n                value = value[1:-1]\n                value = value.replace(\"\\\\\\\\\", \"\\\\\").replace('\\\\\"', '\"')\n            if has_encoding:\n                encoding, lang, value = value.split(\"'\")\n                value = unquote(value, encoding=encoding)\n            pdict[name] = value\n    return key, pdict"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Django: dateparse.py / parse_duration",
+    "author": "Django Software Foundation and individual contributors",
+    "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/dateparse.py#L132-L154",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def parse_duration(value):\n    match = (\n        standard_duration_re.match(value)\n        or iso8601_duration_re.match(value)\n        or postgres_interval_re.match(value)\n    )\n    if match:\n        kw = match.groupdict()\n        sign = -1 if kw.pop(\"sign\", \"+\") == \"-\" else 1\n        if kw.get(\"microseconds\"):\n            kw[\"microseconds\"] = kw[\"microseconds\"].ljust(6, \"0\")\n        kw = {k: float(v.replace(\",\", \".\")) for k, v in kw.items() if v is not None}\n        days = datetime.timedelta(kw.pop(\"days\", 0.0) or 0.0)\n        if match.re == iso8601_duration_re:\n            days *= sign\n        return days + sign * datetime.timedelta(**kw)"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Django: duration.py / duration_string",
+    "author": "Django Software Foundation and individual contributors",
+    "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/duration.py#L18-L28",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def duration_string(duration):\n    days, hours, minutes, seconds, microseconds = _get_duration_components(duration)\n\n    string = \"{:02d}:{:02d}:{:02d}\".format(hours, minutes, seconds)\n    if days:\n        string = \"{} \".format(days) + string\n    if microseconds:\n        string += \".{:06d}\".format(microseconds)\n\n    return string"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Django: crypto.py / salted_hmac",
+    "author": "Django Software Foundation and individual contributors",
+    "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/crypto.py#L19-L45",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def salted_hmac(key_salt, value, secret=None, *, algorithm=\"sha1\"):\n    if secret is None:\n        secret = settings.SECRET_KEY\n\n    key_salt = force_bytes(key_salt)\n    secret = force_bytes(secret)\n    try:\n        hasher = getattr(hashlib, algorithm)\n    except AttributeError as e:\n        raise InvalidAlgorithm(\n            \"%r is not an algorithm accepted by the hashlib module.\" % algorithm\n        ) from e\n    key = hasher(key_salt + secret).digest()\n    return hmac.new(key, msg=force_bytes(value), digestmod=hasher)"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Django: encoding.py / force_str",
+    "author": "Django Software Foundation and individual contributors",
+    "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/encoding.py#L53-L72",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def force_str(s, encoding=\"utf-8\", strings_only=False, errors=\"strict\"):\n    if issubclass(type(s), str):\n        return s\n    if strings_only and is_protected_type(s):\n        return s\n    try:\n        if isinstance(s, bytes):\n            s = str(s, encoding, errors)\n        else:\n            s = str(s)\n    except UnicodeDecodeError as e:\n        raise DjangoUnicodeDecodeError(*e.args) from None\n    return s"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Django: module_loading.py / import_string",
+    "author": "Django Software Foundation and individual contributors",
+    "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/module_loading.py#L19-L35",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def import_string(dotted_path):\n    try:\n        module_path, class_name = dotted_path.rsplit(\".\", 1)\n    except ValueError as err:\n        raise ImportError(\"%s doesn't look like a module path\" % dotted_path) from err\n\n    try:\n        return cached_import(module_path, class_name)\n    except AttributeError as err:\n        raise ImportError(\n            'Module \"%s\" does not define a \"%s\" attribute/class'\n            % (module_path, class_name)\n        ) from err"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Django: functional.py / keep_lazy",
+    "author": "Django Software Foundation and individual contributors",
+    "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/functional.py#L211-L235",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def keep_lazy(*resultclasses):\n    if not resultclasses:\n        raise TypeError(\"You must pass at least one argument to keep_lazy().\")\n\n    def decorator(func):\n        lazy_func = lazy(func, *resultclasses)\n\n        @wraps(func)\n        def wrapper(*args, **kwargs):\n            if any(\n                isinstance(arg, Promise)\n                for arg in itertools.chain(args, kwargs.values())\n            ):\n                return lazy_func(*args, **kwargs)\n            return func(*args, **kwargs)\n\n        return wrapper\n\n    return decorator"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Django: timezone.py / localtime",
+    "author": "Django Software Foundation and individual contributors",
+    "source": "https://github.com/django/django/blob/75c4403f07b8ad25893f7832dbe8fc6814b53b2d/django/utils/timezone.py#L167-L184",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def localtime(value=None, timezone=None):\n    if value is None:\n        value = now()\n    if timezone is None:\n        timezone = get_current_timezone()\n    if is_naive(value):\n        raise ValueError(\"localtime() cannot be applied to a naive datetime\")\n    return value.astimezone(timezone)"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Requests: structures.py / __eq__",
+    "author": "Kenneth Reitz and Requests contributors",
+    "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/structures.py#L67-L73",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "    def __eq__(self, other):\n        if isinstance(other, Mapping):\n            other = CaseInsensitiveDict(other)\n        else:\n            return NotImplemented\n        return dict(self.lower_items()) == dict(other.lower_items())"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Requests: utils.py / parse_header_links",
+    "author": "Kenneth Reitz and Requests contributors",
+    "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/utils.py#L904-L938",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def parse_header_links(value):\n\n    links = []\n\n    replace_chars = \" '\\\"\"\n\n    value = value.strip(replace_chars)\n    if not value:\n        return links\n\n    for val in re.split(\", *<\", value):\n        try:\n            url, params = val.split(\";\", 1)\n        except ValueError:\n            url, params = val, \"\"\n\n        link = {\"url\": url.strip(\"<> '\\\"\")}\n\n        for param in params.split(\";\"):\n            try:\n                key, value = param.split(\"=\")\n            except ValueError:\n                break\n\n            link[key.strip(replace_chars)] = value.strip(replace_chars)\n\n        links.append(link)\n\n    return links"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Requests: cookies.py / cookiejar_from_dict",
+    "author": "Kenneth Reitz and Requests contributors",
+    "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/cookies.py#L521-L539",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True):\n    if cookiejar is None:\n        cookiejar = RequestsCookieJar()\n\n    if cookie_dict is not None:\n        names_from_jar = [cookie.name for cookie in cookiejar]\n        for name in cookie_dict:\n            if overwrite or (name not in names_from_jar):\n                cookiejar.set_cookie(create_cookie(name, cookie_dict[name]))\n\n    return cookiejar"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Requests: auth.py / __call__",
+    "author": "Kenneth Reitz and Requests contributors",
+    "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/auth.py#L285-L303",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "    def __call__(self, r):\n        self.init_per_thread_state()\n        if self._thread_local.last_nonce:\n            r.headers[\"Authorization\"] = self.build_digest_header(r.method, r.url)\n        try:\n            self._thread_local.pos = r.body.tell()\n        except AttributeError:\n            self._thread_local.pos = None\n        r.register_hook(\"response\", self.handle_401)\n        r.register_hook(\"response\", self.handle_redirect)\n        self._thread_local.num_401_calls = 1\n\n        return r"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Requests: sessions.py / rebuild_auth",
+    "author": "Kenneth Reitz and Requests contributors",
+    "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/sessions.py#L282-L300",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "    def rebuild_auth(self, prepared_request, response):\n        headers = prepared_request.headers\n        url = prepared_request.url\n\n        if \"Authorization\" in headers and self.should_strip_auth(\n            response.request.url, url\n        ):\n            del headers[\"Authorization\"]\n\n        new_auth = get_netrc_auth(url) if self.trust_env else None\n        if new_auth is not None:\n            prepared_request.prepare_auth(new_auth)"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Requests: models.py / iter_lines",
+    "author": "Kenneth Reitz and Requests contributors",
+    "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/models.py#L857-L888",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "    def iter_lines(\n        self, chunk_size=ITER_CHUNK_SIZE, decode_unicode=False, delimiter=None\n    ):\n\n        pending = None\n\n        for chunk in self.iter_content(\n            chunk_size=chunk_size, decode_unicode=decode_unicode\n        ):\n            if pending is not None:\n                chunk = pending + chunk\n\n            if delimiter:\n                lines = chunk.split(delimiter)\n            else:\n                lines = chunk.splitlines()\n\n            if lines and lines[-1] and chunk and lines[-1][-1] == chunk[-1]:\n                pending = lines.pop()\n            else:\n                pending = None\n\n            yield from lines\n\n        if pending is not None:\n            yield pending"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Requests: adapters.py / proxy_headers",
+    "author": "Kenneth Reitz and Requests contributors",
+    "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/adapters.py#L569-L588",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "    def proxy_headers(self, proxy):\n        headers = {}\n        username, password = get_auth_from_url(proxy)\n\n        if username:\n            headers[\"Proxy-Authorization\"] = _basic_auth_str(username, password)\n\n        return headers"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Requests: hooks.py / dispatch_hook",
+    "author": "Kenneth Reitz and Requests contributors",
+    "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/hooks.py#L22-L33",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def dispatch_hook(key, hooks, hook_data, **kwargs):\n    hooks = hooks or {}\n    hooks = hooks.get(key)\n    if hooks:\n        if hasattr(hooks, \"__call__\"):\n            hooks = [hooks]\n        for hook in hooks:\n            _hook_data = hook(hook_data, **kwargs)\n            if _hook_data is not None:\n                hook_data = _hook_data\n    return hook_data"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Requests: _internal_utils.py / to_native_string",
+    "author": "Kenneth Reitz and Requests contributors",
+    "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/_internal_utils.py#L25-L35",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def to_native_string(string, encoding=\"ascii\"):\n    if isinstance(string, builtin_str):\n        out = string\n    else:\n        out = string.decode(encoding)\n\n    return out"
+  },
+  {
+    "text_type": "code",
+    "group": "Python",
+    "title": "Requests: help.py / _implementation",
+    "author": "Kenneth Reitz and Requests contributors",
+    "source": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/help.py#L34-L66",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "def _implementation():\n    implementation = platform.python_implementation()\n\n    if implementation == \"CPython\":\n        implementation_version = platform.python_version()\n    elif implementation == \"PyPy\":\n        implementation_version = \"{}.{}.{}\".format(\n            sys.pypy_version_info.major,\n            sys.pypy_version_info.minor,\n            sys.pypy_version_info.micro,\n        )\n        if sys.pypy_version_info.releaselevel != \"final\":\n            implementation_version = \"\".join(\n                [implementation_version, sys.pypy_version_info.releaselevel]\n            )\n    elif implementation == \"Jython\":\n        implementation_version = platform.python_version()\n    elif implementation == \"IronPython\":\n        implementation_version = platform.python_version()\n    else:\n        implementation_version = \"Unknown\"\n\n    return {\"name\": implementation, \"version\": implementation_version}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "VS Code: arrays.ts / insertInto",
+    "author": "Microsoft Corporation and VS Code contributors",
+    "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/arrays.ts#L582-L595",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "export function insertInto<T>(array: T[], start: number, newItems: T[]): void {\n\tconst startIdx = getActualStartIndex(array, start);\n\tconst originalLength = array.length;\n\tconst newItemsLength = newItems.length;\n\tarray.length = originalLength + newItemsLength;\n\tfor (let i = originalLength - 1; i >= startIdx; i--) {\n\t\tarray[i + newItemsLength] = array[i];\n\t}\n\n\tfor (let i = 0; i < newItemsLength; i++) {\n\t\tarray[i + startIdx] = newItems[i];\n\t}\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "VS Code: strings.ts / replaceAsync",
+    "author": "Microsoft Corporation and VS Code contributors",
+    "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/strings.ts#L329-L346",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "export function replaceAsync(str: string, search: RegExp, replacer: (match: string, ...args: any[]) => Promise<string>): Promise<string> {\n\tconst parts: (string | Promise<string>)[] = [];\n\n\tlet last = 0;\n\tfor (const match of str.matchAll(search)) {\n\t\tparts.push(str.slice(last, match.index));\n\t\tif (match.index === undefined) {\n\t\t\tthrow new Error('match.index should be defined');\n\t\t}\n\n\t\tlast = match.index + match[0].length;\n\t\tparts.push(replacer(match[0], ...match.slice(1), match.index, str, match.groups));\n\t}\n\n\tparts.push(str.slice(last));\n\n\treturn Promise.all(parts).then(p => p.join(''));\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "VS Code: numbers.ts / isPointWithinTriangle",
+    "author": "Microsoft Corporation and VS Code contributors",
+    "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/numbers.ts#L76-L100",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "export function isPointWithinTriangle(\n\tx: number, y: number,\n\tax: number, ay: number,\n\tbx: number, by: number,\n\tcx: number, cy: number\n) {\n\tconst v0x = cx - ax;\n\tconst v0y = cy - ay;\n\tconst v1x = bx - ax;\n\tconst v1y = by - ay;\n\tconst v2x = x - ax;\n\tconst v2y = y - ay;\n\n\tconst dot00 = v0x * v0x + v0y * v0y;\n\tconst dot01 = v0x * v1x + v0y * v1y;\n\tconst dot02 = v0x * v2x + v0y * v2y;\n\tconst dot11 = v1x * v1x + v1y * v1y;\n\tconst dot12 = v1x * v2x + v1y * v2y;\n\n\tconst invDenom = 1 / (dot00 * dot11 - dot01 * dot01);\n\tconst u = (dot11 * dot02 - dot01 * dot12) * invDenom;\n\tconst v = (dot00 * dot12 - dot01 * dot02) * invDenom;\n\n\treturn u >= 0 && v >= 0 && u + v < 1;\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "VS Code: map.ts / entries",
+    "author": "Microsoft Corporation and VS Code contributors",
+    "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/map.ts#L407-L429",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "\tentries(): IterableIterator<[K, V]> {\n\t\tconst map = this;\n\t\tconst state = this._state;\n\t\tlet current = this._head;\n\t\tconst iterator: IterableIterator<[K, V]> = {\n\t\t\t[Symbol.iterator]() {\n\t\t\t\treturn iterator;\n\t\t\t},\n\t\t\tnext(): IteratorResult<[K, V]> {\n\t\t\t\tif (map._state !== state) {\n\t\t\t\t\tthrow new Error(`LinkedMap got modified during iteration.`);\n\t\t\t\t}\n\t\t\t\tif (current) {\n\t\t\t\t\tconst result: IteratorResult<[K, V]> = { value: [current.key, current.value], done: false };\n\t\t\t\t\tcurrent = current.next;\n\t\t\t\t\treturn result;\n\t\t\t\t} else {\n\t\t\t\t\treturn { value: undefined, done: true };\n\t\t\t\t}\n\t\t\t}\n\t\t};\n\t\treturn iterator;\n\t}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "VS Code: objects.ts / _cloneAndChange",
+    "author": "Microsoft Corporation and VS Code contributors",
+    "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/objects.ts#L49-L83",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "function _cloneAndChange(obj: any, changer: (orig: any) => any, seen: Set<any>): any {\n\tif (isUndefinedOrNull(obj)) {\n\t\treturn obj;\n\t}\n\n\tconst changed = changer(obj);\n\tif (typeof changed !== 'undefined') {\n\t\treturn changed;\n\t}\n\n\tif (Array.isArray(obj)) {\n\t\tconst r1: any[] = [];\n\t\tfor (const e of obj) {\n\t\t\tr1.push(_cloneAndChange(e, changer, seen));\n\t\t}\n\t\treturn r1;\n\t}\n\n\tif (isObject(obj)) {\n\t\tif (seen.has(obj)) {\n\t\t\tthrow new Error('Cannot clone recursive data-structure');\n\t\t}\n\t\tseen.add(obj);\n\t\tconst r2 = {};\n\t\tfor (const i2 in obj) {\n\t\t\tif (_hasOwnProperty.call(obj, i2)) {\n\t\t\t\t(r2 as any)[i2] = _cloneAndChange(obj[i2], changer, seen);\n\t\t\t}\n\t\t}\n\t\tseen.delete(obj);\n\t\treturn r2;\n\t}\n\n\treturn obj;\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "VS Code: date.ts / fromNowByDay",
+    "author": "Microsoft Corporation and VS Code contributors",
+    "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/date.ts#L204-L223",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "export function fromNowByDay(date: number | Date, appendAgoLabel?: boolean, useFullTimeWords?: boolean): string {\n\tif (typeof date !== 'number') {\n\t\tdate = date.getTime();\n\t}\n\n\tconst todayMidnightTime = new Date();\n\ttodayMidnightTime.setHours(0, 0, 0, 0);\n\tconst yesterdayMidnightTime = new Date(todayMidnightTime.getTime());\n\tyesterdayMidnightTime.setDate(yesterdayMidnightTime.getDate() - 1);\n\n\tif (date > todayMidnightTime.getTime()) {\n\t\treturn localize('today', 'Today');\n\t}\n\n\tif (date > yesterdayMidnightTime.getTime()) {\n\t\treturn localize('yesterday', 'Yesterday');\n\t}\n\n\treturn fromNow(date, appendAgoLabel, useFullTimeWords);\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "VS Code: collections.ts / diffSets",
+    "author": "Microsoft Corporation and VS Code contributors",
+    "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/collections.ts#L49-L63",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "export function diffSets<T>(before: ReadonlySet<T>, after: ReadonlySet<T>): { removed: T[]; added: T[] } {\n\tconst removed: T[] = [];\n\tconst added: T[] = [];\n\tfor (const element of before) {\n\t\tif (!after.has(element)) {\n\t\t\tremoved.push(element);\n\t\t}\n\t}\n\tfor (const element of after) {\n\t\tif (!before.has(element)) {\n\t\t\tadded.push(element);\n\t\t}\n\t}\n\treturn { removed, added };\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "VS Code: buffer.ts / concat",
+    "author": "Microsoft Corporation and VS Code contributors",
+    "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/buffer.ts#L84-L101",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "\tstatic concat(buffers: VSBuffer[], totalLength?: number): VSBuffer {\n\t\tif (typeof totalLength === 'undefined') {\n\t\t\ttotalLength = 0;\n\t\t\tfor (let i = 0, len = buffers.length; i < len; i++) {\n\t\t\t\ttotalLength += buffers[i].byteLength;\n\t\t\t}\n\t\t}\n\n\t\tconst ret = VSBuffer.alloc(totalLength);\n\t\tlet offset = 0;\n\t\tfor (let i = 0, len = buffers.length; i < len; i++) {\n\t\t\tconst element = buffers[i];\n\t\t\tret.set(element, offset);\n\t\t\toffset += element.byteLength;\n\t\t}\n\n\t\treturn ret;\n\t}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "VS Code: iterator.ts / consume",
+    "author": "Microsoft Corporation and VS Code contributors",
+    "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/iterator.ts#L157-L177",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "\texport function consume<T>(iterable: Iterable<T>, atMost: number = Number.POSITIVE_INFINITY): [T[], Iterable<T>] {\n\t\tconst consumed: T[] = [];\n\n\t\tif (atMost === 0) {\n\t\t\treturn [consumed, iterable];\n\t\t}\n\n\t\tconst iterator = iterable[Symbol.iterator]();\n\n\t\tfor (let i = 0; i < atMost; i++) {\n\t\t\tconst next = iterator.next();\n\n\t\t\tif (next.done) {\n\t\t\t\treturn [consumed, Iterable.empty()];\n\t\t\t}\n\n\t\t\tconsumed.push(next.value);\n\t\t}\n\n\t\treturn [consumed, { [Symbol.iterator]() { return iterator; } }];\n\t}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "VS Code: comparers.ts / comparePaths",
+    "author": "Microsoft Corporation and VS Code contributors",
+    "source": "https://github.com/microsoft/vscode/blob/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/src/vs/base/common/comparers.ts#L278-L304",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "export function comparePaths(one: string, other: string, caseSensitive = false): number {\n\tconst oneParts = one.split(sep);\n\tconst otherParts = other.split(sep);\n\n\tconst lastOne = oneParts.length - 1;\n\tconst lastOther = otherParts.length - 1;\n\tlet endOne: boolean, endOther: boolean;\n\n\tfor (let i = 0; ; i++) {\n\t\tendOne = lastOne === i;\n\t\tendOther = lastOther === i;\n\n\t\tif (endOne && endOther) {\n\t\t\treturn compareFileNames(oneParts[i], otherParts[i], caseSensitive);\n\t\t} else if (endOne) {\n\t\t\treturn -1;\n\t\t} else if (endOther) {\n\t\t\treturn 1;\n\t\t}\n\n\t\tconst result = comparePathComponents(oneParts[i], otherParts[i], caseSensitive);\n\n\t\tif (result !== 0) {\n\t\t\treturn result;\n\t\t}\n\t}\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "TypeScript: core.ts / deduplicateRelational",
+    "author": "Microsoft Corporation and TypeScript contributors",
+    "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/core.ts#L687-L707",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "function deduplicateRelational<T>(array: readonly T[], equalityComparer: EqualityComparer<T>, comparer: Comparer<T>) {\n    const indices = indicesOf(array);\n    stableSortIndices(array, indices, comparer);\n\n    let last = array[indices[0]];\n    const deduplicated: number[] = [indices[0]];\n    for (let i = 1; i < indices.length; i++) {\n        const index = indices[i];\n        const item = array[index];\n        if (!equalityComparer(last, item)) {\n            deduplicated.push(index);\n            last = item;\n        }\n    }\n\n    deduplicated.sort();\n    return deduplicated.map(i => array[i]);\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "TypeScript: path.ts / getAnyExtensionFromPath",
+    "author": "Microsoft Corporation and TypeScript contributors",
+    "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/path.ts#L435-L447",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "export function getAnyExtensionFromPath(path: string, extensions?: string | readonly string[], ignoreCase?: boolean): string {\n    if (extensions) {\n        return getAnyExtensionFromPathWorker(removeTrailingDirectorySeparator(path), extensions, ignoreCase ? equateStringsCaseInsensitive : equateStringsCaseSensitive);\n    }\n    const baseFileName = getBaseFileName(path);\n    const extensionIndex = baseFileName.lastIndexOf(\".\");\n    if (extensionIndex >= 0) {\n        return baseFileName.substring(extensionIndex);\n    }\n    return \"\";\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "TypeScript: scanner.ts / computeLineStarts",
+    "author": "Microsoft Corporation and TypeScript contributors",
+    "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/scanner.ts#L436-L463",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "export function computeLineStarts(text: string): number[] {\n    const result: number[] = [];\n    let pos = 0;\n    let lineStart = 0;\n    while (pos < text.length) {\n        const ch = text.charCodeAt(pos);\n        pos++;\n        switch (ch) {\n            case CharacterCodes.carriageReturn:\n                if (text.charCodeAt(pos) === CharacterCodes.lineFeed) {\n                    pos++;\n                }\n            case CharacterCodes.lineFeed:\n                result.push(lineStart);\n                lineStart = pos;\n                break;\n            default:\n                if (ch > CharacterCodes.maxAsciiCharacter && isLineBreak(ch)) {\n                    result.push(lineStart);\n                    lineStart = pos;\n                }\n                break;\n        }\n    }\n    result.push(lineStart);\n    return result;\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "TypeScript: semver.ts / parseHyphen",
+    "author": "Microsoft Corporation and TypeScript contributors",
+    "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/semver.ts#L312-L332",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "text": "function parseHyphen(left: string, right: string, comparators: Comparator[]) {\n    const leftResult = parsePartial(left);\n    if (!leftResult) return false;\n\n    const rightResult = parsePartial(right);\n    if (!rightResult) return false;\n\n    if (!isWildcard(leftResult.major)) {\n        comparators.push(createComparator(\">=\", leftResult.version));\n    }\n\n    if (!isWildcard(rightResult.major)) {\n        comparators.push(\n            isWildcard(rightResult.minor) ? createComparator(\"<\", rightResult.version.increment(\"major\")) :\n                isWildcard(rightResult.patch) ? createComparator(\"<\", rightResult.version.increment(\"minor\")) :\n                createComparator(\"<=\", rightResult.version),\n        );\n    }\n\n    return true;\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "TypeScript: debug.ts / formatEnum",
+    "author": "Microsoft Corporation and TypeScript contributors",
+    "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/debug.ts#L389-L418",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "text": "    export function formatEnum(value = 0, enumObject: any, isFlags?: boolean): string {\n        const members = getEnumMembers(enumObject);\n        if (value === 0) {\n            return members.length > 0 && members[0][0] === 0 ? members[0][1] : \"0\";\n        }\n        if (isFlags) {\n            const result: string[] = [];\n            let remainingFlags = value;\n            for (const [enumValue, enumName] of members) {\n                if (enumValue > value) {\n                    break;\n                }\n                if (enumValue !== 0 && enumValue & value) {\n                    result.push(enumName);\n                    remainingFlags &= ~enumValue;\n                }\n            }\n            if (remainingFlags === 0) {\n                return result.join(\"|\");\n            }\n        }\n        else {\n            for (const [enumValue, enumName] of members) {\n                if (enumValue === value) {\n                    return enumName;\n                }\n            }\n        }\n        return value.toString();\n    }"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "TypeScript: performance.ts / measure",
+    "author": "Microsoft Corporation and TypeScript contributors",
+    "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/performance.ts#L97-L105",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "text": "export function measure(measureName: string, startMarkName?: string, endMarkName?: string): void {\n    if (enabled) {\n        const end = (endMarkName !== undefined ? marks.get(endMarkName) : undefined) ?? timestamp();\n        const start = (startMarkName !== undefined ? marks.get(startMarkName) : undefined) ?? timeorigin;\n        const previousDuration = durations.get(measureName) || 0;\n        durations.set(measureName, previousDuration + (end - start));\n        performanceImpl?.measure(measureName, startMarkName, endMarkName);\n    }\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "TypeScript: utilities.ts / getExpandoInitializer",
+    "author": "Microsoft Corporation and TypeScript contributors",
+    "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/utilities.ts#L3923-L3938",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "text": "export function getExpandoInitializer(initializer: Node, isPrototypeAssignment: boolean): Expression | undefined {\n    if (isCallExpression(initializer)) {\n        const e = skipParentheses(initializer.expression);\n        return e.kind === SyntaxKind.FunctionExpression || e.kind === SyntaxKind.ArrowFunction ? initializer : undefined;\n    }\n    if (\n        initializer.kind === SyntaxKind.FunctionExpression ||\n        initializer.kind === SyntaxKind.ClassExpression ||\n        initializer.kind === SyntaxKind.ArrowFunction\n    ) {\n        return initializer as Expression;\n    }\n    if (isObjectLiteralExpression(initializer) && (initializer.properties.length === 0 || isPrototypeAssignment)) {\n        return initializer;\n    }\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "TypeScript: visitorPublic.ts / visitFunctionBody",
+    "author": "Microsoft Corporation and TypeScript contributors",
+    "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/visitorPublic.ts#L522-L535",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "text": "export function visitFunctionBody(node: ConciseBody | undefined, visitor: Visitor, context: TransformationContext, nodeVisitor: NodeVisitor = visitNode): ConciseBody | undefined {\n    context.resumeLexicalEnvironment();\n    const updated = nodeVisitor(node, visitor, isConciseBody);\n    const declarations = context.endLexicalEnvironment();\n    if (some(declarations)) {\n        if (!updated) {\n            return context.factory.createBlock(declarations);\n        }\n        const block = context.factory.converters.convertToFunctionBlock(updated);\n        const statements = factory.mergeLexicalEnvironment(block.statements, declarations);\n        return context.factory.updateBlock(block, statements);\n    }\n    return updated;\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "TypeScript: sourcemap.ts / isRawSourceMap",
+    "author": "Microsoft Corporation and TypeScript contributors",
+    "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/sourcemap.ts#L408-L418",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "text": "function isRawSourceMap(x: any): x is RawSourceMap {\n    return x !== null\n        && typeof x === \"object\"\n        && x.version === 3\n        && typeof x.file === \"string\"\n        && typeof x.mappings === \"string\"\n        && isArray(x.sources) && every(x.sources, isString)\n        && (x.sourceRoot === undefined || x.sourceRoot === null || typeof x.sourceRoot === \"string\")\n        && (x.sourcesContent === undefined || x.sourcesContent === null || isArray(x.sourcesContent) && every(x.sourcesContent, isStringOrNull))\n        && (x.names === undefined || x.names === null || isArray(x.names) && every(x.names, isString));\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "TypeScript",
+    "title": "TypeScript: commandLineParser.ts / matchesExcludeWorker",
+    "author": "Microsoft Corporation and TypeScript contributors",
+    "source": "https://github.com/microsoft/TypeScript/blob/c63de15a992d37f0d6cec03ac7631872838602cb/src/compiler/commandLineParser.ts#L4036-L4048",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "text": "export function matchesExcludeWorker(\n    pathToCheck: string,\n    excludeSpecs: readonly string[] | undefined,\n    useCaseSensitiveFileNames: boolean,\n    currentDirectory: string,\n    basePath?: string,\n): boolean {\n    const excludePattern = getRegularExpressionForWildcard(excludeSpecs, combinePaths(normalizePath(currentDirectory), basePath), \"exclude\");\n    const excludeRegex = excludePattern && getRegexFromPattern(excludePattern, useCaseSensitiveFileNames);\n    if (!excludeRegex) return false;\n    if (excludeRegex.test(pathToCheck)) return true;\n    return !hasExtension(pathToCheck) && excludeRegex.test(ensureTrailingDirectorySeparator(pathToCheck));\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "Tokio: copy.rs / poll_write_buf",
+    "author": "Tokio contributors",
+    "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/io/util/copy.rs#L51-L73",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "    fn poll_write_buf<R, W>(\n        &mut self,\n        cx: &mut Context<'_>,\n        mut reader: Pin<&mut R>,\n        mut writer: Pin<&mut W>,\n    ) -> Poll<io::Result<usize>>\n    where\n        R: AsyncRead + ?Sized,\n        W: AsyncWrite + ?Sized,\n    {\n        let me = &mut *self;\n        match writer.as_mut().poll_write(cx, &me.buf[me.pos..me.cap]) {\n            Poll::Pending => {\n                if !me.read_done && me.cap < me.buf.len() {\n                    ready!(me.poll_fill_buf(cx, reader.as_mut()))?;\n                }\n                Poll::Pending\n            }\n            res => res,\n        }\n    }"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "Tokio: lines.rs / poll_next_line",
+    "author": "Tokio contributors",
+    "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/io/util/lines.rs#L112-L134",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "    pub fn poll_next_line(\n        self: Pin<&mut Self>,\n        cx: &mut Context<'_>,\n    ) -> Poll<io::Result<Option<String>>> {\n        let me = self.project();\n\n        let n = ready!(read_line_internal(me.reader, cx, me.buf, me.bytes, me.read))?;\n        debug_assert_eq!(*me.read, 0);\n\n        if n == 0 && me.buf.is_empty() {\n            return Poll::Ready(Ok(None));\n        }\n\n        if me.buf.ends_with('\\n') {\n            me.buf.pop();\n\n            if me.buf.ends_with('\\r') {\n                me.buf.pop();\n            }\n        }\n\n        Poll::Ready(Ok(Some(mem::take(me.buf))))\n    }"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "Tokio: read_until.rs / read_until_internal",
+    "author": "Tokio contributors",
+    "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/io/util/read_until.rs#L47-L71",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "pub(super) fn read_until_internal<R: AsyncBufRead + ?Sized>(\n    mut reader: Pin<&mut R>,\n    cx: &mut Context<'_>,\n    delimiter: u8,\n    buf: &mut Vec<u8>,\n    read: &mut usize,\n) -> Poll<io::Result<usize>> {\n    loop {\n        let (done, used) = {\n            let available = ready!(reader.as_mut().poll_fill_buf(cx))?;\n            if let Some(i) = memchr::memchr(delimiter, available) {\n                buf.extend_from_slice(&available[..=i]);\n                (true, i + 1)\n            } else {\n                buf.extend_from_slice(available);\n                (false, available.len())\n            }\n        };\n        reader.as_mut().consume(used);\n        *read += used;\n        if done || used == 0 {\n            return Poll::Ready(Ok(mem::replace(read, 0)));\n        }\n    }\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "Tokio: chain.rs / poll_read",
+    "author": "Tokio contributors",
+    "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/io/util/chain.rs#L87-L104",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "    fn poll_read(\n        self: Pin<&mut Self>,\n        cx: &mut Context<'_>,\n        buf: &mut ReadBuf<'_>,\n    ) -> Poll<io::Result<()>> {\n        let me = self.project();\n\n        if !*me.done_first {\n            let rem = buf.remaining();\n            ready!(me.first.poll_read(cx, buf))?;\n            if buf.remaining() == rem {\n                *me.done_first = true;\n            } else {\n                return Poll::Ready(Ok(()));\n            }\n        }\n        me.second.poll_read(cx, buf)\n    }"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "Tokio: buf_reader.rs / poll_read",
+    "author": "Tokio contributors",
+    "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/io/util/buf_reader.rs#L101-L119",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "    fn poll_read(\n        mut self: Pin<&mut Self>,\n        cx: &mut Context<'_>,\n        buf: &mut ReadBuf<'_>,\n    ) -> Poll<io::Result<()>> {\n        if self.pos == self.cap && buf.remaining() >= self.buf.len() {\n            let res = ready!(self.as_mut().get_pin_mut().poll_read(cx, buf));\n            self.discard_buffer();\n            return Poll::Ready(res);\n        }\n        let rem = ready!(self.as_mut().poll_fill_buf(cx))?;\n        let amt = std::cmp::min(rem.len(), buf.remaining());\n        buf.put_slice(&rem[..amt]);\n        self.consume(amt);\n        Poll::Ready(Ok(()))\n    }"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "Tokio: interval.rs / next_timeout",
+    "author": "Tokio contributors",
+    "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/time/interval.rs#L341-L363",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "    fn next_timeout(&self, timeout: Instant, now: Instant, period: Duration) -> Instant {\n        match self {\n            Self::Burst => timeout + period,\n            Self::Delay => now + period,\n            Self::Skip => {\n                now + period\n                    - Duration::from_nanos(\n                        ((now - timeout).as_nanos() % period.as_nanos())\n                            .try_into()\n                            .expect(\n                                \"too much time has elapsed since the interval was supposed to tick\",\n                            ),\n                    )\n            }\n        }\n    }"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "Tokio: instant.rs / far_future",
+    "author": "Tokio contributors",
+    "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/time/instant.rs#L57-L63",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "    pub(crate) fn far_future() -> Instant {\n        Self::now() + Duration::from_secs(86400 * 365 * 30)\n    }"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "Tokio: oneshot.rs / is_empty",
+    "author": "Tokio contributors",
+    "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/sync/oneshot.rs#L1055-L1075",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "    pub fn is_empty(&self) -> bool {\n        let Some(inner) = self.inner.as_ref() else {\n            return true;\n        };\n\n        let state = State::load(&inner.state, Acquire);\n        if state.is_complete() {\n            unsafe { !inner.has_value() }\n        } else {\n            true\n        }\n    }"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "Tokio: broadcast.rs / new_receiver",
+    "author": "Tokio contributors",
+    "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/sync/broadcast.rs#L924-L942",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "fn new_receiver<T>(shared: Arc<Shared<T>>) -> Receiver<T> {\n    let mut tail = shared.tail.lock();\n\n    assert!(tail.rx_cnt != MAX_RECEIVERS, \"max receivers\");\n\n    if tail.rx_cnt == 0 {\n        tail.closed = false;\n    }\n\n    tail.rx_cnt = tail.rx_cnt.checked_add(1).expect(\"overflow\");\n    let next = tail.pos;\n\n    drop(tail);\n\n    Receiver { shared, next }\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "Tokio: error.rs / fmt",
+    "author": "Tokio contributors",
+    "source": "https://github.com/tokio-rs/tokio/blob/be8ee45b3fc2d107174e586141b1cb12c93e2ddf/tokio/src/sync/mpsc/error.rs#L93-L98",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "    fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {\n        match *self {\n            TryRecvError::Empty => \"receiving on an empty channel\".fmt(fmt),\n            TryRecvError::Disconnected => \"receiving on a closed channel\".fmt(fmt),\n        }\n    }"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "ripgrep: path.rs / write",
+    "author": "Andrew Gallant and ripgrep contributors",
+    "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/printer/src/path.rs#L150-L163",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "    pub fn write(&mut self, path: &Path) -> io::Result<()> {\n        let ppath = PrinterPath::new(path.as_ref())\n            .with_separator(self.config.separator);\n        if !self.wtr.supports_color() {\n            self.wtr.write_all(ppath.as_bytes())?;\n        } else {\n            let status = self.start_hyperlink(&ppath)?;\n            self.wtr.set_color(self.config.colors.path())?;\n            self.wtr.write_all(ppath.as_bytes())?;\n            self.wtr.reset()?;\n            self.interpolator.finish(status, &mut self.wtr)?;\n        }\n        self.wtr.write_all(&[self.config.terminator])\n    }"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "ripgrep: human.rs / parse_human_readable_size",
+    "author": "Andrew Gallant and ripgrep contributors",
+    "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/cli/src/human.rs#L79-L100",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "pub fn parse_human_readable_size(size: &str) -> Result<u64, ParseSizeError> {\n    let digits_end =\n        size.as_bytes().iter().take_while(|&b| b.is_ascii_digit()).count();\n    let digits = &size[..digits_end];\n    if digits.is_empty() {\n        return Err(ParseSizeError::format(size));\n    }\n    let value =\n        digits.parse::<u64>().map_err(|e| ParseSizeError::int(size, e))?;\n\n    let suffix = &size[digits_end..];\n    if suffix.is_empty() {\n        return Ok(value);\n    }\n    let bytes = match suffix {\n        \"K\" => value.checked_mul(1 << 10),\n        \"M\" => value.checked_mul(1 << 20),\n        \"G\" => value.checked_mul(1 << 30),\n        _ => return Err(ParseSizeError::format(size)),\n    };\n    bytes.ok_or_else(|| ParseSizeError::overflow(size))\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "ripgrep: pattern.rs / patterns_from_reader",
+    "author": "Andrew Gallant and ripgrep contributors",
+    "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/cli/src/pattern.rs#L141-L158",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "pub fn patterns_from_reader<R: io::Read>(rdr: R) -> io::Result<Vec<String>> {\n    let mut patterns = vec![];\n    let mut line_number = 0;\n    io::BufReader::new(rdr).for_byte_line(|line| {\n        line_number += 1;\n        match pattern_from_bytes(line) {\n            Ok(pattern) => {\n                patterns.push(pattern.to_string());\n                Ok(true)\n            }\n            Err(err) => Err(io::Error::new(\n                io::ErrorKind::Other,\n                format!(\"{}: {}\", line_number, err),\n            )),\n        }\n    })?;\n    Ok(patterns)\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "ripgrep: pathutil.rs / file_name",
+    "author": "Andrew Gallant and ripgrep contributors",
+    "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/globset/src/pathutil.rs#L9-L22",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "pub(crate) fn file_name<'a>(path: &Cow<'a, [u8]>) -> Option<Cow<'a, [u8]>> {\n    if path.last_byte().map_or(true, |b| b == b'.') {\n        return None;\n    }\n    let last_slash = path.rfind_byte(b'/').map(|i| i + 1).unwrap_or(0);\n    Some(match *path {\n        Cow::Borrowed(path) => Cow::Borrowed(&path[last_slash..]),\n        Cow::Owned(ref path) => {\n            let mut path = path.clone();\n            path.drain_bytes(..last_slash);\n            Cow::Owned(path)\n        }\n    })\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "ripgrep: fnv.rs / write",
+    "author": "Andrew Gallant and ripgrep contributors",
+    "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/globset/src/fnv.rs#L24-L29",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "    fn write(&mut self, bytes: &[u8]) {\n        for &byte in bytes.iter() {\n            self.0 = self.0 ^ u64::from(byte);\n            self.0 = self.0.wrapping_mul(Hasher::PRIME);\n        }\n    }"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "ripgrep: types.rs / add_def",
+    "author": "Andrew Gallant and ripgrep contributors",
+    "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/ignore/src/types.rs#L442-L479",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "    pub fn add_def(&mut self, def: &str) -> Result<(), Error> {\n        let parts: Vec<&str> = def.split(':').collect();\n        match parts.len() {\n            2 => {\n                let name = parts[0];\n                let glob = parts[1];\n                if name.is_empty() || glob.is_empty() {\n                    return Err(Error::InvalidDefinition);\n                }\n                self.add(name, glob)\n            }\n            3 => {\n                let name = parts[0];\n                let types_string = parts[2];\n                if name.is_empty()\n                    || parts[1] != \"include\"\n                    || types_string.is_empty()\n                {\n                    return Err(Error::InvalidDefinition);\n                }\n                let types = types_string.split(',');\n                if types.clone().any(|t| !self.types.contains_key(t)) {\n                    return Err(Error::InvalidDefinition);\n                }\n                for type_name in types {\n                    let globs =\n                        self.types.get(type_name).unwrap().globs.clone();\n                    for glob in globs {\n                        self.add(name, &glob)?;\n                    }\n                }\n                Ok(())\n            }\n            _ => Err(Error::InvalidDefinition),\n        }\n    }"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "ripgrep: stats.rs / serialize",
+    "author": "Andrew Gallant and ripgrep contributors",
+    "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/printer/src/stats.rs#L152-L170",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "    fn serialize<S: serde::Serializer>(\n        &self,\n        s: S,\n    ) -> Result<S::Ok, S::Error> {\n        use serde::ser::SerializeStruct;\n\n        let mut state = s.serialize_struct(\"Stats\", 7)?;\n        state.serialize_field(\"elapsed\", &self.elapsed)?;\n        state.serialize_field(\"searches\", &self.searches)?;\n        state.serialize_field(\n            \"searches_with_match\",\n            &self.searches_with_match,\n        )?;\n        state.serialize_field(\"bytes_searched\", &self.bytes_searched)?;\n        state.serialize_field(\"bytes_printed\", &self.bytes_printed)?;\n        state.serialize_field(\"matched_lines\", &self.matched_lines)?;\n        state.serialize_field(\"matches\", &self.matches)?;\n        state.end()\n    }"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "ripgrep: lines.rs / locate",
+    "author": "Andrew Gallant and ripgrep contributors",
+    "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/searcher/src/lines.rs#L134-L147",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "#[inline(always)]\npub(crate) fn locate(bytes: &[u8], line_term: u8, range: Match) -> Match {\n    let line_start =\n        bytes[..range.start()].rfind_byte(line_term).map_or(0, |i| i + 1);\n    let line_end =\n        if range.end() > line_start && bytes[range.end() - 1] == line_term {\n            range.end()\n        } else {\n            bytes[range.end()..]\n                .find_byte(line_term)\n                .map_or(bytes.len(), |i| range.end() + i + 1)\n        };\n    Match::new(line_start, line_end)\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "ripgrep: ban.rs / check",
+    "author": "Andrew Gallant and ripgrep contributors",
+    "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/regex/src/ban.rs#L8-L53",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "pub(crate) fn check(expr: &Hir, byte: u8) -> Result<(), Error> {\n    assert!(byte.is_ascii(), \"ban byte must be ASCII\");\n    let ch = char::from(byte);\n    let invalid = || Err(Error::new(ErrorKind::Banned(byte)));\n    match expr.kind() {\n        HirKind::Empty => {}\n        HirKind::Literal(hir::Literal(ref lit)) => {\n            if lit.iter().find(|&&b| b == byte).is_some() {\n                return invalid();\n            }\n        }\n        HirKind::Class(hir::Class::Unicode(ref cls)) => {\n            if cls.ranges().iter().map(|r| r.len()).sum::<usize>() == 1 {\n                let contains =\n                    |r: &&ClassUnicodeRange| r.start() <= ch && ch <= r.end();\n                if cls.ranges().iter().find(contains).is_some() {\n                    return invalid();\n                }\n            }\n        }\n        HirKind::Class(hir::Class::Bytes(ref cls)) => {\n            if cls.ranges().iter().map(|r| r.len()).sum::<usize>() == 1 {\n                let contains = |r: &&ClassBytesRange| {\n                    r.start() <= byte && byte <= r.end()\n                };\n                if cls.ranges().iter().find(contains).is_some() {\n                    return invalid();\n                }\n            }\n        }\n        HirKind::Look(_) => {}\n        HirKind::Repetition(ref x) => check(&x.sub, byte)?,\n        HirKind::Capture(ref x) => check(&x.sub, byte)?,\n        HirKind::Concat(ref xs) => {\n            for x in xs.iter() {\n                check(x, byte)?;\n            }\n        }\n        HirKind::Alternation(ref xs) => {\n            for x in xs.iter() {\n                check(x, byte)?;\n            }\n        }\n    };\n    Ok(())\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Rust",
+    "title": "ripgrep: config.rs / args",
+    "author": "Andrew Gallant and ripgrep contributors",
+    "source": "https://github.com/BurntSushi/ripgrep/blob/4649aa9700619f94cf9c66876e9549d83420e16c/crates/core/flags/config.rs#L16-L47",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "pub fn args() -> Vec<OsString> {\n    let config_path = match std::env::var_os(\"RIPGREP_CONFIG_PATH\") {\n        None => return vec![],\n        Some(config_path) => {\n            if config_path.is_empty() {\n                return vec![];\n            }\n            PathBuf::from(config_path)\n        }\n    };\n    let (args, errs) = match parse(&config_path) {\n        Ok((args, errs)) => (args, errs),\n        Err(err) => {\n            message!(\n                \"failed to read the file specified in RIPGREP_CONFIG_PATH: {}\",\n                err\n            );\n            return vec![];\n        }\n    };\n    if !errs.is_empty() {\n        for err in errs {\n            message!(\"{}:{}\", config_path.display(), err);\n        }\n    }\n    log::debug!(\n        \"{}: arguments loaded from config file: {:?}\",\n        config_path.display(),\n        args\n    );\n    args\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Go standard library: strings.go / LastIndex",
+    "author": "The Go Authors",
+    "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/strings/strings.go#L82-L116",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func LastIndex(s, substr string) int {\n\tn := len(substr)\n\tswitch {\n\tcase n == 0:\n\t\treturn len(s)\n\tcase n == 1:\n\t\treturn bytealg.LastIndexByteString(s, substr[0])\n\tcase n == len(s):\n\t\tif substr == s {\n\t\t\treturn 0\n\t\t}\n\t\treturn -1\n\tcase n > len(s):\n\t\treturn -1\n\t}\n\thashss, pow := bytealg.HashStrRev(substr)\n\tlast := len(s) - n\n\tvar h uint32\n\tfor i := len(s) - 1; i >= last; i-- {\n\t\th = h*bytealg.PrimeRK + uint32(s[i])\n\t}\n\tif h == hashss && s[last:] == substr {\n\t\treturn last\n\t}\n\tfor i := last - 1; i >= 0; i-- {\n\t\th *= bytealg.PrimeRK\n\t\th += uint32(s[i])\n\t\th -= pow * uint32(s[i+n])\n\t\tif h == hashss && s[i:i+n] == substr {\n\t\t\treturn i\n\t\t}\n\t}\n\treturn -1\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Go standard library: bytes.go / Replace",
+    "author": "The Go Authors",
+    "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/bytes/bytes.go#L1177-L1214",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func Replace(s, old, new []byte, n int) []byte {\n\tm := 0\n\tif n != 0 {\n\t\tm = Count(s, old)\n\t}\n\tif m == 0 {\n\t\treturn append([]byte(nil), s...)\n\t}\n\tif n < 0 || m < n {\n\t\tn = m\n\t}\n\n\tt := make([]byte, len(s)+n*(len(new)-len(old)))\n\tw := 0\n\tstart := 0\n\tif len(old) > 0 {\n\t\tfor range n {\n\t\t\tj := start + Index(s[start:], old)\n\t\t\tw += copy(t[w:], s[start:j])\n\t\t\tw += copy(t[w:], new)\n\t\t\tstart = j + len(old)\n\t\t}\n\t} else {\n\t\tw += copy(t[w:], new)\n\t\tfor range n - 1 {\n\t\t\t_, wid := utf8.DecodeRune(s[start:])\n\t\t\tj := start + wid\n\t\t\tw += copy(t[w:], s[start:j])\n\t\t\tw += copy(t[w:], new)\n\t\t\tstart = j\n\t\t}\n\t}\n\tw += copy(t[w:], s[start:])\n\treturn t[0:w]\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Go standard library: slices.go / CompactFunc",
+    "author": "The Go Authors",
+    "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/slices/slices.go#L394-L413",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func CompactFunc[S ~[]E, E any](s S, eq func(E, E) bool) S {\n\tif len(s) < 2 {\n\t\treturn s\n\t}\n\tfor k := 1; k < len(s); k++ {\n\t\tif eq(s[k], s[k-1]) {\n\t\t\ts2 := s[k:]\n\t\t\tfor k2 := 1; k2 < len(s2); k2++ {\n\t\t\t\tif !eq(s2[k2], s2[k2-1]) {\n\t\t\t\t\ts[k] = s2[k2]\n\t\t\t\t\tk++\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tclear(s[k:])\n\t\t\treturn s[:k]\n\t\t}\n\t}\n\treturn s\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Go standard library: maps.go / EqualFunc",
+    "author": "The Go Authors",
+    "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/maps/maps.go#L31-L41",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "text": "func EqualFunc[M1 ~map[K]V1, M2 ~map[K]V2, K comparable, V1, V2 any](m1 M1, m2 M2, eq func(V1, V2) bool) bool {\n\tif len(m1) != len(m2) {\n\t\treturn false\n\t}\n\tfor k, v1 := range m1 {\n\t\tif v2, ok := m2[k]; !ok || !eq(v1, v2) {\n\t\t\treturn false\n\t\t}\n\t}\n\treturn true\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Go standard library: path.go / Base",
+    "author": "The Go Authors",
+    "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/path/path.go#L192-L209",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func Base(path string) string {\n\tif path == \"\" {\n\t\treturn \".\"\n\t}\n\tfor len(path) > 0 && path[len(path)-1] == '/' {\n\t\tpath = path[0 : len(path)-1]\n\t}\n\tif i := bytealg.LastIndexByteString(path, '/'); i >= 0 {\n\t\tpath = path[i+1:]\n\t}\n\tif path == \"\" {\n\t\treturn \"/\"\n\t}\n\treturn path\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Go standard library: path.go / walkDir",
+    "author": "The Go Authors",
+    "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/path/filepath/path.go#L309-L340",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func walkDir(path string, d fs.DirEntry, walkDirFn fs.WalkDirFunc) error {\n\tif err := walkDirFn(path, d, nil); err != nil || !d.IsDir() {\n\t\tif err == SkipDir && d.IsDir() {\n\t\t\terr = nil\n\t\t}\n\t\treturn err\n\t}\n\n\tdirs, err := os.ReadDir(path)\n\tif err != nil {\n\t\terr = walkDirFn(path, d, err)\n\t\tif err != nil {\n\t\t\tif err == SkipDir && d.IsDir() {\n\t\t\t\terr = nil\n\t\t\t}\n\t\t\treturn err\n\t\t}\n\t}\n\n\tfor _, d1 := range dirs {\n\t\tpath1 := Join(path, d1.Name())\n\t\tif err := walkDir(path1, d1, walkDirFn); err != nil {\n\t\t\tif err == SkipDir {\n\t\t\t\tbreak\n\t\t\t}\n\t\t\treturn err\n\t\t}\n\t}\n\treturn nil\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Go standard library: quote.go / appendQuotedWith",
+    "author": "The Go Authors",
+    "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/strconv/quote.go#L31-L56",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func appendQuotedWith(buf []byte, s string, quote byte, ASCIIonly, graphicOnly bool) []byte {\n\tif cap(buf)-len(buf) < len(s) {\n\t\tnBuf := make([]byte, len(buf), len(buf)+1+len(s)+1)\n\t\tcopy(nBuf, buf)\n\t\tbuf = nBuf\n\t}\n\tbuf = append(buf, quote)\n\tfor width := 0; len(s) > 0; s = s[width:] {\n\t\tr := rune(s[0])\n\t\twidth = 1\n\t\tif r >= utf8.RuneSelf {\n\t\t\tr, width = utf8.DecodeRuneInString(s)\n\t\t}\n\t\tif width == 1 && r == utf8.RuneError {\n\t\t\tbuf = append(buf, `\\x`...)\n\t\t\tbuf = append(buf, lowerhex[s[0]>>4])\n\t\t\tbuf = append(buf, lowerhex[s[0]&0xF])\n\t\t\tcontinue\n\t\t}\n\t\tbuf = appendEscapedRune(buf, r, quote, ASCIIonly, graphicOnly)\n\t}\n\tbuf = append(buf, quote)\n\treturn buf\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Go standard library: slice.go / Slice",
+    "author": "The Go Authors",
+    "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/sort/slice.go#L24-L30",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "text": "func Slice(x any, less func(i, j int) bool) {\n\trv := reflectlite.ValueOf(x)\n\tswap := reflectlite.Swapper(x)\n\tlength := rv.Len()\n\tlimit := bits.Len(uint(length))\n\tpdqsort_func(lessSwap{less, swap}, 0, length, limit)\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Go standard library: hex.go / Decode",
+    "author": "The Go Authors",
+    "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/encoding/hex/hex.go#L87-L113",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func Decode(dst, src []byte) (int, error) {\n\ti, j := 0, 1\n\tfor ; j < len(src); j += 2 {\n\t\tp := src[j-1]\n\t\tq := src[j]\n\n\t\ta := reverseHexTable[p]\n\t\tb := reverseHexTable[q]\n\t\tif a > 0x0f {\n\t\t\treturn i, InvalidByteError(p)\n\t\t}\n\t\tif b > 0x0f {\n\t\t\treturn i, InvalidByteError(q)\n\t\t}\n\t\tdst[i] = (a << 4) | b\n\t\ti++\n\t}\n\tif len(src)%2 == 1 {\n\t\tif reverseHexTable[src[j-1]] > 0x0f {\n\t\t\treturn i, InvalidByteError(src[j-1])\n\t\t}\n\t\treturn i, ErrLength\n\t}\n\treturn i, nil\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Go standard library: url.go / validEncoded",
+    "author": "The Go Authors",
+    "source": "https://github.com/golang/go/blob/56ebf80e57db9f61981fc0636fc6419dc6f68eda/src/net/url/url.go#L738-L759",
+    "license": "BSD-3-Clause (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func validEncoded(s string, mode encoding) bool {\n\tfor i := 0; i < len(s); i++ {\n\t\tswitch s[i] {\n\t\tcase '!', '$', '&', '\\'', '(', ')', '*', '+', ',', ';', '=', ':', '@':\n\t\tcase '[', ']':\n\t\tcase '%':\n\t\tdefault:\n\t\t\tif shouldEscape(s[i], mode) {\n\t\t\t\treturn false\n\t\t\t}\n\t\t}\n\t}\n\treturn true\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Kubernetes: taints.go / AddOrUpdateTaint",
+    "author": "The Kubernetes Authors",
+    "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/taints/taints.go#L188-L213",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "text": "func AddOrUpdateTaint(node *v1.Node, taint *v1.Taint) (*v1.Node, bool, error) {\n\tnewNode := node.DeepCopy()\n\tnodeTaints := newNode.Spec.Taints\n\n\tvar newTaints []v1.Taint\n\tupdated := false\n\tfor i := range nodeTaints {\n\t\tif taint.MatchTaint(&nodeTaints[i]) {\n\t\t\tif helper.Semantic.DeepEqual(*taint, nodeTaints[i]) {\n\t\t\t\treturn newNode, false, nil\n\t\t\t}\n\t\t\tnewTaints = append(newTaints, *taint)\n\t\t\tupdated = true\n\t\t\tcontinue\n\t\t}\n\n\t\tnewTaints = append(newTaints, nodeTaints[i])\n\t}\n\n\tif !updated {\n\t\tnewTaints = append(newTaints, *taint)\n\t}\n\n\tnewNode.Spec.Taints = newTaints\n\treturn newNode, true, nil\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Kubernetes: labels.go / AddLabelToSelector",
+    "author": "The Kubernetes Authors",
+    "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/labels/labels.go#L109-L119",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func AddLabelToSelector(selector *metav1.LabelSelector, labelKey, labelValue string) *metav1.LabelSelector {\n\tif labelKey == \"\" {\n\t\treturn selector\n\t}\n\tif selector.MatchLabels == nil {\n\t\tselector.MatchLabels = make(map[string]string)\n\t}\n\tselector.MatchLabels[labelKey] = labelValue\n\treturn selector\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Kubernetes: hash.go / DeepHashObject",
+    "author": "The Kubernetes Authors",
+    "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/hash/hash.go#L29-L32",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "text": "func DeepHashObject(hasher hash.Hash, objectToWrite interface{}) {\n\thasher.Reset()\n\tfmt.Fprintf(hasher, \"%v\", dump.ForHash(objectToWrite))\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Kubernetes: node.go / GetNodeHostIPs",
+    "author": "The Kubernetes Authors",
+    "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/node/node.go#L65-L97",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func GetNodeHostIPs(node *v1.Node) ([]net.IP, error) {\n\tallIPs := make([]net.IP, 0, len(node.Status.Addresses))\n\tfor _, addr := range node.Status.Addresses {\n\t\tif addr.Type == v1.NodeInternalIP {\n\t\t\tip := netutils.ParseIPSloppy(addr.Address)\n\t\t\tif ip != nil {\n\t\t\t\tallIPs = append(allIPs, ip)\n\t\t\t}\n\t\t}\n\t}\n\tfor _, addr := range node.Status.Addresses {\n\t\tif addr.Type == v1.NodeExternalIP {\n\t\t\tip := netutils.ParseIPSloppy(addr.Address)\n\t\t\tif ip != nil {\n\t\t\t\tallIPs = append(allIPs, ip)\n\t\t\t}\n\t\t}\n\t}\n\tif len(allIPs) == 0 {\n\t\treturn nil, fmt.Errorf(\"host IP unknown; known addresses: %v\", node.Status.Addresses)\n\t}\n\n\tnodeIPs := []net.IP{allIPs[0]}\n\tfor _, ip := range allIPs {\n\t\tif netutils.IsIPv6(ip) != netutils.IsIPv6(nodeIPs[0]) {\n\t\t\tnodeIPs = append(nodeIPs, ip)\n\t\t\tbreak\n\t\t}\n\t}\n\n\treturn nodeIPs, nil\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Kubernetes: tolerations.go / MergeTolerations",
+    "author": "The Kubernetes Authors",
+    "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/tolerations/tolerations.go#L47-L70",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func MergeTolerations(first, second []api.Toleration) []api.Toleration {\n\tall := append(first, second...)\n\tvar merged []api.Toleration\n\nnext:\n\tfor i, t := range all {\n\t\tfor _, t2 := range merged {\n\t\t\tif isSuperset(t2, t) {\n\t\t\t\tcontinue next\n\t\t\t}\n\t\t}\n\t\tif i+1 < len(all) {\n\t\t\tfor _, t2 := range all[i+1:] {\n\t\t\t\tif !apiequality.Semantic.DeepEqual(&t, &t2) && isSuperset(t2, t) {\n\t\t\t\t\tcontinue next\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tmerged = append(merged, t)\n\t}\n\n\treturn merged\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Kubernetes: parsers.go / ParseImageName",
+    "author": "The Kubernetes Authors",
+    "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/parsers/parsers.go#L31-L54",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func ParseImageName(image string) (string, string, string, error) {\n\tnamed, err := dockerref.ParseNormalizedNamed(image)\n\tif err != nil {\n\t\treturn \"\", \"\", \"\", fmt.Errorf(\"couldn't parse image name %q: %v\", image, err)\n\t}\n\n\trepoToPull := named.Name()\n\tvar tag, digest string\n\n\ttagged, ok := named.(dockerref.Tagged)\n\tif ok {\n\t\ttag = tagged.Tag()\n\t}\n\n\tdigested, ok := named.(dockerref.Digested)\n\tif ok {\n\t\tdigest = digested.Digest().String()\n\t}\n\tif len(tag) == 0 && len(digest) == 0 {\n\t\ttag = \"latest\"\n\t}\n\treturn repoToPull, tag, digest, nil\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Kubernetes: slice.go / RemoveString",
+    "author": "The Kubernetes Authors",
+    "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/slice/slice.go#L58-L75",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func RemoveString(slice []string, s string, modifier func(s string) string) []string {\n\tnewSlice := make([]string, 0)\n\tfor _, item := range slice {\n\t\tif item == s {\n\t\t\tcontinue\n\t\t}\n\t\tif modifier != nil && modifier(item) == s {\n\t\t\tcontinue\n\t\t}\n\t\tnewSlice = append(newSlice, item)\n\t}\n\tif len(newSlice) == 0 {\n\t\tnewSlice = nil\n\t}\n\treturn newSlice\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Kubernetes: env.go / GetEnvAsFloat64OrFallback",
+    "author": "The Kubernetes Authors",
+    "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/env/env.go#L48-L57",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "text": "func GetEnvAsFloat64OrFallback(key string, defaultValue float64) (float64, error) {\n\tif v := os.Getenv(key); v != \"\" {\n\t\tvalue, err := strconv.ParseFloat(v, 64)\n\t\tif err != nil {\n\t\t\treturn defaultValue, err\n\t\t}\n\t\treturn value, nil\n\t}\n\treturn defaultValue, nil\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Kubernetes: runner.go / Start",
+    "author": "The Kubernetes Authors",
+    "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/async/runner.go#L38-L48",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "text": "func (r *Runner) Start() {\n\tr.lock.Lock()\n\tdefer r.lock.Unlock()\n\tif r.stop == nil {\n\t\tc := make(chan struct{})\n\t\tr.stop = &c\n\t\tfor i := range r.loopFuncs {\n\t\t\tgo r.loopFuncs[i](*r.stop)\n\t\t}\n\t}\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "Go",
+    "title": "Kubernetes: iptables.go / checkRuleUsingCheck",
+    "author": "The Kubernetes Authors",
+    "source": "https://github.com/kubernetes/kubernetes/blob/93248f9ae092f571eb870b7664c534bfc7d00f03/pkg/util/iptables/iptables.go#L583-L602",
+    "license": "Apache-2.0 (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func (runner *runner) checkRuleUsingCheck(args []string) (bool, error) {\n\tctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)\n\tdefer cancel()\n\n\tout, err := runner.runContext(ctx, opCheckRule, args)\n\tif ctx.Err() == context.DeadlineExceeded {\n\t\treturn false, fmt.Errorf(\"timed out while checking rules\")\n\t}\n\tif err == nil {\n\t\treturn true, nil\n\t}\n\tif ee, ok := err.(utilexec.ExitError); ok {\n\t\tif ee.Exited() && ee.ExitStatus() == 1 {\n\t\t\treturn false, nil\n\t\t}\n\t}\n\treturn false, fmt.Errorf(\"error checking rule: %v: %s\", err, out)\n}"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Godot demos: player.gd / get_new_animation",
+    "author": "Godot Engine contributors",
+    "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/platformer/player/player.gd#L61-L75",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "func get_new_animation(is_shooting: bool = false) -> String:\n\tvar animation_new: String\n\tif is_on_floor():\n\t\tif absf(velocity.x) > 0.1:\n\t\t\tanimation_new = \"run\"\n\t\telse:\n\t\t\tanimation_new = \"idle\"\n\telse:\n\t\tif velocity.y > 0.0:\n\t\t\tanimation_new = \"falling\"\n\t\telse:\n\t\t\tanimation_new = \"jumping\"\n\tif is_shooting:\n\t\tanimation_new += \"_weapon\"\n\treturn animation_new"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Godot demos: ball.gd / complete script",
+    "author": "Godot Engine contributors",
+    "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/pong/logic/ball.gd#L1-L18",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "extends Area2D\n\nconst DEFAULT_SPEED = 100.0\n\nvar _speed := DEFAULT_SPEED\nvar direction := Vector2.LEFT\n\n@onready var _initial_pos := position\n\nfunc _process(delta: float) -> void:\n\t_speed += delta * 2\n\tposition += _speed * delta * direction\n\n\nfunc reset() -> void:\n\tdirection = Vector2.LEFT\n\tposition = _initial_pos\n\t_speed = DEFAULT_SPEED"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Godot demos: main.gd / _on_MobTimer_timeout",
+    "author": "Godot Engine contributors",
+    "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/dodge_the_creeps/main.gd#L24-L47",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func _on_MobTimer_timeout():\n\tvar mob = mob_scene.instantiate()\n\n\tvar mob_spawn_location = get_node(^\"MobPath/MobSpawnLocation\")\n\tmob_spawn_location.progress_ratio = randf()\n\n\tmob.position = mob_spawn_location.position\n\n\tvar direction = mob_spawn_location.rotation + PI / 2\n\n\tdirection += randf_range(-PI / 4, PI / 4)\n\tmob.rotation = direction\n\n\tvar velocity = Vector2(randf_range(150.0, 250.0), 0.0)\n\tmob.linear_velocity = velocity.rotated(direction)\n\n\tadd_child(mob)"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Godot demos: 2d/navigation/character.gd / _physics_process",
+    "author": "Godot Engine contributors",
+    "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/navigation/character.gd#L30-L38",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "func _physics_process(_delta: float) -> void:\n\tif navigation_agent.is_navigation_finished():\n\t\treturn\n\n\tvar current_agent_position: Vector2 = global_position\n\tvar next_path_position: Vector2 = navigation_agent.get_next_path_position()\n\n\tvelocity = current_agent_position.direction_to(next_path_position) * movement_speed\n\tmove_and_slide()"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Godot demos: state_machine.gd / _enter_tree",
+    "author": "Godot Engine contributors",
+    "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/finite_state_machine/state_machine/state_machine.gd#L24-L37",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func _enter_tree() -> void:\n\tvar initial_state: Node\n\tif start_state.is_empty():\n\t\tinitial_state = get_child(0)\n\telse:\n\t\tinitial_state = get_node(start_state)\n\tfor child in get_children():\n\t\tvar err: bool = child.finished.connect(_change_state)\n\t\tif err:\n\t\t\tprinterr(err)\n\tinitialize(initial_state)"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Godot demos: turn_queue.gd / set_queue",
+    "author": "Godot Engine contributors",
+    "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/role_playing_game/combat/turn_queue.gd#L38-L46",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "func set_queue(new_queue: Array[Node]) -> void:\n\tqueue.clear()\n\tfor node in new_queue:\n\t\tif node is not Combatant:\n\t\t\tcontinue\n\t\tqueue.append(node)\n\t\tnode.active = false\n\tif queue.size() > 0:\n\t\tactive_combatant = queue[0]"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Godot demos: bullets.gd / _physics_process",
+    "author": "Godot Engine contributors",
+    "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/bullet_shower/bullets.gd#L60-L71",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func _physics_process(delta: float) -> void:\n\tvar transform2d := Transform2D()\n\tvar offset := get_viewport_rect().size.x + 16\n\tfor bullet: Bullet in bullets:\n\t\tbullet.position.x -= bullet.speed * delta\n\n\t\tif bullet.position.x < -16:\n\t\t\tbullet.position.x = offset\n\n\t\ttransform2d.origin = bullet.position\n\t\tPhysicsServer2D.body_set_state(bullet.body, PhysicsServer2D.BODY_STATE_TRANSFORM, transform2d)"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Godot demos: follow_camera.gd / _physics_process",
+    "author": "Godot Engine contributors",
+    "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/3d/kinematic_character/player/follow_camera.gd#L19-L46",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func _physics_process(_delta: float) -> void:\n\tvar target_pos := target_node.global_transform.origin\n\tvar camera_pos := global_transform.origin\n\n\tvar delta_pos := camera_pos - target_pos\n\n\n\tif delta_pos.length() < min_distance:\n\t\tdelta_pos = delta_pos.normalized() * min_distance\n\telif delta_pos.length() > max_distance:\n\t\tdelta_pos = delta_pos.normalized() * max_distance\n\n\tif delta_pos.y > max_height:\n\t\tdelta_pos.y = max_height\n\tif delta_pos.y < min_height:\n\t\tdelta_pos.y = min_height\n\n\tcamera_pos = target_pos + delta_pos\n\n\tlook_at_from_position(camera_pos, target_pos, Vector3.UP)\n\n\tvar t := transform\n\tt.basis = Basis(t.basis[0], deg_to_rad(angle_v_adjust)) * t.basis\n\ttransform = t"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Godot demos: 3d/navigation/character.gd / _physics_process",
+    "author": "Godot Engine contributors",
+    "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/3d/navigation/character.gd#L16-L28",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func _physics_process(delta: float) -> void:\n\tif _nav_agent.is_navigation_finished():\n\t\treturn\n\n\tvar next_position := _nav_agent.get_next_path_position()\n\tvar offset := next_position - global_position\n\tglobal_position = global_position.move_toward(next_position, delta * character_speed)\n\n\toffset.y = 0\n\tif not offset.is_zero_approx():\n\t\tlook_at(global_position + offset, Vector3.UP)"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Godot demos: main.gd / reset",
+    "author": "Godot Engine contributors",
+    "source": "https://github.com/godotengine/godot-demo-projects/blob/15d4fcd70a429dfd455d6fce9d0cd004abd07373/2d/tween/main.gd#L143-L163",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "func reset(soft: bool = false) -> void:\n\ticon.position = icon_start_position\n\ticon.self_modulate = Color.WHITE\n\ticon.rotation = 0\n\ticon.scale = Vector2.ONE\n\ticon.show()\n\tcountdown_label.hide()\n\n\tif soft:\n\t\treturn\n\n\tif tween:\n\t\ttween.kill()\n\t\ttween = null\n\n\tif sub_tween:\n\t\tsub_tween.kill()\n\t\tsub_tween = null\n\n\tprogress.max_value = 0"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Pixelorama: AnimationTag.gd / serialize",
+    "author": "Orama Interactive and contributors",
+    "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/AnimationTag.gd#L57-L61",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "func serialize() -> Dictionary:\n\tvar dict := {\"name\": name, \"color\": color.to_html(), \"from\": from, \"to\": to}\n\tif not user_data.is_empty():\n\t\tdict[\"user_data\"] = user_data\n\treturn dict"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Pixelorama: Frame.gd / position_in_seconds",
+    "author": "Orama Interactive and contributors",
+    "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/Frame.gd#L24-L40",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "func position_in_seconds(project: Project, start_from := 0) -> float:\n\tvar pos := 0.0\n\tvar index := project.frames.find(self)\n\tif index > start_from:\n\t\tfor i in range(start_from, index):\n\t\t\tif i >= 0:\n\t\t\t\tvar frame := project.frames[i]\n\t\t\t\tpos += frame.get_duration_in_seconds(project.fps)\n\t\t\telse:\n\t\t\t\tpos += 1.0 / project.fps\n\telse:\n\t\tif start_from >= project.frames.size():\n\t\t\treturn -1.0\n\t\tfor i in range(start_from, index, -1):\n\t\t\tvar frame := project.frames[i]\n\t\t\tpos -= frame.get_duration_in_seconds(project.fps)\n\treturn pos"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Pixelorama: PixelCel.gd / set_content",
+    "author": "Orama Interactive and contributors",
+    "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/Cels/PixelCel.gd#L35-L48",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "func set_content(content, texture: ImageTexture = null) -> void:\n\tvar proper_content: ImageExtended\n\tif content is not ImageExtended:\n\t\tproper_content = ImageExtended.new()\n\t\tproper_content.copy_from_custom(content, image.is_indexed)\n\telse:\n\t\tproper_content = content\n\timage = proper_content\n\tif is_instance_valid(texture) and is_instance_valid(texture.get_image()):\n\t\timage_texture = texture\n\t\tif image_texture.get_image().get_size() != image.get_size():\n\t\t\timage_texture.set_image(image)\n\telse:\n\t\timage_texture.update(image)"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Pixelorama: PixelLayer.gd / complete script",
+    "author": "Orama Interactive and contributors",
+    "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/Layers/PixelLayer.gd#L1-L40",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "class_name PixelLayer\nextends BaseLayer\n\n\n\nfunc serialize() -> Dictionary:\n\tvar dict := super.serialize()\n\tdict[\"type\"] = get_layer_type()\n\tdict[\"new_cels_linked\"] = new_cels_linked\n\treturn dict\n\n\nfunc deserialize(dict: Dictionary) -> void:\n\tsuper.deserialize(dict)\n\tnew_cels_linked = dict.new_cels_linked\n\n\nfunc get_layer_type() -> int:\n\treturn Global.LayerTypes.PIXEL\n\n\nfunc new_empty_cel() -> BaseCel:\n\tvar format := project.get_image_format()\n\tvar is_indexed := project.is_indexed()\n\tvar image := ImageExtended.create_custom(\n\t\tproject.size.x, project.size.y, false, format, is_indexed\n\t)\n\treturn PixelCel.new(image)\n\n\nfunc new_cel_from_image(image: Image) -> PixelCel:\n\tvar pixelorama_image := ImageExtended.new()\n\tpixelorama_image.copy_from_custom(image, project.is_indexed())\n\treturn PixelCel.new(pixelorama_image)\n\n\nfunc can_layer_get_drawn() -> bool:\n\treturn can_layer_be_modified()"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Pixelorama: SelectionMap.gd / get_point_in_tile_mode",
+    "author": "Orama Interactive and contributors",
+    "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/SelectionMap.gd#L66-L79",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "func get_point_in_tile_mode(pixel: Vector2i) -> Array[Vector2i]:\n\tvar result: Array[Vector2i] = []\n\tif SelectionNode.flag_tilemode:\n\t\tvar selection_rect := get_used_rect()\n\t\tvar start_x := selection_rect.position.x - selection_rect.size.x\n\t\tvar end_x := selection_rect.position.x + 2 * selection_rect.size.x\n\t\tvar start_y := selection_rect.position.y - selection_rect.size.y\n\t\tvar end_y := selection_rect.position.y + 2 * selection_rect.size.y\n\t\tfor x in range(start_x, end_x, selection_rect.size.x):\n\t\t\tfor y in range(start_y, end_y, selection_rect.size.y):\n\t\t\t\tresult.append(Vector2i(x, y) + pixel - selection_rect.position)\n\telse:\n\t\tresult.append(pixel)\n\treturn result"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Pixelorama: TileSetCustom.gd / deserialize",
+    "author": "Orama Interactive and contributors",
+    "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/TileSetCustom.gd#L93-L105",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "modifications": "Comments and docstrings removed for typing practice.",
+    "text": "\tfunc deserialize(dict: Dictionary, skip_times_used := false) -> void:\n\t\ttimes_used = 0\n\t\tif not skip_times_used:\n\t\t\ttimes_used = dict.get(\"times_used\", times_used)\n\t\tprobability = dict.get(\"probability\", probability)\n\t\tuser_data = dict.get(\"user_data\", user_data)\n\t\tterrain_center_bit = dict.get(\"terrain_center_bit\", terrain_center_bit)\n\t\tvar tmp_peering_bits = dict.get(\"terrain_peering_bits\", terrain_peering_bits)\n\t\tfor i in tmp_peering_bits.size():\n\t\t\tvar bit = tmp_peering_bits[i]\n\t\t\tterrain_peering_bits[i] = bit"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Pixelorama: Pencil.gd / _draw_brush_image",
+    "author": "Orama Interactive and contributors",
+    "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Tools/DesignTools/Pencil.gd#L202-L221",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "func _draw_brush_image(brush_image: Image, src_rect: Rect2i, dst: Vector2i) -> void:\n\t_changed = true\n\tvar images := _get_selected_draw_images()\n\tif _overwrite:\n\t\tfor draw_image in images:\n\t\t\tif Tools.alpha_locked:\n\t\t\t\tvar mask := draw_image.get_region(Rect2i(dst, brush_image.get_size()))\n\t\t\t\tdraw_image.blit_rect_mask(brush_image, mask, src_rect, dst)\n\t\t\telse:\n\t\t\t\tdraw_image.blit_rect(brush_image, src_rect, dst)\n\t\t\tdraw_image.convert_rgb_to_indexed()\n\telse:\n\t\tfor draw_image in images:\n\t\t\tif Tools.alpha_locked:\n\t\t\t\tvar mask := draw_image.get_region(Rect2i(dst, brush_image.get_size()))\n\t\t\t\tdraw_image.blend_rect_mask(brush_image, mask, src_rect, dst)\n\t\t\telse:\n\t\t\t\tdraw_image.blend_rect(brush_image, src_rect, dst)\n\t\t\tdraw_image.convert_rgb_to_indexed()\n\tupdate_materials(images)"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Pixelorama: EllipseTool.gd / complete script",
+    "author": "Orama Interactive and contributors",
+    "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Tools/DesignTools/EllipseTool.gd#L1-L9",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "extends \"res://src/Tools/BaseShapeDrawer.gd\"\n\n\nfunc _get_shape_points_filled(pos: Vector2i, shape_size: Vector2i) -> Array[Vector2i]:\n\treturn DrawingAlgos.get_ellipse_points_filled(pos, shape_size, 1)\n\n\nfunc _get_shape_points(pos: Vector2i, shape_size: Vector2i) -> Array[Vector2i]:\n\treturn DrawingAlgos.get_ellipse_points(pos, shape_size)"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Pixelorama: ColorPicker.gd / _input",
+    "author": "Orama Interactive and contributors",
+    "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Tools/UtilityTools/ColorPicker.gd#L15-L25",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "func _input(event: InputEvent) -> void:\n\tvar options: OptionButton = $ColorPicker/Options\n\n\tif event.is_action_pressed(\"change_tool_mode\"):\n\t\t_prev_mode = options.selected\n\tif event.is_action(\"change_tool_mode\"):\n\t\toptions.selected = _prev_mode ^ 1\n\t\t_color_slot = options.selected\n\tif event.is_action_released(\"change_tool_mode\"):\n\t\toptions.selected = _prev_mode\n\t\t_color_slot = options.selected"
+  },
+  {
+    "text_type": "code",
+    "group": "GDScript",
+    "title": "Pixelorama: ThemeUtils.gd / generate_palette",
+    "author": "Orama Interactive and contributors",
+    "source": "https://github.com/Orama-Interactive/Pixelorama/blob/da7b68f97806c461abde615d1d847af91921c37b/src/Classes/ThemeUtils.gd#L337-L353",
+    "license": "MIT (assets/licenses/code-projects.txt)",
+    "text": "static func generate_palette(\n\tbase_color: Color, accent_color: Color, contrast: float\n) -> PackedColorArray:\n\tvar is_dark := base_color.get_luminance() < 0.5\n\tvar background := base_color\n\tvar primary := get_surface_color(base_color, contrast, 0.15)\n\tvar secondary := get_surface_color(base_color, maxf(0.2, contrast), 0.5)\n\tvar window_border := get_surface_color(base_color, contrast, 1.0)\n\tvar accent := accent_color\n\tvar accent2_weight := 0.20 if is_dark else 0.35\n\tvar accent2 := accent.lerp(background, accent2_weight)\n\tvar text_base := Color.WHITE if is_dark else Color.BLACK\n\tvar text_color := text_base * Color(1, 1, 1, 0.75)\n\n\treturn PackedColorArray(\n\t\t[background, primary, secondary, accent, accent2, text_color, window_border]\n\t)"
+  }
+]
